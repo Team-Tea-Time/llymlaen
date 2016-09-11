@@ -32,23 +32,18 @@ export default {
 }
 </script>
 
-<style>
-html {
-  height: 100%;
-}
+<style lang="scss">
+@import 'variables';
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+html, body {
   height: 100%;
 }
 
 #app {
-  color: #2c3e50;
+  color: $text-color-primary;
   margin-top: -100px;
   max-width: 600px;
-  font-family: Source Sans Pro, Helvetica, sans-serif;
+  font-family:  "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
   text-align: center;
 }
 
