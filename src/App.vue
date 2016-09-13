@@ -1,59 +1,81 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    <p>
-      Welcome to your Vue.js app!
-    </p>
-    <p>
-      To get a better understanding of how this boilerplate works, check out
-      <a href="http://vuejs-templates.github.io/webpack" target="_blank">its documentation</a>.
-      It is also recommended to go through the docs for
-      <a href="http://webpack.github.io/" target="_blank">Webpack</a> and
-      <a href="http://vuejs.github.io/vue-loader/" target="_blank">vue-loader</a>.
-      If you have any issues with the setup, please file an issue at this boilerplate's
-      <a href="https://github.com/vuejs-templates/webpack" target="_blank">repository</a>.
-    </p>
-    <p>
-      You may also want to checkout
-      <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
-      <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
-    </p>
+    <top-bar>
+      <div class="right">
+        <nav-item>
+          Register
+        </nav-item>
+        <nav-item>
+          Log in
+        </nav-item>
+      </div>
+    </top-bar>
+    <page-header>
+      <slot slot="subtitle">
+        Balmung Edition
+      </slot>
+    </page-header>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import debounce from 'debounce'
+
+import NavItem from './components/NavItem'
+import PageHeader from './components/PageHeader'
+import TopBar from './components/TopBar'
 
 export default {
   components: {
-    Hello
+    NavItem,
+    PageHeader,
+    TopBar
+  },
+  ready () {
+    var topBarClass = document.getElementById('top-bar').classList
+
+    topBarClass.add('at-top')
+
+    window.onscroll = debounce((event) => {
+      if (document.body.scrollTop === 0) {
+        topBarClass.add('at-top')
+      } else {
+        topBarClass.remove('at-top')
+      }
+    }, 35)
   }
 }
 </script>
 
 <style lang="scss">
-@import 'variables';
+@import url('https://fonts.googleapis.com/css?family=Catamaran:300,600');
+
+@import 'palette';
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 12pt;
+}
+
+.right {
+  float: right;
 }
 
 #app {
-  color: $text-color-primary;
-  margin-top: -100px;
-  max-width: 600px;
-  font-family:  "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
-  text-align: center;
-}
+  min-height: 1600px;
+  color: $bluegrey;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
 
-#app a {
-  color: #42b983;
-  text-decoration: none;
-}
+  a:not(.nav-item) {
+    color: #42b983;
+    text-decoration: none;
+  }
 
-.logo {
-  width: 100px;
-  height: 100px
+  h1, h2, h3, h4 {
+    font-family: "Catamaran", sans-serif;
+    font-weight: 600;
+  }
 }
 </style>
