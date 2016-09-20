@@ -2,10 +2,10 @@
   <div id="app">
     <top-bar>
       <div class="right">
-        <nav-item>
+        <nav-item to="/user/register">
           Register
         </nav-item>
-        <nav-item>
+        <nav-item to="/user/login">
           Log in
         </nav-item>
       </div>
@@ -15,6 +15,7 @@
         Balmung Edition
       </slot>
     </page-header>
+    <router-view></router-view>
   </div>
 </template>
 

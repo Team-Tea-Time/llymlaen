@@ -1,8 +1,23 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+
 import App from './App'
 
+import Login from './components/Login'
+
 /* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  components: { App }
+
+Vue.use(VueRouter)
+
+var router = new VueRouter({
+  hashbang: false,
+  history: true
 })
+
+router.map({
+  '/user/login': {
+    component: Login
+  }
+})
+
+router.start(App, '#app')

@@ -1,8 +1,14 @@
 <template>
-  <a href="#" class="nav-item">
+  <a v-link="to" class="nav-item">
     <slot></slot>
   </a>
 </template>
+
+<script>
+export default {
+  props: ['to']
+}
+</script>
 
 <style lang="scss">
 a.nav-item {
