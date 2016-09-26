@@ -30,6 +30,8 @@
   h1 {
     top: 25%;
     font-size: 4.0rem;
+    font-weight: 300;
+    text-transform: uppercase;
   }
 
   h2 {

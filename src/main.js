@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import App from './App'
 
-import Login from './components/Login'
+import Login from './Views/Login'
 
 /* eslint-disable no-new */
 
