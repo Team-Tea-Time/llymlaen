@@ -7,7 +7,7 @@
     <content>
       <input-text label="Username" :value.sync="username"></input-text>
       <input-password label="Password" :value.sync="password"></input-password>
-      <input-button>Proceed</input-button>
+      <input-button @click="submit">Proceed</input-button>
     </content>
   </div>
 </template>
@@ -31,6 +31,11 @@ export default {
     return {
       username: null,
       password: null
+    }
+  },
+  methods: {
+    submit () {
+      //
     }
   }
 }
