@@ -11,6 +11,8 @@ import Login from './Views/Login'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
+Vue.http.options.root = '/api'
+
 var router = new VueRouter({
   hashbang: false,
   history: true

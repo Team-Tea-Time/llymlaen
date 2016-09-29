@@ -20,11 +20,14 @@ import debounce from 'debounce'
 import TopBar from './Layout/TopBar'
 import NavItem from './Navigation/NavItem'
 
+import store from './vuex/store'
+
 export default {
   components: {
     NavItem,
     TopBar
   },
+  store,
   ready () {
     var topBarClass = document.getElementById('top-bar').classList
 
