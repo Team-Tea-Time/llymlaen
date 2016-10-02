@@ -1,6 +1,6 @@
 # llymlaen
 
-> Llymlaen, the Navigator; eorzea.info's frontend
+> Llymlaen, the Navigator; eorzea.info's frontend built with Vue
 
 ## Build Setup
 

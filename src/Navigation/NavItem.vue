@@ -1,7 +1,7 @@
 <template>
-  <a v-link="to" class="nav-item">
+  <router-link :to="to" class="nav-item">
     <slot></slot>
-  </a>
+  </router-link>
 </template>
 
 <script>

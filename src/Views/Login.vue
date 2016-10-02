@@ -4,50 +4,42 @@
       <slot slot="title">Log in</slot>
       <slot slot="subtitle"></slot>
     </page-header>
-    <content>
-      <div v-if="user.id > 0">
-        ID: {{ user.id }}<br>
-        Username: {{ user.name }}
-      </div>
+    <content-container>
       <input-text label="Username or email address" :value.sync="identity"></input-text>
       <input-password label="Password" :value.sync="password"></input-password>
       <input-button @click="submit">Proceed</input-button>
-    </content>
+    </content-container>
   </div>
 </template>
 
 <script>
 import jwtDecode from 'jwt-decode'
 
-import Content from '../Layout/Content'
+import ContentContainer from '../Layout/Content'
 import InputButton from '../Input/Button'
 import InputPassword from '../Input/Password'
 import InputText from '../Input/Text'
 import PageHeader from '../Layout/PageHeader'
 
-import { setUser } from '../vuex/actions'
-import { user } from '../vuex/getters'
+import store from '../store'
 
 export default {
   components: {
-    Content,
+    ContentContainer,
     PageHeader,
     InputButton,
     InputPassword,
     InputText
   },
-  vuex: {
-    getters: {
-      user
-    },
-    actions: {
-      setUser
-    }
-  },
   data () {
     return {
       identity: null,
       password: null
+    }
+  },
+  computed: {
+    user () {
+      return store.state.user
     }
   },
   methods: {

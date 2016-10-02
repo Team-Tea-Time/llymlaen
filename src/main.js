@@ -2,8 +2,7 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 
-import App from './App'
-
+import Base from './Views/Base'
 import Login from './Views/Login'
 
 /* eslint-disable no-new */
@@ -13,15 +12,20 @@ Vue.use(VueRouter)
 
 Vue.http.options.root = '/api'
 
-var router = new VueRouter({
-  hashbang: false,
-  history: true
+const router = new VueRouter({
+  mode: 'history',
+  base: __dirname,
+  routes: [
+    {
+      path: '/',
+      component: Base,
+      children: [
+        { path: '/user/login', component: Login }
+      ]
+    }
+  ]
 })
 
-router.map({
-  '/user/login': {
-    component: Login
-  }
-})
-
-router.start(App, '#app')
+new Vue({
+  router
+}).$mount('#app')

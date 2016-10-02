@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="base">
     <top-bar>
       <div class="right">
         <nav-item to="/user/register">
@@ -17,17 +17,14 @@
 <script>
 import debounce from 'debounce'
 
-import TopBar from './Layout/TopBar'
-import NavItem from './Navigation/NavItem'
-
-import store from './vuex/store'
+import TopBar from '../Layout/TopBar'
+import NavItem from '../Navigation/NavItem'
 
 export default {
   components: {
     NavItem,
     TopBar
   },
-  store,
   ready () {
     var topBarClass = document.getElementById('top-bar').classList
 
@@ -48,7 +45,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
 
-@import 'palette';
+@import '../palette';
 
 html, body {
   height: 100%;
@@ -65,7 +62,7 @@ body {
   float: right;
 }
 
-#app {
+#base {
   min-height: 1600px;
   color: $bluegrey;
   font-family: "Open Sans", Arial, Verdana, sans-serif;
