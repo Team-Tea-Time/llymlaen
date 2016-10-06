@@ -1,16 +1,11 @@
 <template>
   <div class="input-password">
-    <input-base type="password" :label="label" :value.sync="value"></input-base>
+    <input-base type="password" :label="label" v-on:input="onInput"></input-base>
   </div>
 </template>
 
 <script>
-import InputBase from './Base'
+import input from './_input.js'
 
-export default {
-  props: ['label', 'name', 'value', 'placeholder'],
-  components: {
-    InputBase
-  }
-}
+export default input
 </script>

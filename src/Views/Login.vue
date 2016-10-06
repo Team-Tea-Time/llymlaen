@@ -5,8 +5,8 @@
       <slot slot="subtitle"></slot>
     </page-header>
     <content-container>
-      <input-text label="Username or email address" :value.sync="identity"></input-text>
-      <input-password label="Password" :value.sync="password"></input-password>
+      <input-text label="Username or email address" v-model="identity"></input-text>
+      <input-password label="Password" v-model="password"></input-password>
       <input-button @click="submit">Proceed</input-button>
     </content-container>
   </div>

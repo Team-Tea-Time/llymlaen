@@ -1,7 +1,10 @@
 <template>
   <div class="input-wrapper" :class="{populated: value}">
-    <input v-if="type != 'textarea'" :type="type" :value="value" v-model.sync="value">
-    <textarea v-else :type="type" :value="value" v-model.sync="value"></textarea>
+    <textarea v-if="type == 'textarea'" :type="type" v-model="value" v-on:input="onInput"></textarea>
+    <select v-if="type == 'select'" v-model="value" v-on:input="onInput">
+      <slot name="options"></slot>
+    </select>
+    <input v-if="type != 'textarea' && type != 'select'" :type="type" v-model="value" v-on:input="onInput">
     <span class="bar"></span>
     <label>{{ label }}</label>
   </div>
@@ -9,7 +12,17 @@
 
 <script>
 export default {
-  props: ['type', 'label', 'value']
+  props: ['type', 'label'],
+  data () {
+    return {
+      value: null
+    }
+  },
+  methods: {
+    onInput: function (event) {
+      this.$emit('input', event)
+    }
+  }
 }
 </script>
 
