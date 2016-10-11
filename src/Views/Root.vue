@@ -1,5 +1,5 @@
 <template>
-  <div id="base">
+  <div id="root">
     <top-bar>
       <div class="right">
         <nav-item to="/user/register">
@@ -62,7 +62,7 @@ body {
   float: right;
 }
 
-#base {
+#root {
   min-height: 1600px;
   color: $bluegrey;
   font-family: "Open Sans", Arial, Verdana, sans-serif;
@@ -74,7 +74,34 @@ body {
 
   h1, h2, h3, h4 {
     font-family: "Open Sans Condensed", sans-serif;
-    font-weight: 700;
+    font-weight: 300;
   }
+}
+
+/* NProgress */
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1031;
+  width: 100%;
+  height: 2px;
+  background: $red;
+}
+
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px $red, 0 0 5px $red;
+  opacity: 1.0;
+  transform: rotate(3deg) translate(0px, -4px);
 }
 </style>

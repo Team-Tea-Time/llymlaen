@@ -5,7 +5,17 @@
 </template>
 
 <script>
-import input from './_input.js'
+import InputBase from './Base'
 
-export default input
+export default {
+  props: ['label'],
+  components: {
+    InputBase
+  },
+  methods: {
+    onInput: function (event) {
+      this.$emit('input', event.target.value)
+    }
+  }
+}
 </script>

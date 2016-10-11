@@ -1,5 +1,5 @@
 <template>
-    <button>
+    <button v-on:click="click">
         <slot></slot>
         <span class="rippleJS"></span>
     </button>
@@ -9,7 +9,7 @@
 import Ripple from 'vanilla-ripplejs'
 
 export default {
-  props: ['label'],
+  props: ['click'],
   components: {
     Ripple
   }

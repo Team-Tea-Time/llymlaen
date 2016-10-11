@@ -7,14 +7,12 @@
     <content-container>
       <input-text label="Username or email address" v-model="identity"></input-text>
       <input-password label="Password" v-model="password"></input-password>
-      <input-button @click="submit">Proceed</input-button>
+      <input-button :click="submit">Proceed</input-button>
     </content-container>
   </div>
 </template>
 
 <script>
-import jwtDecode from 'jwt-decode'
-
 import ContentContainer from '../Layout/Content'
 import InputButton from '../Input/Button'
 import InputPassword from '../Input/Password'
@@ -43,10 +41,10 @@ export default {
     }
   },
   methods: {
-    submit () {
+    submit: function () {
       this.$http.post('auth/login', {identity: this.identity, password: this.password}).then((response) => {
-        console.log('Authentication succeeded')
-        console.log(jwtDecode(response.data.token))
+        this.$cookie.set('token', response.data.token, 14)
+        this.$router.path('/')
       }, (response) => {
         console.log('Authentication failed')
         console.log(response)
