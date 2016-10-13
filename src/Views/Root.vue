@@ -78,7 +78,19 @@ body {
   }
 }
 
-/* NProgress */
+// Transitions
+
+.fade-transition {
+  transition: all .5s ease-in-out;
+  opacity: 1.0;
+}
+
+.fade-enter, .fade-leave {
+  transition: all .5s ease-in-out;
+  opacity: 0;
+}
+
+// NProgress
 
 #nprogress {
   pointer-events: none;

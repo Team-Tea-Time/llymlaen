@@ -21,8 +21,11 @@ import PageHeader from '../Layout/PageHeader'
 
 import store from '../store'
 
+import Alert from '../Content/Alert'
+
 export default {
   components: {
+    Alert,
     ContentContainer,
     PageHeader,
     InputButton,
