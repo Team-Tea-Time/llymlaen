@@ -1,13 +1,17 @@
 <template>
-  <card
-    :class="classList"
-    zHeight="1"
-    :heading="heading"
-    v-if="show"
-    transition="fade"
-  >
-    <slot></slot>
-  </card>
+  <transition name="fade">
+    <card
+      :class="classList"
+      zHeight="1"
+      :heading="heading"
+      v-if="show"
+    >
+      <div class="icon">
+        <i class="material-icons">{{ icon }}</i>
+      </div>
+      <slot></slot>
+    </card>
+  </transition>
 </template>
 
 <script>
@@ -22,6 +26,18 @@ export default {
     classList () {
       var type = (typeof this.type !== 'undefined') ? this.type : 'info'
       return `alert ${type}`
+    },
+    icon () {
+      switch (this.type) {
+        case 'error':
+          return 'error_outline'
+        case 'info':
+          return 'info_outline'
+        case 'success':
+          return 'check'
+        case 'warning':
+          return 'warning'
+      }
     }
   },
   data () {
@@ -31,9 +47,9 @@ export default {
   },
   mounted () {
     if (!this.persist) {
-      setTimeout(function () {
+      setTimeout(() => (
         this.show = false
-      }, 4000)
+      ), 6000)
     }
   }
 }
@@ -44,36 +60,48 @@ export default {
 
 .card.alert {
   position: relative;
-  padding-left: 40px;
-  background: $bluegrey;
-  color: palette('white');
+  padding-left: 80px;
+  font-size: 0.9rem;
+  font-weight: bold;
   overflow: hidden;
 
-  &::before {
-    content: "";
+  .icon {
     position: absolute;
-    top: 8px;
-    left: 8px;
-    bottom: 8px;
-    width: 6px;
-    border-radius: 3px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 17px;
+    color: palette('white');
+    text-align: center;
   }
 
-  &.info::before {
-    background: palette('blue');
-    box-shadow: 0 0 15px 0 palette('blue');
+  &.info {
+    color: palette('blue', 'A200');
+
+    .icon {
+      background: palette('blue', 'A200');
+    }
   }
-  &.success::before {
-    background: palette('teal', 'A400');
-    box-shadow: 0 0 15px 0 palette('teal', 'A400');
+  &.success {
+    color: palette('teal', 'A700');
+
+    .icon {
+      background: palette('teal', 'A700');
+    }
   }
-  &.warning::before {
-    background: palette('deep orange');
-    box-shadow: 0 0 15px 0 palette('deep orange');
+  &.warning {
+    color: palette('deep orange', 400);
+
+    .icon {
+      background: palette('deep orange', 400);
+    }
   }
-  &.error::before {
-    background: palette('red', 'A400');
-    box-shadow: 0 0 15px 0 palette('red', 'A400');
+  &.error {
+    color: palette('red', 'A200');
+
+    .icon {
+      background: palette('red', 'A200');
+    }
   }
 }
 </style>

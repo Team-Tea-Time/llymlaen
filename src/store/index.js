@@ -7,6 +7,7 @@ import * as mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
+  alerts: [],
   user: {
     id: 0,
     name: 'Guest',

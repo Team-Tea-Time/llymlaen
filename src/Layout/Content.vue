@@ -1,8 +1,21 @@
 <template>
   <div id="content">
+    <alert v-for="alert in this.$store.state.alerts" :type="alert.type" :persist="alert.persist">
+      {{ alert.message }}
+    </alert>
     <slot></slot>
   </div>
 </template>
+
+<script>
+import Alert from '../Content/Alert'
+
+export default {
+  components: {
+    Alert
+  }
+}
+</script>
 
 <style lang="scss">
 #content {

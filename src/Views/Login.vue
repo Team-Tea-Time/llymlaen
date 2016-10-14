@@ -21,11 +21,8 @@ import PageHeader from '../Layout/PageHeader'
 
 import store from '../store'
 
-import Alert from '../Content/Alert'
-
 export default {
   components: {
-    Alert,
     ContentContainer,
     PageHeader,
     InputButton,
@@ -38,19 +35,17 @@ export default {
       password: null
     }
   },
-  computed: {
-    user () {
-      return store.state.user
-    }
-  },
   methods: {
     submit: function () {
       this.$http.post('auth/login', {identity: this.identity, password: this.password}).then((response) => {
         this.$cookie.set('token', response.data.token, 14)
         this.$router.path('/')
       }, (response) => {
-        console.log('Authentication failed')
-        console.log(response)
+        store.commit('addAlert', {
+          type: 'error',
+          message: 'Invalid username/email address or password given. Please try again.',
+          persist: false
+        })
       })
     }
   }

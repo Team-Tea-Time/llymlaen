@@ -17,6 +17,8 @@
 <script>
 import debounce from 'debounce'
 
+import store from '../store'
+
 import TopBar from '../Layout/TopBar'
 import NavItem from '../Navigation/NavItem'
 
@@ -25,6 +27,7 @@ export default {
     NavItem,
     TopBar
   },
+  store,
   ready () {
     var topBarClass = document.getElementById('top-bar').classList
 
@@ -80,14 +83,11 @@ body {
 
 // Transitions
 
-.fade-transition {
-  transition: all .5s ease-in-out;
-  opacity: 1.0;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
 }
-
-.fade-enter, .fade-leave {
-  transition: all .5s ease-in-out;
-  opacity: 0;
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 
 // NProgress
