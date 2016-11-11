@@ -1,6 +1,6 @@
 <template>
   <div id="content">
-    <alert v-for="alert in this.$store.state.alerts" :type="alert.type" :persist="alert.persist">
+    <alert v-for="alert in this.$store.state.alerts" :id="alert.id" :type="alert.type" :persist="alert.persist">
       {{ alert.message }}
     </alert>
     <slot></slot>

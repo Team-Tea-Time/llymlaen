@@ -4,7 +4,6 @@
       :class="classList"
       zHeight="1"
       :heading="heading"
-      v-if="show"
     >
       <div class="icon">
         <i class="material-icons">{{ icon }}</i>
@@ -17,8 +16,10 @@
 <script>
 import Card from './Card'
 
+import store from '../store'
+
 export default {
-  props: ['type', 'heading', 'persist'],
+  props: ['id', 'type', 'heading', 'persist'],
   components: {
     Card
   },
@@ -40,15 +41,10 @@ export default {
       }
     }
   },
-  data () {
-    return {
-      show: false
-    }
-  },
   created () {
     if (!this.persist) {
       setTimeout(() => (
-        this.show = false
+        store.commit('removeAlert', this.id)
       ), 6000)
     }
   }
