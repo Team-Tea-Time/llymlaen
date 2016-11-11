@@ -1,18 +1,22 @@
 <template>
-  <div class="input-wrapper" :class="{populated: value}">
+  <div class="input-wrapper" :class="{populated: value, invalid: error}">
     <textarea v-if="type == 'textarea'" :type="type" v-model="value" v-on:input="onInput"></textarea>
     <select v-if="type == 'select'" v-model="value" v-on:input="onInput">
       <slot name="options"></slot>
     </select>
     <input v-if="type != 'textarea' && type != 'select'" :type="type" v-model="value" v-on:input="onInput">
     <span class="bar"></span>
-    <label>{{ label }}</label>
+    <label>
+      {{ label }}
+      <span class="description">{{ description }}</span>
+    </label>
+    <span class="error">{{ error }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['type', 'label'],
+  props: ['type', 'label', 'description', 'error'],
   data () {
     return {
       value: null
@@ -46,6 +50,12 @@ export default {
           width: 50%;
         }
       }
+    }
+  }
+
+  &.invalid {
+    input, textarea {
+      border-bottom: 1px solid palette('deep orange', 'A400');
     }
   }
 
@@ -111,6 +121,17 @@ export default {
     color: #999;
     pointer-events: none;
     transition: all 0.2s ease;
+
+    .description {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #ccc;
+    }
+  }
+
+  .error {
+    font-size: 0.8rem;
+    color: palette('deep orange', 'A400');
   }
 }
 </style>

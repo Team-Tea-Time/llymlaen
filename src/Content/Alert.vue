@@ -42,10 +42,10 @@ export default {
   },
   data () {
     return {
-      show: true
+      show: false
     }
   },
-  mounted () {
+  created () {
     if (!this.persist) {
       setTimeout(() => (
         this.show = false

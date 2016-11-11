@@ -39,7 +39,7 @@ export default {
     submit: function () {
       this.$http.post('auth/login', {identity: this.identity, password: this.password}).then((response) => {
         this.$cookie.set('token', response.data.token, 14)
-        this.$router.path('/')
+        this.router.push('/')
       }, (response) => {
         store.commit('addAlert', {
           type: 'error',

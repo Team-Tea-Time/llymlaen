@@ -1,6 +1,12 @@
 <template>
   <div class="input-text">
-    <input-base type="text" :label="label" v-on:input="onInput"></input-base>
+    <input-base
+      type="text"
+      :label="label"
+      :description="description"
+      :error="error"
+      v-on:input="onInput"
+    ></input-base>
   </div>
 </template>
 
@@ -8,7 +14,7 @@
 import InputBase from './Base'
 
 export default {
-  props: ['label'],
+  props: ['label', 'description', 'error'],
   components: {
     InputBase
   },
