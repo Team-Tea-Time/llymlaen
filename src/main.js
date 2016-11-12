@@ -11,8 +11,6 @@ import router from './router'
 Vue.use(VueResource)
 Vue.use(VueCookie)
 
-Vue.http.options.root = '/api'
-
 Vue.http.interceptors.push((request, next) => {
   NProgress.start()
   next((response) => {

@@ -5,8 +5,16 @@
       <slot slot="subtitle"></slot>
     </page-header>
     <content-container>
-      <input-text label="Username or email address" v-model="identity"></input-text>
-      <input-password label="Password" v-model="password"></input-password>
+      <input-text
+        label="Username or email address"
+        :error="errors.username"
+        v-model="identity"
+      ></input-text>
+      <input-password
+        label="Password"
+        :error="errors.password"
+        v-model="password"
+      ></input-password>
       <input-button :click="submit">Proceed</input-button>
     </content-container>
   </div>
@@ -19,6 +27,9 @@ import InputPassword from '../Input/Password'
 import InputText from '../Input/Text'
 import PageHeader from '../Layout/PageHeader'
 
+import {extractValidationMessages} from '../Utils/Validation'
+
+import router from '../router'
 import store from '../store'
 
 export default {
@@ -32,20 +43,38 @@ export default {
   data () {
     return {
       identity: null,
-      password: null
+      password: null,
+      errors: {}
     }
   },
   methods: {
     submit: function () {
-      this.$http.post('auth/login', {identity: this.identity, password: this.password}).then((response) => {
-        this.$cookie.set('token', response.data.token, 14)
-        this.router.push('/')
+      const data = {
+        grant_type: 'password',
+        username: this.identity,
+        password: this.password
+      }
+
+      this.$set(this, 'errors', {})
+
+      this.$http.post('/oauth/proxy/token', data).then((response) => {
+        console.log(response)
+
+        // Encode the response body and throw it into a cookie here
+
+        router.push('/')
       }, (response) => {
-        store.commit('addAlert', {
-          type: 'error',
-          message: 'Invalid username/email address or password given. Please try again.',
-          persist: false
-        })
+        if (response.status === 422) {
+          extractValidationMessages(response.body, (key, message) => {
+            this.$set(this.errors, key, message)
+          })
+        } else {
+          store.commit('addAlert', {
+            type: 'error',
+            message: 'Authentication request failed. Please try again or contact us if the issue persists.',
+            persist: false
+          })
+        }
       })
     }
   }

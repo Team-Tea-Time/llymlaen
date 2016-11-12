@@ -37,6 +37,8 @@ import InputPassword from '../Input/Password'
 import InputText from '../Input/Text'
 import PageHeader from '../Layout/PageHeader'
 
+import {extractValidationMessages} from '../Utils/Validation'
+
 import router from '../router'
 import store from '../store'
 
@@ -68,7 +70,7 @@ export default {
 
       this.$set(this, 'errors', {})
 
-      this.$http.post('user/create', data).then((response) => {
+      this.$http.post('/api/user/create', data).then((response) => {
         store.commit('addAlert', {
           type: 'info',
           message: 'Account created. Please check your emails to confirm your account.',
@@ -76,11 +78,9 @@ export default {
         })
         router.push('/user/login')
       }, (response) => {
-        let key = null
-
-        for (key in response.body) {
-          this.$set(this.errors, key, response.body[key][0])
-        }
+        extractValidationMessages(response.body, (key, message) => {
+          this.$set(this.errors, key, message)
+        })
       })
     }
   }
