@@ -5,7 +5,8 @@ module.exports = {
     sourceType: 'module'
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  // @todo: uncomment the line below when it stops causing linter errors in Atom
+  // extends: 'standard',
   // required to lint *.vue files
   plugins: [
     'html'

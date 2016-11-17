@@ -11,6 +11,9 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
+# build the theme from src/theme-variables.scss
+npm run build-theme
+
 # build for production with minification
 npm run build
 

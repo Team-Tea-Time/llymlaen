@@ -1,45 +1,47 @@
 <template>
   <div id="user-login">
-    <page-header>
-      <slot slot="title">Log in</slot>
-      <slot slot="subtitle"></slot>
-    </page-header>
+    <page-header title="Log in" />
     <content-container>
-      <input-text
-        label="Username or email address"
-        :error="errors.username"
-        v-model="identity"
-      ></input-text>
-      <input-password
-        label="Password"
-        :error="errors.password"
-        v-model="password"
-      ></input-password>
-      <input-button :click="submit">Proceed</input-button>
+      <el-row>
+        <el-col :md="{span: 12, offset: 6}">
+          <el-form>
+            <el-form-item>
+              <el-input
+                placeholder="Username or email address"
+                v-model="identity"
+                :error="errors.username"
+              >
+              </el-input>
+            </el-form-item>
+
+            <el-form-item>
+              <el-input
+                type="password"
+                placeholder="Password"
+                v-model="password"
+                :error="errors.password"
+              >
+              </el-input>
+            </el-form-item>
+
+            <div class="content-right">
+              <el-button type="primary" size="large" :click="submit">Proceed</el-button>
+            </div>
+          </el-form>
+        </el-col>
+      </el-row>
     </content-container>
   </div>
 </template>
 
 <script>
-import ContentContainer from '../Layout/Content'
-import InputButton from '../Input/Button'
-import InputPassword from '../Input/Password'
-import InputText from '../Input/Text'
-import PageHeader from '../Layout/PageHeader'
+import { Message } from 'element-ui'
 
-import {extractValidationMessages} from '../Utils/Validation'
+import { extractValidationMessages } from '../Utils/Validation'
 
 import router from '../router'
-import store from '../store'
 
 export default {
-  components: {
-    ContentContainer,
-    PageHeader,
-    InputButton,
-    InputPassword,
-    InputText
-  },
   data () {
     return {
       identity: null,
@@ -69,11 +71,7 @@ export default {
             this.$set(this.errors, key, message)
           })
         } else {
-          store.commit('addAlert', {
-            type: 'error',
-            message: 'Authentication request failed. Please try again or contact us if the issue persists.',
-            persist: false
-          })
+          Message.error('Authentication request failed. Please try again or contact us if the issue persists.')
         }
       })
     }

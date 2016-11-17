@@ -19,8 +19,8 @@ import debounce from 'debounce'
 
 import store from '../store'
 
-import TopBar from '../Layout/TopBar'
-import NavItem from '../Navigation/NavItem'
+import TopBar from '../Components/Layout/TopBar'
+import NavItem from '../Components/NavItem'
 
 export default {
   components: {
@@ -45,30 +45,33 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,700|Open+Sans:400');
 
-@import '../palette';
+@import '../colours';
 
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Open Sans", Arial, Verdana, sans-serif;
   font-size: 12pt;
 }
 
 body {
-  background: $greylightest;
+  background: #e5e9eb;
 }
 
 .right {
   float: right;
 }
 
+.content-right {
+  text-align: right;
+}
+
 #root {
   min-height: 1600px;
-  color: $bluegrey;
-  font-family: "Open Sans", Arial, Verdana, sans-serif;
+  color: --color-backdrop;
 
   a:not(.nav-item) {
     color: #42b983;
@@ -76,7 +79,7 @@ body {
   }
 
   h1, h2, h3, h4 {
-    font-family: "Open Sans Condensed", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
     font-weight: 300;
   }
 }
@@ -103,7 +106,7 @@ body {
   z-index: 1031;
   width: 100%;
   height: 2px;
-  background: $red;
+  background: --color-primary;
 }
 
 #nprogress .peg {
@@ -112,8 +115,38 @@ body {
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px $red, 0 0 5px $red;
+  box-shadow: 0 0 10px --color-primary, 0 0 5px --color-primary;
   opacity: 1.0;
   transform: rotate(3deg) translate(0px, -4px);
+}
+
+// Fonts
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url('/static/MaterialIcons-Regular.woff2') format('woff2'),
+  url('/static/MaterialIcons-Regular.woff') format('woff'),
+  url('/static/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+  direction: ltr;
+  display: inline-block;
+  font-family: 'Material Icons';
+  font-feature-settings: 'liga'; // Support for IE.
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-rendering: optimizeLegibility; // Support for Safari and Chrome.
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: normal;
 }
 </style>

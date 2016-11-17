@@ -1,55 +1,65 @@
 <template>
   <div id="user-registration">
-    <page-header>
-      <slot slot="title">Register</slot>
-      <slot slot="subtitle"></slot>
-    </page-header>
+    <page-header title="Register" subtitle="And get a free bag of Moogle Munch!" />
     <content-container>
-      <input-text
-        label="Name"
-        description="Unique username. Can contain spaces."
-        :error="errors.name"
-        v-model="name"
-      ></input-text>
-      <input-text
-        label="Email address"
-        :error="errors.email"
-        v-model="email"
-      ></input-text>
-      <input-password
-        label="Password"
-        :error="errors.password"
-        v-model="password"
-      ></input-password>
-      <input-password
-        label="Password confirmation"
-        v-model="password_confirmation"
-      ></input-password>
-      <input-button :click="submit">Proceed</input-button>
+      <el-row>
+        <el-col :md="{span: 12, offset: 6}">
+          <el-form>
+            <el-form-item>
+              <el-input
+                placeholder="Name"
+                v-model="name"
+                :error="errors.name"
+              >
+              </el-input>
+            </el-form-item>
+
+            <el-form-item>
+              <el-input
+                type="email"
+                placeholder="Email address"
+                v-model="email"
+                :error="errors.email"
+              >
+              </el-input>
+            </el-form-item>
+
+            <el-form-item>
+              <el-input
+                type="password"
+                placeholder="Password"
+                v-model="password"
+                :error="errors.password"
+              >
+              </el-input>
+            </el-form-item>
+
+            <el-form-item>
+              <el-input
+                type="password"
+                placeholder="Password confirmation"
+                v-model="password_confirmation"
+              >
+              </el-input>
+            </el-form-item>
+
+            <div class="content-right">
+              <el-button type="primary" size="large" :click="submit">Proceed</el-button>
+            </div>
+          </el-form>
+        </el-col>
+      </el-row>
     </content-container>
   </div>
 </template>
 
 <script>
-import ContentContainer from '../Layout/Content'
-import InputButton from '../Input/Button'
-import InputPassword from '../Input/Password'
-import InputText from '../Input/Text'
-import PageHeader from '../Layout/PageHeader'
-
 import {extractValidationMessages} from '../Utils/Validation'
 
 import router from '../router'
 import store from '../store'
 
 export default {
-  components: {
-    ContentContainer,
-    PageHeader,
-    InputButton,
-    InputPassword,
-    InputText
-  },
   data () {
     return {
       name: null,
