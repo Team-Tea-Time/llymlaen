@@ -25,7 +25,7 @@
             </el-form-item>
 
             <div class="content-right">
-              <el-button type="primary" size="large" :click="submit">Proceed</el-button>
+              <el-button type="primary" size="large" @click="submit">Proceed</el-button>
             </div>
           </el-form>
         </el-col>
@@ -37,15 +37,15 @@
 <script>
 import { Message } from 'element-ui'
 
-import { extractValidationMessages } from '../Utils/Validation'
+import { extractValidationMessages } from '../../Utils/Validation'
 
-import router from '../router'
+import router from '../../router'
 
 export default {
   data () {
     return {
-      identity: null,
-      password: null,
+      identity: '',
+      password: '',
       errors: {}
     }
   },
@@ -59,7 +59,7 @@ export default {
 
       this.$set(this, 'errors', {})
 
-      this.$http.post('/oauth/proxy/token', data).then((response) => {
+      this.$http.post('/oauth/token', data).then((response) => {
         console.log(response)
 
         // Encode the response body and throw it into a cookie here

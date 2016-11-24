@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Login from './Views/Login'
-import Register from './Views/Register'
 import Root from './Views/Root'
+import UserConfirm from './Views/User/Confirm'
+import UserLogin from './Views/User/Login'
+import UserRegister from './Views/User/Register'
 
 Vue.use(VueRouter)
 
@@ -15,8 +16,9 @@ export default new VueRouter({
       path: '/',
       component: Root,
       children: [
-        { path: '/user/register', component: Register },
-        { path: '/user/login', component: Login }
+        { path: '/user/confirm/:code', component: UserConfirm },
+        { path: '/user/register', component: UserRegister },
+        { path: '/user/login', component: UserLogin }
       ]
     }
   ]

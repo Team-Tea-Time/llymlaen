@@ -44,7 +44,7 @@
             </el-form-item>
 
             <div class="content-right">
-              <el-button type="primary" size="large" :click="submit">Proceed</el-button>
+              <el-button type="primary" size="large" @click="submit">Proceed</el-button>
             </div>
           </el-form>
         </el-col>
@@ -54,10 +54,11 @@
 </template>
 
 <script>
-import {extractValidationMessages} from '../Utils/Validation'
+import { Message } from 'element-ui'
 
-import router from '../router'
-import store from '../store'
+import { extractValidationMessages } from '../../Utils/Validation'
+
+import router from '../../router'
 
 export default {
   data () {
@@ -80,12 +81,8 @@ export default {
 
       this.$set(this, 'errors', {})
 
-      this.$http.post('/api/user/create', data).then((response) => {
-        store.commit('addAlert', {
-          type: 'info',
-          message: 'Account created. Please check your emails to confirm your account.',
-          persist: false
-        })
+      this.$http.post('/api/user', data).then((response) => {
+        Message.success('Account created. Please check your inbox for the confirmation email we just sent you!')
         router.push('/user/login')
       }, (response) => {
         extractValidationMessages(response.body, (key, message) => {
