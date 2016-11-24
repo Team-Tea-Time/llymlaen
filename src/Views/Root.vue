@@ -106,7 +106,7 @@ body {
   z-index: 1031;
   width: 100%;
   height: 2px;
-  background: --color-primary;
+  background: $primary;
 }
 
 #nprogress .peg {
@@ -115,7 +115,7 @@ body {
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px --color-primary, 0 0 5px --color-primary;
+  box-shadow: 0 0 10px $primary, 0 0 5px $primary;
   opacity: 1.0;
   transform: rotate(3deg) translate(0px, -4px);
 }

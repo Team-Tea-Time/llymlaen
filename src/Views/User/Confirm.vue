@@ -1,8 +1,6 @@
 <script>
 import { Message } from 'element-ui'
 
-import { extractValidationMessages } from '../../Utils/Validation'
-
 import router from '../../router'
 
 export default {

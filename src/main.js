@@ -21,12 +21,17 @@ import Content from './Components/Layout/Content'
 import PageHeader from './Components/Layout/PageHeader'
 import TopBar from './Components/Layout/TopBar'
 
+import { Validation } from './Plugins/Validation'
+
 import router from './router'
 
 /* eslint-disable no-new */
 
+/* Plugins */
+
 Vue.use(VueCookie)
 Vue.use(VueResource)
+Vue.use(Validation)
 
 /* Global components */
 

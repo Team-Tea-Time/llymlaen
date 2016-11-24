@@ -12,6 +12,7 @@
                 :error="errors.name"
               >
               </el-input>
+              {{ errors.name }}
             </el-form-item>
 
             <el-form-item>
@@ -22,6 +23,7 @@
                 :error="errors.email"
               >
               </el-input>
+              {{ errors.email }}
             </el-form-item>
 
             <el-form-item>
@@ -56,8 +58,6 @@
 <script>
 import { Message } from 'element-ui'
 
-import { extractValidationMessages } from '../../Utils/Validation'
-
 import router from '../../router'
 
 export default {
@@ -85,9 +85,7 @@ export default {
         Message.success('Account created. Please check your inbox for the confirmation email we just sent you!')
         router.push('/user/login')
       }, (response) => {
-        extractValidationMessages(response.body, (key, message) => {
-          this.$set(this.errors, key, message)
-        })
+        this.$setValidationErrors(response)
       })
     }
   }

@@ -37,8 +37,6 @@
 <script>
 import { Message } from 'element-ui'
 
-import { extractValidationMessages } from '../../Utils/Validation'
-
 import router from '../../router'
 
 export default {
@@ -67,9 +65,7 @@ export default {
         router.push('/')
       }, (response) => {
         if (response.status === 422) {
-          extractValidationMessages(response.body, (key, message) => {
-            this.$set(this.errors, key, message)
-          })
+          this.$setValidationErrors(response)
         } else {
           Message.error('Authentication request failed. Please try again or contact us if the issue persists.')
         }
