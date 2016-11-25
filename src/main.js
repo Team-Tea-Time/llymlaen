@@ -14,6 +14,7 @@ import {
   Form,
   FormItem,
   Input,
+  Loading,
   Row
 } from 'element-ui'
 
@@ -47,6 +48,7 @@ Vue.use(Col)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+Vue.use(Loading)
 Vue.use(Row)
 
 Vue.http.interceptors.push((request, next) => {

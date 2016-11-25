@@ -3,7 +3,7 @@
     <page-header title="Register" subtitle="And get a free bag of Moogle Munch!" />
     <content-container>
       <el-row>
-        <el-col :md="{span: 12, offset: 6}">
+        <el-col :md="{span: 12, offset: 6}" v-loading.body="loading">
           <el-form>
             <el-form-item>
               <el-input
@@ -67,6 +67,7 @@ export default {
       email: null,
       password: null,
       password_confirmation: null,
+      loading: false,
       errors: {}
     }
   },
@@ -80,12 +81,14 @@ export default {
       }
 
       this.$set(this, 'errors', {})
+      this.$set(this, 'loading', true)
 
       this.$http.post('/api/user', data).then((response) => {
         Message.success('Account created. Please check your inbox for the confirmation email we just sent you!')
         router.push('/user/login')
       }, (response) => {
         this.$setValidationErrors(response)
+        this.$set(this, 'loading', false)
       })
     }
   }

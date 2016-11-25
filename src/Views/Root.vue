@@ -93,6 +93,12 @@ body {
   opacity: 0
 }
 
+// ElementUI
+
+.el-loading-mask {
+  background: rgba(255, 255, 255, 0.75);
+}
+
 // NProgress
 
 #nprogress {
@@ -105,8 +111,8 @@ body {
   left: 0;
   z-index: 1031;
   width: 100%;
-  height: 2px;
-  background: $primary;
+  height: 3px;
+  background: #fff;
 }
 
 #nprogress .peg {
@@ -115,7 +121,7 @@ body {
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px $primary, 0 0 5px $primary;
+  box-shadow: 0 0 10px #fff, 0 0 5px #fff;
   opacity: 1.0;
   transform: rotate(3deg) translate(0px, -4px);
 }
