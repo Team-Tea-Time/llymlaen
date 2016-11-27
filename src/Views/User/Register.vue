@@ -3,16 +3,16 @@
     <page-header title="Register" subtitle="And get a free bag of Moogle Munch!" />
     <content-container>
       <el-row>
-        <el-col :md="{span: 12, offset: 6}" v-loading.body="loading">
+        <el-col :md="{span: 12, offset: 6}" v-loading.body="isLoading">
           <el-form>
             <el-form-item>
               <el-input
                 placeholder="Name"
                 v-model="name"
                 :error="errors.name"
+                v-focus
               >
               </el-input>
-              {{ errors.name }}
             </el-form-item>
 
             <el-form-item>
@@ -23,7 +23,6 @@
                 :error="errors.email"
               >
               </el-input>
-              {{ errors.email }}
             </el-form-item>
 
             <el-form-item>
@@ -41,6 +40,7 @@
                 type="password"
                 placeholder="Password confirmation"
                 v-model="password_confirmation"
+                @keyup.enter.native="submit"
               >
               </el-input>
             </el-form-item>
@@ -66,9 +66,7 @@ export default {
       name: null,
       email: null,
       password: null,
-      password_confirmation: null,
-      loading: false,
-      errors: {}
+      password_confirmation: null
     }
   },
   methods: {
@@ -80,15 +78,15 @@ export default {
         password_confirmation: this.password_confirmation
       }
 
-      this.$set(this, 'errors', {})
-      this.$set(this, 'loading', true)
+      this.$clearValidationErrors()
+      this.$setLoading()
 
       this.$http.post('/api/user', data).then((response) => {
         Message.success('Account created. Please check your inbox for the confirmation email we just sent you!')
         router.push('/user/login')
       }, (response) => {
         this.$setValidationErrors(response)
-        this.$set(this, 'loading', false)
+        this.$clearLoading()
       })
     }
   }

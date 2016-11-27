@@ -3,13 +3,14 @@
     <page-header title="Log in" />
     <content-container>
       <el-row>
-        <el-col :md="{span: 12, offset: 6}">
+        <el-col :md="{span: 12, offset: 6}" v-loading.body="isLoading">
           <el-form>
             <el-form-item>
               <el-input
                 placeholder="Username or email address"
                 v-model="identity"
                 :error="errors.username"
+                v-focus
               >
               </el-input>
             </el-form-item>
@@ -20,6 +21,7 @@
                 placeholder="Password"
                 v-model="password"
                 :error="errors.password"
+                @keyup.enter.native="submit"
               >
               </el-input>
             </el-form-item>
@@ -43,8 +45,7 @@ export default {
   data () {
     return {
       identity: '',
-      password: '',
-      errors: {}
+      password: ''
     }
   },
   methods: {
@@ -55,7 +56,8 @@ export default {
         password: this.password
       }
 
-      this.$set(this, 'errors', {})
+      this.$clearValidationErrors()
+      this.$setLoading()
 
       this.$http.post('/oauth/token', data).then((response) => {
         console.log(response)
@@ -67,7 +69,8 @@ export default {
         if (response.status === 422) {
           this.$setValidationErrors(response)
         } else {
-          Message.error('Authentication request failed. Please try again or contact us if the issue persists.')
+          Message.error('Login request failed. :(')
+          this.$clearLoading()
         }
       })
     }

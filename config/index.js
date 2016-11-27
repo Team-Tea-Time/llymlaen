@@ -1,6 +1,11 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
+var proxy = {
+  target: 'http://eorzea.local',
+  changeOrigin: true
+}
+
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -22,14 +27,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/oauth': {
-        target: 'http://eorzea.local',
-        changeOrigin: true
-      },
-      '/api': {
-        target: 'http://eorzea.local',
-        changeOrigin: true
-      }
+      '/oauth': proxy,
+      '/api': proxy
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

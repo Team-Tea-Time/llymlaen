@@ -66,6 +66,7 @@ export default {
     transition: background 0.2s ease-out;
 
     .current {
+      height: 31px;
       padding: 17px 15px;
       font-weight: 300;
       font-size: 1.7rem;

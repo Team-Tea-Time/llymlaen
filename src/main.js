@@ -22,6 +22,7 @@ import Content from './Components/Layout/Content'
 import PageHeader from './Components/Layout/PageHeader'
 import TopBar from './Components/Layout/TopBar'
 
+import { LoadingState } from './Plugins/LoadingState'
 import { Validation } from './Plugins/Validation'
 
 import router from './router'
@@ -30,6 +31,7 @@ import router from './router'
 
 /* Plugins */
 
+Vue.use(LoadingState)
 Vue.use(VueCookie)
 Vue.use(VueResource)
 Vue.use(Validation)
@@ -51,12 +53,28 @@ Vue.use(Input)
 Vue.use(Loading)
 Vue.use(Row)
 
+/* Interceptors */
+
 Vue.http.interceptors.push((request, next) => {
   NProgress.start()
   next((response) => {
     NProgress.done()
   })
 })
+
+/* Global directives */
+
+Vue.directive('focus', {
+  inserted: function (el) {
+    if (el.nodeName === 'input') {
+      el.focus()
+    } else {
+      el.getElementsByTagName('input')[0].focus()
+    }
+  }
+})
+
+/* Do the stuff */
 
 new Vue({
   router

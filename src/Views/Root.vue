@@ -70,11 +70,11 @@ body {
 }
 
 #root {
-  min-height: 1600px;
-  color: --color-backdrop;
+  min-height: 1000px;
+  color: $backdrop;
 
   a:not(.nav-item) {
-    color: #42b983;
+    color: $link-color;
     text-decoration: none;
   }
 
@@ -97,6 +97,7 @@ body {
 
 .el-loading-mask {
   background: rgba(255, 255, 255, 0.75);
+  z-index: 999;
 }
 
 // NProgress
