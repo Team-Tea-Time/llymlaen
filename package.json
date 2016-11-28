@@ -16,10 +16,11 @@
   "dependencies": {
     "babel-plugin-component": "^0.6.0",
     "compression-webpack-plugin": "^0.3.2",
+    "cookies-js": "^1.2.3",
     "debounce": "^1.0.0",
     "element-theme": "^0.2.0",
-    "element-theme-default": "^1.0.2",
-    "element-ui": "^1.0.1",
+    "element-theme-default": "^1.0.3",
+    "element-ui": "^1.0.3",
     "jwt-decode": "^2.1.0",
     "nprogress": "^0.2.0",
     "shortid": "^2.2.6",

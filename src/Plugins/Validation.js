@@ -1,12 +1,4 @@
 export function Validation(Vue) {
-  Vue.mixin({
-    data () {
-      return {
-        errors: {}
-      }
-    }
-  })
-
   Vue.prototype.$setValidationErrors = function (response) {
     let key = null
 
@@ -17,5 +9,6 @@ export function Validation(Vue) {
 
   Vue.prototype.$clearValidationErrors = function () {
     this.$set(this, 'errors', {})
+    this.$refs.form.resetFields()
   }
 }

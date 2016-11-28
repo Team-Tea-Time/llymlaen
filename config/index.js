@@ -2,7 +2,8 @@
 var path = require('path')
 
 var proxy = {
-  target: 'http://eorzea.local',
+  target: 'https://eorzea.local',
+  secure: false,
   changeOrigin: true
 }
 

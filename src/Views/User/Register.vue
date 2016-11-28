@@ -4,33 +4,30 @@
     <content-container>
       <el-row>
         <el-col :md="{span: 12, offset: 6}" v-loading.body="isLoading">
-          <el-form>
-            <el-form-item>
+          <el-form ref="form">
+            <el-form-item :error="errors.name">
               <el-input
                 placeholder="Name"
                 v-model="name"
-                :error="errors.name"
                 v-focus
               >
               </el-input>
             </el-form-item>
 
-            <el-form-item>
+            <el-form-item :error="errors.email">
               <el-input
                 type="email"
                 placeholder="Email address"
                 v-model="email"
-                :error="errors.email"
               >
               </el-input>
             </el-form-item>
 
-            <el-form-item>
+            <el-form-item :error="errors.password">
               <el-input
                 type="password"
                 placeholder="Password"
                 v-model="password"
-                :error="errors.password"
               >
               </el-input>
             </el-form-item>
@@ -66,7 +63,12 @@ export default {
       name: null,
       email: null,
       password: null,
-      password_confirmation: null
+      password_confirmation: null,
+      errors: {
+        name: null,
+        email: null,
+        password: null
+      }
     }
   },
   methods: {
