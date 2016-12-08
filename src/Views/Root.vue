@@ -2,12 +2,19 @@
   <div id="root">
     <top-bar>
       <div class="right">
-        <nav-item to="/user/register">
-          Register
-        </nav-item>
-        <nav-item to="/user/login">
-          Log in
-        </nav-item>
+        <div v-if="authenticated">
+          <nav-item to="/user/profile">
+            Hello, <strong>{{ user.name }}</strong>
+          </nav-item>
+        </div>
+        <div v-else>
+          <nav-item to="/user/register">
+            Register
+          </nav-item>
+          <nav-item to="/user/login">
+            Log in
+          </nav-item>
+        </div>
       </div>
     </top-bar>
     <router-view></router-view>
@@ -28,6 +35,14 @@ export default {
     TopBar
   },
   store,
+  computed: {
+    authenticated () {
+      return store.state.auth.authenticated
+    },
+    user () {
+      return store.state.auth.user
+    }
+  },
   ready () {
     var topBarClass = document.getElementById('top-bar').classList
 

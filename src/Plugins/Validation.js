@@ -9,6 +9,5 @@ export function Validation(Vue) {
 
   Vue.prototype.$clearValidationErrors = function () {
     this.$set(this, 'errors', {})
-    this.$refs.form.resetFields()
   }
 }

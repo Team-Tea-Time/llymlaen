@@ -6,8 +6,6 @@ import UserConfirm from './Views/User/Confirm'
 import UserLogin from './Views/User/Login'
 import UserRegister from './Views/User/Register'
 
-Vue.use(VueRouter)
-
 export default new VueRouter({
   mode: 'history',
   base: __dirname,

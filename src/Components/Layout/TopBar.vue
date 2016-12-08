@@ -17,7 +17,6 @@
 <script>
 export default {
   name: 'top-bar',
-
   data () {
     return {
       currentWorld: 'Balmung',
@@ -71,6 +70,7 @@ export default {
       font-weight: 300;
       font-size: 1.7rem;
       color: lighten($primary, 25%);
+      line-height: 1.3;
 
       &:hover {
         background: lighten($primary, 3%);

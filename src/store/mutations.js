@@ -1,3 +1,10 @@
-export const setUser = (state, user) => {
-  state.user = user
+import { auth } from './defaults'
+
+export const setAuth = (state, user) => {
+  state.auth.authenticated = true
+  state.auth.user = user
+}
+
+export const clearAuth = (state) => {
+  state.auth = auth
 }

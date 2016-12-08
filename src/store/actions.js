@@ -1,1 +1,2 @@
-export const setUser = ({ commit }, user) => commit('setUser', user)
+export const setAuth = ({ commit }, user) => commit('setAuth', user)
+export const clearAuth = ({ commit }) => commit('clearAuth')

@@ -5,22 +5,20 @@
       <el-row>
         <el-col :md="{span: 12, offset: 6}" v-loading.body="isLoading">
           <el-form>
-            <el-form-item>
+            <el-form-item :error="errors.username">
               <el-input
                 placeholder="Username or email address"
                 v-model="identity"
-                :error="errors.username"
                 v-focus
               >
               </el-input>
             </el-form-item>
 
-            <el-form-item>
+            <el-form-item :error="errors.password">
               <el-input
                 type="password"
                 placeholder="Password"
                 v-model="password"
-                :error="errors.password"
                 @keyup.enter.native="submit"
               >
               </el-input>
@@ -39,19 +37,22 @@
 <script>
 import { Message } from 'element-ui'
 
-import router from '../../router'
-
 export default {
   data () {
     return {
       identity: '',
-      password: ''
+      password: '',
+      errors: {
+        username: null,
+        password: null
+      }
     }
   },
   methods: {
     submit: function () {
       const data = {
         grant_type: 'password',
+        client_id: 1,
         username: this.identity,
         password: this.password
       }
@@ -60,11 +61,14 @@ export default {
       this.$setLoading()
 
       this.$http.post('/oauth/token', data).then((response) => {
-        console.log(response)
+        this.$http.get('/api/user', data).then((response) => {
+          const user = response.body
 
-        // Encode the response body and throw it into a cookie here
+          this.$store.commit('setAuth', user)
+          Message.success(`Hello, ${user.name}!`)
+        })
 
-        router.push('/')
+        this.$router.push('/')
       }, (response) => {
         if (response.status === 422) {
           this.$setValidationErrors(response)

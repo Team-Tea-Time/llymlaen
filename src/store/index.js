@@ -2,17 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
+import { auth } from './defaults'
 import * as mutations from './mutations'
 
-Vue.use(Vuex)
-
 const state = {
-  alerts: [],
-  user: {
-    id: 0,
-    name: 'Guest',
-    token: null
-  }
+  auth
 }
 
 const store = new Vuex.Store({

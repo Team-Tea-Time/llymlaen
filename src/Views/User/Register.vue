@@ -4,7 +4,7 @@
     <content-container>
       <el-row>
         <el-col :md="{span: 12, offset: 6}" v-loading.body="isLoading">
-          <el-form ref="form">
+          <el-form>
             <el-form-item :error="errors.name">
               <el-input
                 placeholder="Name"
