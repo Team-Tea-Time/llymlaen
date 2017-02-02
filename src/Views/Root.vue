@@ -115,6 +115,10 @@ body {
   z-index: 999;
 }
 
+.el-select {
+  width: 100%;
+}
+
 // NProgress
 
 #nprogress {

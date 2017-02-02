@@ -71,13 +71,19 @@
   --------------------------*/
   /* Steps
   --------------------------*/
-  /* Steps
+  /* Menu
   --------------------------*/
   /* Rate
   --------------------------*/
   /* DatePicker
   --------------------------*/
   /* Loading
+  --------------------------*/
+  /* Scrollbar
+  --------------------------*/
+  /* Carousel
+  --------------------------*/
+  /* Collapse
   --------------------------*/
 }
 @charset "UTF-8";
@@ -154,13 +160,19 @@
   --------------------------*/
   /* Steps
   --------------------------*/
-  /* Steps
+  /* Menu
   --------------------------*/
   /* Rate
   --------------------------*/
   /* DatePicker
   --------------------------*/
   /* Loading
+  --------------------------*/
+  /* Scrollbar
+  --------------------------*/
+  /* Carousel
+  --------------------------*/
+  /* Collapse
   --------------------------*/
 }
 .fade-in-linear-enter-active, .fade-in-linear-leave-active {
@@ -169,83 +181,45 @@
 .fade-in-linear-enter, .fade-in-linear-leave, .fade-in-linear-leave-active {
   opacity: 0;
 }
-.fade-in-enter-active, .fade-in-leave-active {
+.el-fade-in-enter-active, .el-fade-in-leave-active {
   transition: all .3s cubic-bezier(.55,0,.1,1);
 }
-.fade-in-enter, .fade-in-leave-active {
+.el-fade-in-enter, .el-fade-in-leave-active {
   opacity: 0;
 }
-.md-fade-center-enter-active, .md-fade-center-leave-active {
+.el-zoom-in-center-enter-active, .el-zoom-in-center-leave-active {
   transition: all .3s cubic-bezier(.55,0,.1,1);
 }
-.md-fade-center-enter, .md-fade-center-leave, .md-fade-center-leave-active {
+.el-zoom-in-center-enter, .el-zoom-in-center-leave-active {
   opacity: 0;
-  transform: scaleY(0);
+  transform: scaleX(0);
 }
-.md-fade-bottom-enter-active, .md-fade-bottom-leave-active {
+.el-zoom-in-top-enter-active, .el-zoom-in-top-leave-active {
   opacity: 1;
   transform: scaleY(1);
   transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
   transform-origin: center top;
 }
-.md-fade-bottom-enter, .md-fade-bottom-leave, .md-fade-bottom-leave-active {
+.el-zoom-in-top-enter, .el-zoom-in-top-leave-active {
   opacity: 0;
   transform: scaleY(0);
 }
-.md-fade-top-enter-active, .md-fade-top-leave-active {
+.el-zoom-in-bottom-enter-active, .el-zoom-in-bottom-leave-active {
   opacity: 1;
   transform: scaleY(1);
   transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
   transform-origin: center bottom;
 }
-.md-fade-top-enter, .md-fade-top-leave, .md-fade-top-leave-active {
+.el-zoom-in-bottom-enter, .el-zoom-in-bottom-leave-active {
   opacity: 0;
   transform: scaleY(0);
 }
-.md-fade-left-enter-active, .md-fade-left-leave-active {
-  opacity: 1;
-  transform: scaleX(1);
-  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
-  transform-origin: right center;
+.collapse-transition {
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
 }
-.md-fade-left-enter, .md-fade-left-leave, .md-fade-left-leave-active {
-  opacity: 0;
-  transform: scaleX(0);
-}
-.md-fade-right-enter-active, .md-fade-right-leave-active {
-  opacity: 1;
-  transform: scaleX(1);
-  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
-  transform-origin: left center;
-}
-.md-fade-right-enter, .md-fade-right-leave, .md-fade-right-leave-active {
-  opacity: 0;
-  transform: scaleX(0);
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s cubic-bezier(.645,.045,.355,1);
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0;
-}
-.list-move, .list-enter-active, .list-leave-active {
-  transition: all .5s cubic-bezier(.55,0,.1,1);
-}
-.list-enter, .list-leave-active {
-  opacity: 0;
-  transform: translate(0, -30px);
-}
-/*.list-leave-active {
-  position: absolute;
-  opacity: 0;
-  transform: scaleY(0.01) translate(30px, 0);
-}*/
 .el-date-editor {
   position: relative;
   display: inline-block;
-  box-sizing: border-box;
-  height: 36px;
-  width: 182px;
 }
 .el-date-editor .el-picker-panel {
   position: absolute;
@@ -256,99 +230,16 @@
   z-index: 10;
   top: 41px;
 }
-.el-date-editor.lg .el-date-editor__editor {
-  padding: 6px 4px;
+.el-date-editor.el-input {
+  width: 193px;
 }
-.el-date-editor.sm .el-date-editor__editor {
-  padding: 1px 1px;
+.el-date-editor--daterange {}
+.el-date-editor--daterange.el-input {
+  width: 220px;
 }
-.el-date-editor.is-have-trigger .el-date-editor__editor {
-  padding-right: 20px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__clear {
-  right: 22px;
-}
-.el-date-editor__editor {
-  border: 1px solid #c0ccda;
-  border-radius: 4px;
-  line-height: 18px;
-  height: 36px;
-  padding: 3px 10px;
-  width: 100%;
-  box-sizing: border-box;
-  transition: border 0.3s;
-  color: #666;
-  font-size: 14px;
-}
-.el-date-editor__editor::-webkit-input-placeholder {
-  color: #bbb;
-  font-size: 14px;
-}
-.el-date-editor__editor::-moz-placeholder {
-  color: #bbb;
-  font-size: 14px;
-}
-.el-date-editor__editor:-ms-input-placeholder {
-  color: #bbb;
-  font-size: 14px;
-}
-.el-date-editor__editor::placeholder {
-  color: #bbb;
-  font-size: 14px;
-}
-.el-date-editor__editor.is-disabled {
-  background-color: #EFF2F7;
-  border-color: #D3DCE6;
-  color: #bbb;
-  cursor: not-allowed;
-}
-.el-date-editor__editor.is-disabled::-webkit-input-placeholder {
-  color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::-moz-placeholder {
-  color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled:-ms-input-placeholder {
-  color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::placeholder {
-  color: #C0CCDA;
-}
-.el-date-editor__trigger {}
-.el-date-editor__trigger.el-icon {
-  cursor: pointer;
-  position: absolute;
-  display: inline-block;
-  width: 16px;
-  right: 10px;
-  top: 0;
-  bottom: 0;
-  color: #c0ccda;
-  font-size: 16px;
-  line-height: 38px;
-}
-.el-date-editor__clear {
-  cursor: pointer;
-  position: absolute;
-  width: 20px;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  line-height: 36px;
-  color: #99a9bf;
-}
-.el-date-editor__clear:hover {
-  color: #20a0ff;
-}
-.el-date-editor__editor:focus, .el-date-editor:hover > .el-date-editor__editor, .el-date-editor.is-active > .el-date-editor__editor {
-  outline: none;
-  border-color: #ff4056;
-}
-.el-date-editor .el-date-editor__clear {
-  display: none;
-}
-.el-date-editor.is-filled:hover .el-date-editor__clear, .el-date-editor.is-filled.is-active > .el-date-editor__clear {
-  display: inline-block;
+.el-date-editor--datetimerange {}
+.el-date-editor--datetimerange.el-input {
+  width: 350px;
 }
 :root {
   /* Transition
@@ -423,13 +314,19 @@
   --------------------------*/
   /* Steps
   --------------------------*/
-  /* Steps
+  /* Menu
   --------------------------*/
   /* Rate
   --------------------------*/
   /* DatePicker
   --------------------------*/
   /* Loading
+  --------------------------*/
+  /* Scrollbar
+  --------------------------*/
+  /* Carousel
+  --------------------------*/
+  /* Collapse
   --------------------------*/
 }
 :root {
@@ -505,18 +402,24 @@
   --------------------------*/
   /* Steps
   --------------------------*/
-  /* Steps
+  /* Menu
   --------------------------*/
   /* Rate
   --------------------------*/
   /* DatePicker
   --------------------------*/
   /* Loading
+  --------------------------*/
+  /* Scrollbar
+  --------------------------*/
+  /* Carousel
+  --------------------------*/
+  /* Collapse
   --------------------------*/
 }
 .el-picker-panel {
-  color: #475669;
-  border: 1px solid #d3dce6;
+  color: rgb(106, 73, 72);
+  border: 1px solid rgb(229, 209, 209);
   box-shadow: 0 2px 6px #ccc;
   background: #fff;
   border-radius: 2px;
@@ -547,14 +450,14 @@
   background-color: transparent;
   line-height: 28px;
   font-size: 14px;
-  color: #475669;
+  color: rgb(106, 73, 72);
   padding-left: 12px;
   text-align: left;
   outline: none;
   cursor: pointer;
 }
 .el-picker-panel__shortcut:hover {
-  background-color: #e5e9f2;
+  background-color: rgb(241, 230, 228);
 }
 .el-picker-panel__shortcut.active {
   background-color: #e6f1fe;
@@ -577,7 +480,7 @@
 }
 .el-picker-panel__icon-btn {
   font-size: 12px;
-  color: #99a9bf;
+  color: rgb(190, 153, 151);
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -585,11 +488,11 @@
   margin-top: 3px;
 }
 .el-picker-panel__icon-btn:hover {
-  color: #20a0ff;
+  color: #ff4056;
 }
 .el-picker-panel__link-btn {
   cursor: pointer;
-  color: #55a4ff;
+  color: #ff4056;
   text-decoration: none;
   padding: 15px;
   font-size: 12px;
@@ -602,7 +505,7 @@
   border-right: 1px solid #e4e4e4;
   box-sizing: border-box;
   padding-top: 6px;
-  background-color: #f9fafc;
+  background-color: rgb(255, 251, 252);
 }
 .el-picker-panel *[slot=sidebar] + .el-picker-panel__body, .el-picker-panel__sidebar + .el-picker-panel__body {
   margin-left: 110px;
@@ -631,23 +534,6 @@
   display: table-cell;
   padding: 0 5px;
 }
-.el-date-picker__editor {
-  position: relative;
-  border: 1px solid #c0ccda;
-  border-radius: 4px;
-  padding: 5px 10px;
-  box-sizing: border-box;
-  height: 28px;
-  outline: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  transition: border 0.3s;
-  width: 100%;
-}
-.el-date-picker__editor:hover {
-  border-color: #20a0ff;
-}
 .el-date-picker__time-header {
   position: relative;
   border-bottom: 1px solid #e4e4e4;
@@ -669,7 +555,7 @@
   cursor: pointer;
 }
 .el-date-picker__header-label:hover {
-  color: #20a0ff;
+  color: #ff4056;
 }
 .el-date-picker__header-label.active {
   color: #ff4056;
@@ -763,7 +649,7 @@
   --------------------------*/
   /* Steps
   --------------------------*/
-  /* Steps
+  /* Menu
   --------------------------*/
   /* Rate
   --------------------------*/
@@ -771,6 +657,153 @@
   --------------------------*/
   /* Loading
   --------------------------*/
+  /* Scrollbar
+  --------------------------*/
+  /* Carousel
+  --------------------------*/
+  /* Collapse
+  --------------------------*/
+}
+@charset "UTF-8";
+:root {
+  /* Transition
+  -------------------------- */
+  /* Colors
+  -------------------------- */
+  /* Link
+  -------------------------- */
+  /* Border
+  -------------------------- */
+  /* Box-shadow
+  -------------------------- */
+  /* Fill
+  -------------------------- */
+  /* Font
+  -------------------------- */
+  /* Size
+  -------------------------- */
+  /* z-index
+  -------------------------- */
+  /* Disable base
+  -------------------------- */
+  /* Icon
+  -------------------------- */
+  /* Checkbox
+  -------------------------- */
+  /* Radio
+  -------------------------- */
+  /* Select
+  -------------------------- */
+  /* Alert
+  -------------------------- */
+  /* Message Box
+  -------------------------- */
+  /* Message
+  -------------------------- */
+  /* Notification
+  -------------------------- */
+  /* Input
+  -------------------------- */
+  /* Cascader
+  -------------------------- */
+  /* Group
+  -------------------------- */
+  /* Tab
+  -------------------------- */
+  /* Button
+  -------------------------- */
+  /* cascader
+  -------------------------- */
+  /* Switch
+ -------------------------- */
+  /* Dialog
+ -------------------------- */
+  /* Table
+ -------------------------- */
+  /* Pagination
+ -------------------------- */
+  /* Popover
+ -------------------------- */
+  /* Tooltip
+  -------------------------- */
+  /* Tag
+  -------------------------- */
+  /* Dropdown
+  -------------------------- */
+  /* Badge
+  -------------------------- */
+  /* Card
+  --------------------------*/
+  /* Slider
+  --------------------------*/
+  /* Steps
+  --------------------------*/
+  /* Menu
+  --------------------------*/
+  /* Rate
+  --------------------------*/
+  /* DatePicker
+  --------------------------*/
+  /* Loading
+  --------------------------*/
+  /* Scrollbar
+  --------------------------*/
+  /* Carousel
+  --------------------------*/
+  /* Collapse
+  --------------------------*/
+}
+.el-scrollbar {
+  overflow: hidden;
+  position: relative;
+}
+.el-scrollbar:hover .el-scrollbar__bar, .el-scrollbar:active .el-scrollbar__bar, .el-scrollbar:focus .el-scrollbar__bar {
+  opacity: 1;
+  transition: opacity 340ms ease-out;
+}
+.el-scrollbar__wrap {
+  overflow: scroll;
+}
+.el-scrollbar__wrap--hidden-default {}
+.el-scrollbar__wrap--hidden-default::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.el-scrollbar__thumb {
+  position: relative;
+  display: block;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  border-radius: inherit;
+  background-color: rgba(190, 153, 151, 0.3);
+  transition: .3s background-color;
+}
+.el-scrollbar__thumb:hover {
+  background-color: rgba(190, 153, 151, 0.5);
+}
+.el-scrollbar__bar {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  z-index: 1;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+.el-scrollbar__bar.is-horizontal {
+  height: 6px;
+  left: 2px;
+}
+.el-scrollbar__bar.is-horizontal > div {
+  height: 100%;
+}
+.el-scrollbar__bar.is-vertical {
+  width: 6px;
+  top: 2px;
+}
+.el-scrollbar__bar.is-vertical > div {
+  width: 100%;
 }
 
 .time-select {
@@ -780,12 +813,7 @@
 
 .time-select .el-picker-panel__content {
   max-height: 200px;
-  overflow: hidden;
-  margin: 0
-}
-
-.time-select .el-picker-panel__content:hover {
-  overflow-y: auto;
+  margin: 0;
 }
 
 .time-select-item {
@@ -799,15 +827,15 @@
 }
 
 .time-select-item.selected:not(.disabled):hover {
-  background-color: #1d8ce0;
+  background-color: #ff4056;
 }
 
 .time-select-item.disabled {
-  color: #d3dce6;
+  color: rgb(229, 209, 209);
   cursor: not-allowed;
 }
 
 .time-select-item:hover {
-  background-color: #e5e9f2;
+  background-color: rgb(241, 230, 228);
   cursor: pointer;
 }

@@ -72,13 +72,19 @@
   --------------------------*/
     /* Steps
   --------------------------*/
-    /* Steps
+    /* Menu
   --------------------------*/
     /* Rate
   --------------------------*/
     /* DatePicker
   --------------------------*/
     /* Loading
+  --------------------------*/
+    /* Scrollbar
+  --------------------------*/
+    /* Carousel
+  --------------------------*/
+    /* Collapse
   --------------------------*/
 }
 
@@ -127,10 +133,6 @@
     margin-left: 0 !important;
 }
 
-.el-form-item .el-button + .el-button, .el-form-item .el-checkbox + .el-checkbox, .el-form-item .el-radio + .el-radio{
-    margin-left: 10px;
-}
-
 .el-form-item.is-error{}
 
 .el-form-item.is-error .el-input__inner, .el-form-item.is-error .el-textarea__inner{
@@ -148,7 +150,7 @@
     vertical-align: middle;
     float: left;
     font-size: 14px;
-    color: #5e6d82;
+    color: rgb(106, 73, 72);
     line-height: 1;
     padding: 11px 12px 11px 0;
     box-sizing: border-box;

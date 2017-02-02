@@ -73,7 +73,7 @@
   --------------------------*/
     /* Steps
   --------------------------*/
-    /* Steps
+    /* Menu
   --------------------------*/
     /* Rate
   --------------------------*/
@@ -81,63 +81,74 @@
   --------------------------*/
     /* Loading
   --------------------------*/
+    /* Scrollbar
+  --------------------------*/
+    /* Carousel
+  --------------------------*/
+    /* Collapse
+  --------------------------*/
 }
 .el-input{
     position: relative;
-    font-size: 14px
+    font-size: 14px;
+    display: inline-block;
+    width: 100%
 }
 .el-input.is-disabled .el-input__inner{
-    background-color: #EFF2F7;
-    border-color: #D3DCE6;
+    background-color: rgb(246, 239, 238);
+    border-color: rgb(229, 209, 209);
     color: #bbb;
     cursor: not-allowed
 }
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-input.is-disabled .el-input__inner::-moz-placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-input.is-disabled .el-input__inner::placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-input.is-active .el-input__inner{
     outline: none;
     border-color: #ff4056
 }
 .el-input__inner{
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #C0CCDA;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid rgb(217, 191, 191);
+    box-sizing: border-box;
+    color: rgb(61, 31, 31);
+    display: block;
     font-size: inherit;
-    line-height: normal
+    height: 36px;
+    line-height: 1;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%
 }
 .el-input__inner::-webkit-input-placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-input__inner::-moz-placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-input__inner:-ms-input-placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-input__inner::placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-input__inner:hover{
-    border-color: #8492a6
+    border-color: rgb(165, 132, 131)
 }
 .el-input__inner:focus{
     outline: none;
@@ -148,8 +159,10 @@
     width: 35px;
     height: 100%;
     right: 0;
+    top: 0;
     text-align: center;
-    color: #C0CCDA
+    color: rgb(217, 191, 191);
+    transition: all .3s
 }
 .el-input__icon:after{
     content: '';
@@ -160,6 +173,14 @@
 }
 .el-input__icon + .el-input__inner{
     padding-right: 35px
+}
+.el-input__icon.is-clickable{}
+.el-input__icon.is-clickable:hover{
+    cursor: pointer;
+    color: rgb(165, 132, 131)
+}
+.el-input__icon.is-clickable:hover + .el-input__inner{
+    border-color: rgb(165, 132, 131)
 }
 .el-input--large{
     font-size: 16px
@@ -181,31 +202,21 @@
 }
 .el-input-group{
     line-height: normal;
-    display: table;
+    display: inline-table;
+    width: 100%;
     border-collapse: separate
 }
 .el-input-group > .el-input__inner{
     vertical-align: middle;
     display: table-cell
 }
-.el-input-group .el-input__inner:first-child{
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0
-}
-.el-input-group .el-input__inner:last-child{
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0
-}
-.el-input-group .el-input__inner:not(:first-child):not(:last-child){
-    border-radius: 0
-}
 .el-input-group__append, .el-input-group__prepend{
-    background-color: #f9fafc;
-    color: #99a9bf;
+    background-color: rgb(255, 251, 252);
+    color: rgb(190, 153, 151);
     vertical-align: middle;
     display: table-cell;
     position: relative;
-    border: 1px solid #C0CCDA;
+    border: 1px solid rgb(217, 191, 191);
     border-radius: 4px;
     padding: 0 10px;
     width: 1%;
@@ -235,24 +246,36 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0
 }
-.el-textarea{}
+.el-input-group--prepend .el-input__inner{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0
+}
+.el-input-group--append .el-input__inner{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+.el-textarea{
+    display: inline-block;
+    width: 100%;
+    vertical-align: bottom
+}
 .el-textarea.is-disabled .el-textarea__inner{
-    background-color: #EFF2F7;
-    border-color: #D3DCE6;
+    background-color: rgb(246, 239, 238);
+    border-color: rgb(229, 209, 209);
     color: #bbb;
     cursor: not-allowed
 }
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-textarea.is-disabled .el-textarea__inner::-moz-placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-textarea.is-disabled .el-textarea__inner::placeholder{
-    color: #C0CCDA
+    color: rgb(217, 191, 191)
 }
 .el-textarea__inner{
     display: block;
@@ -262,27 +285,27 @@
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
-    color: #1f2d3d;
+    color: rgb(61, 31, 31);
     background-color: #fff;
     background-image: none;
-    border: 1px solid #C0CCDA;
+    border: 1px solid rgb(217, 191, 191);
     border-radius: 4px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1)
 }
 .el-textarea__inner::-webkit-input-placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-textarea__inner::-moz-placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-textarea__inner:-ms-input-placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-textarea__inner::placeholder{
-    color: #99a9bf
+    color: rgb(190, 153, 151)
 }
 .el-textarea__inner:hover{
-    border-color: #8492a6
+    border-color: rgb(165, 132, 131)
 }
 .el-textarea__inner:focus{
     outline: none;
@@ -361,7 +384,7 @@
   --------------------------*/
     /* Steps
   --------------------------*/
-    /* Steps
+    /* Menu
   --------------------------*/
     /* Rate
   --------------------------*/
@@ -369,19 +392,26 @@
   --------------------------*/
     /* Loading
   --------------------------*/
+    /* Scrollbar
+  --------------------------*/
+    /* Carousel
+  --------------------------*/
+    /* Collapse
+  --------------------------*/
 }
 
 .el-autocomplete{
-    position: relative
+    position: relative;
+    display: inline-block
 }
 
 .el-autocomplete__suggestions{
     position: absolute;
     left: 0;
     top: 110%;
-    margin: 0;
+    margin: 5px 0 0;
     background-color: #fff;
-    border: 1px solid #D3DCE6;
+    border: 1px solid rgb(229, 209, 209);
     width: 100%;
     padding: 6px 0;
     z-index: 10;
@@ -398,7 +428,7 @@
     padding: 0 10px;
     margin: 0;
     cursor: pointer;
-    color: #475669;
+    color: rgb(106, 73, 72);
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
@@ -406,7 +436,7 @@
 }
 
 .el-autocomplete__suggestions li:hover{
-    background-color: #e5e9f2
+    background-color: rgb(241, 230, 228)
 }
 
 .el-autocomplete__suggestions li.highlighted{
@@ -420,7 +450,7 @@
 
 .el-autocomplete__suggestions li.divider{
     margin-top: 6px;
-    border-top: 1px solid #D3DCE6
+    border-top: 1px solid rgb(229, 209, 209)
 }
 
 .el-autocomplete__suggestions li.divider:last-child{

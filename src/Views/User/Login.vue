@@ -52,7 +52,7 @@ export default {
     submit: function () {
       const data = {
         grant_type: 'password',
-        client_id: 1,
+        client_id: 2,
         username: this.identity,
         password: this.password
       }
@@ -61,7 +61,7 @@ export default {
       this.$setLoading()
 
       this.$http.post('/oauth/token', data).then((response) => {
-        this.$http.get('/api/user', data).then((response) => {
+        this.$http.get('/api/user').then((response) => {
           const user = response.body
 
           this.$store.commit('setAuth', user)

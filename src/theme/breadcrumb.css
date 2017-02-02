@@ -72,13 +72,19 @@
   --------------------------*/
     /* Steps
   --------------------------*/
-    /* Steps
+    /* Menu
   --------------------------*/
     /* Rate
   --------------------------*/
     /* DatePicker
   --------------------------*/
     /* Loading
+  --------------------------*/
+    /* Scrollbar
+  --------------------------*/
+    /* Carousel
+  --------------------------*/
+    /* Collapse
   --------------------------*/
 }
 
@@ -98,7 +104,7 @@
 
 .el-breadcrumb__separator{
     margin: 0 8px;
-    color: #c0ccda
+    color: rgb(217, 191, 191)
 }
 
 .el-breadcrumb__item{
@@ -108,7 +114,7 @@
 .el-breadcrumb__item:last-child .el-breadcrumb__item__inner, .el-breadcrumb__item:last-child .el-breadcrumb__item__inner a{}
 
 .el-breadcrumb__item:last-child .el-breadcrumb__item__inner, .el-breadcrumb__item:last-child .el-breadcrumb__item__inner:hover, .el-breadcrumb__item:last-child .el-breadcrumb__item__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__item__inner a:hover{
-    color: #99a9bf;
+    color: rgb(190, 153, 151);
     cursor: text
 }
 
@@ -120,7 +126,7 @@
 
 .el-breadcrumb__item__inner, .el-breadcrumb__item__inner a{
     transition: color .15s linear;
-    color: #475669
+    color: rgb(106, 73, 72)
 }
 
 .el-breadcrumb__item__inner:hover, .el-breadcrumb__item__inner a:hover{

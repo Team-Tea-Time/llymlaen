@@ -72,13 +72,19 @@
   --------------------------*/
     /* Steps
   --------------------------*/
-    /* Steps
+    /* Menu
   --------------------------*/
     /* Rate
   --------------------------*/
     /* DatePicker
   --------------------------*/
     /* Loading
+  --------------------------*/
+    /* Scrollbar
+  --------------------------*/
+    /* Carousel
+  --------------------------*/
+    /* Collapse
   --------------------------*/
 }
 .fade-in-linear-enter-active, .fade-in-linear-leave-active {
@@ -87,81 +93,47 @@
 .fade-in-linear-enter, .fade-in-linear-leave, .fade-in-linear-leave-active {
     opacity: 0
 }
-.fade-in-enter-active, .fade-in-leave-active {
+.el-fade-in-enter-active, .el-fade-in-leave-active {
     transition: all .3s cubic-bezier(.55,0,.1,1)
 }
-.fade-in-enter, .fade-in-leave-active {
+.el-fade-in-enter, .el-fade-in-leave-active {
     opacity: 0
 }
-.md-fade-center-enter-active, .md-fade-center-leave-active {
+.el-zoom-in-center-enter-active, .el-zoom-in-center-leave-active {
     transition: all .3s cubic-bezier(.55,0,.1,1)
 }
-.md-fade-center-enter, .md-fade-center-leave, .md-fade-center-leave-active {
+.el-zoom-in-center-enter, .el-zoom-in-center-leave-active {
     opacity: 0;
-    transform: scaleY(0)
+    transform: scaleX(0)
 }
-.md-fade-bottom-enter-active, .md-fade-bottom-leave-active {
+.el-zoom-in-top-enter-active, .el-zoom-in-top-leave-active {
     opacity: 1;
     transform: scaleY(1);
     transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
     transform-origin: center top
 }
-.md-fade-bottom-enter, .md-fade-bottom-leave, .md-fade-bottom-leave-active {
+.el-zoom-in-top-enter, .el-zoom-in-top-leave-active {
     opacity: 0;
     transform: scaleY(0)
 }
-.md-fade-top-enter-active, .md-fade-top-leave-active {
+.el-zoom-in-bottom-enter-active, .el-zoom-in-bottom-leave-active {
     opacity: 1;
     transform: scaleY(1);
     transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
     transform-origin: center bottom
 }
-.md-fade-top-enter, .md-fade-top-leave, .md-fade-top-leave-active {
+.el-zoom-in-bottom-enter, .el-zoom-in-bottom-leave-active {
     opacity: 0;
     transform: scaleY(0)
 }
-.md-fade-left-enter-active, .md-fade-left-leave-active {
-    opacity: 1;
-    transform: scaleX(1);
-    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
-    transform-origin: right center
+.collapse-transition {
+    transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out
 }
-.md-fade-left-enter, .md-fade-left-leave, .md-fade-left-leave-active {
-    opacity: 0;
-    transform: scaleX(0)
-}
-.md-fade-right-enter-active, .md-fade-right-leave-active {
-    opacity: 1;
-    transform: scaleX(1);
-    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
-    transform-origin: left center
-}
-.md-fade-right-enter, .md-fade-right-leave, .md-fade-right-leave-active {
-    opacity: 0;
-    transform: scaleX(0)
-}
-.fade-enter-active, .fade-leave-active {
-    transition: opacity .3s cubic-bezier(.645,.045,.355,1)
-}
-.fade-enter, .fade-leave-active {
-    opacity: 0
-}
-.list-move, .list-enter-active, .list-leave-active {
-    transition: all .5s cubic-bezier(.55,0,.1,1)
-}
-.list-enter, .list-leave-active {
-    opacity: 0;
-    transform: translate(0, -30px)
-}
-/*.list-leave-active {
-  position: absolute;
-  opacity: 0;
-  transform: scaleY(0.01) translate(30px, 0);
-}*/
 @font-face {
     font-family: 'element-icons';
-    src: url('fonts/element-icons.eot?t=1472440741'), /* IE9*/
-      url('fonts/element-icons.woff?t=1472440741') format('woff'), /* chrome, firefox */
+    src: url('fonts/element-icons.eot?t=1472440741');
+    /* IE9*/
+    src: url('fonts/element-icons.woff?t=1472440741') format('woff'), /* chrome, firefox */
       url('fonts/element-icons.ttf?t=1472440741') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
       url('fonts/element-icons.svg?t=1472440741#el-icon') format('svg');
     /* iOS 4.1- */
