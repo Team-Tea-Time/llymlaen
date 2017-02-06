@@ -2,8 +2,8 @@
   <div id="user-characters">
     <page-header title="Characters" />
     <content-container>
-      <el-dialog title="Add Character" v-model="dialogAddVisible">
-        <el-row>
+      <el-dialog title="Add Character" v-model="dialogVisible">
+        <el-row v-loading="adding">
           <el-col :lg="{span: 12, offset: 6}">
             <el-form>
               <el-form-item>
@@ -27,27 +27,52 @@
             <div v-if="newCharacter">
               <p>You've selected:</p>
               <character-row
-                :avatar="newCharacter.avatar"
-                :name="newCharacter.name"
-                :world="newCharacter.world"
+                :character="newCharacter"
+                :enableSettingsMenu="false"
+              />
+            </div>
+            <div v-for="attribute in validationErrors">
+              <el-alert
+                v-for="error in attribute"
+                type="warning"
+                :closable="false"
+                :title="error"
               />
             </div>
           </el-col>
         </el-row>
         <span slot="footer" class="dialog-footer">
-          <el-button  size="large" @click="dialogAddVisible = false">Cancel</el-button>
-          <el-button type="primary" size="large" @click="dialogAddVisible = false" :disabled="!newCharacter">Proceed</el-button>
+          <el-button size="large" @click="dialogVisible = false">
+            Cancel
+          </el-button>
+          <el-button
+            type="primary"
+            size="large"
+            @click="add"
+            :disabled="!newCharacter || adding"
+          >
+            Add
+          </el-button>
         </span>
       </el-dialog>
       <el-row>
         <el-col :lg="{span: 12, offset: 6}" v-loading.body="isLoading">
           <character-row
              v-for="character in characters"
-            :avatar="character.avatar"
-            :name="character.name"
-            :world="character.world"
+            :character="character"
+            :showTags="true"
+            :showDetails="true"
+            v-on:main-set="setMain(character)"
+            v-on:removed="removeCharacter(character)"
           />
-          <el-button type="primary" size="large" :style="{width: '100%'}" @click="dialogAddVisible = true">Add Character</el-button>
+          <el-button
+            type="primary"
+            size="large"
+            class="full-width"
+            @click="dialogVisible = true"
+          >
+            Add Character
+          </el-button>
         </el-col>
       </el-row>
     </content-container>
@@ -67,8 +92,10 @@ export default {
   data () {
     return {
       characters: [],
-      dialogAddVisible: false,
+      dialogVisible: false,
       newCharacter: null,
+      adding: false,
+      validationErrors: [],
       searching: false,
       searchResults: []
     }
@@ -79,9 +106,14 @@ export default {
 
     this.search = debounce(this.search, 400)
   },
+  watch: {
+    newCharacter () {
+      this.validationErrors = []
+    }
+  },
   methods: {
     fetch () {
-      this.$http.get('/api/user/characters').then((response) => {
+      this.$http.get('/api/user/characters').then(response => {
         this.characters = response.data
         this.$clearLoading()
       })
@@ -89,13 +121,46 @@ export default {
     search (name) {
       if (name !== '') {
         this.searching = true
-        this.$http.post('/api/character/search', { name }).then((response) => {
+        this.$http.post('/api/character/search', { name }).then(response => {
           this.searchResults = response.body
           this.searching = false
         })
-      } else {
-        this.searchResults = []
       }
+    },
+    add () {
+      this.validationErrors = []
+      this.adding = true
+
+      if (!this.newCharacter) {
+        return false
+      }
+
+      this.$http.post('/api/character', { id: this.newCharacter.id }).then(response => {
+        this.dialogVisible = false
+        this.adding = false
+        this.characters.push(response.data)
+        this.newCharacter = null
+        Message.success('Character added!')
+      }, response => {
+        this.adding = false
+        if (response.status === 422) {
+          this.validationErrors = response.data
+        } else {
+          Message.error('Adding character failed. :(')
+        }
+      })
+    },
+    setMain (character) {
+      this.characters.forEach((c, index) => {
+        if (c.id !== character.id) {
+          this.characters[index].status = 1
+        }
+      })
+    },
+    removeCharacter (character) {
+      this.characters = this.characters.filter((c) => {
+        return c.id !== character.id
+      })
     }
   }
 }

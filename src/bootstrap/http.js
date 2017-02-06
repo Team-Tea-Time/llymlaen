@@ -13,8 +13,8 @@ Vue.http.interceptors.push((request, next) => {
 })
 
 // Get the initial user state, if applicable
-Vue.http.get('/api/user').then((response) => {
+Vue.http.get('/api/user').then(response => {
   store.commit('setAuth', response.body)
-}, (response) => {
+}, response => {
   console.log('User not authenticated or token expired.')
 })

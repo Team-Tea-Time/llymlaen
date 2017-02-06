@@ -119,6 +119,11 @@ body {
   width: 100%;
 }
 
+.el-button.full-width {
+  display: block;
+  width: 100%;
+}
+
 // NProgress
 
 #nprogress {
