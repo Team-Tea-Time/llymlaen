@@ -65,7 +65,7 @@ export default {
           const user = response.body
 
           this.$store.commit('setAuth', user)
-          Message.success(`Hello, ${user.name}!`)
+          this.$message.success(`Hello, ${user.name}!`)
         })
 
         this.$router.push('/')
@@ -73,7 +73,7 @@ export default {
         if (response.status === 422) {
           this.$setValidationErrors(response)
         } else {
-          Message.error('Login request failed. :(')
+          this.$message.error('Login request failed. :(')
           this.$clearLoading()
         }
       })

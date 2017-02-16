@@ -84,7 +84,7 @@ export default {
       this.$setLoading()
 
       this.$http.post('/api/user', data).then((response) => {
-        Message.success('Account created. Please check your inbox for the confirmation email we just sent you!')
+        this.$message.success('Account created. Please check your inbox for the confirmation email we just sent you!')
         router.push('/user/login')
       }, (response) => {
         this.$setValidationErrors(response)

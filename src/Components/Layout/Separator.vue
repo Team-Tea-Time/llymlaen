@@ -15,4 +15,12 @@ export default {
   border: none;
   background: #dedede;
 }
+
+.el-dialog__body .separator {
+  margin: 20px -20px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
 </style>

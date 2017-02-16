@@ -3,6 +3,7 @@ export const auth = {
   user: {
     id: 0,
     name: 'Guest',
-    email: null
+    email: null,
+    roles: []
   }
 }

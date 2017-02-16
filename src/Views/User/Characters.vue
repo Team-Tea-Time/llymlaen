@@ -140,13 +140,13 @@ export default {
         this.adding = false
         this.characters.push(response.data)
         this.newCharacter = null
-        Message.success('Character added!')
+        this.$message.success('Character added!')
       }, response => {
         this.adding = false
         if (response.status === 422) {
           this.validationErrors = response.data
         } else {
-          Message.error('Adding character failed. :(')
+          this.$message.error('Adding character failed. :(')
         }
       })
     },

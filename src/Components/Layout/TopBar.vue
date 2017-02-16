@@ -1,17 +1,13 @@
 <template>
-  <div id="top-bar">
-    <div class="world-select">
-      <div class="current" @click="showList = !showList">
-        <span>{{ currentWorld }}</span>.eorzea.info
-      </div>
-
-      <ul v-if="showList">
-        <li v-for="world in worlds" @click="currentWorld = world">{{ world }}</li>
-      </ul>
-    </div>
-    <slot>
-    </slot>
-  </div>
+  <el-menu id="top-bar" theme="dark" default-active="/" mode="horizontal" :router="true">
+    <slot></slot>
+    <el-submenu index="/" class="world-select">
+      <template slot="title">{{ currentWorld }}</template>
+      <el-menu-item index="/open/portal" class="separated">Portal</el-menu-item>
+      <el-menu-item v-for="world in worlds" :index="`/open/${world}`">{{ world }}</el-menu-item>
+    </el-submenu>
+    <el-menu-item index="/">Home</el-menu-item>
+  </el-menu>
 </template>
 
 <script>
@@ -34,71 +30,48 @@ export default {
 @import '../../colours';
 
 #top-bar {
+  display: block;
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   width: 100%;
-  height: 65px;
+  height: 60px;
+  border-radius: 0;
   background: transparentize($backdrop, 0.2);
-  overflow: visible;
-  transition: background 0.2s ease-out;
   z-index: 1000;
 
-  &.at-top {
-    background: none;
+  .el-submenu.right,
+  .el-menu-item.right {
+    float: right;
+  }
 
-    .world-select {
-      background: none;
+  .el-submenu__title,
+  .el-submenu__icon-arrow,
+  > .el-submenu > .el-menu-item,
+  > .el-menu-item {
+    color: #fff;
+  }
 
-      .current {
-        color: #fff;
-        transition: color 0.2s ease-out;
-      }
+  .el-submenu__title,
+  > .el-submenu > .el-menu-item,
+  > .el-menu-item {
+    border-bottom: none;
+
+    &:hover {
+      background: transparentize($backdrop, 0.2);
     }
   }
 
   .world-select {
-    display: inline-block;
     background: $primary;
-    font-family: "Catamaran", sans-serif;
-    transition: background 0.2s ease-out;
 
-    .current {
-      height: 31px;
-      padding: 17px 15px;
+    .el-submenu__title {
+      font-family: "Catamaran", sans-serif;
+      font-size: 1.3rem;
       font-weight: 300;
-      font-size: 1.7rem;
-      color: lighten($primary, 25%);
-      line-height: 1.3;
+      text-transform: uppercase;
 
       &:hover {
-        background: lighten($primary, 3%);
-        cursor: pointer;
-      }
-
-      span {
-        color: #fff;
-        text-transform: lowercase;
-      }
-    }
-
-    ul {
-      list-type: none;
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid transparentize(#fff, 0.85);
-      font-size: 1.1rem;
-      color: #fff;
-
-      li {
-        display: block;
-        padding: 8px 15px;
-
-        &:hover {
-          background: transparentize(#fff, 0.85);
-          cursor: pointer;
-        }
+        background: rgba(255, 255, 255, 0.2);
       }
     }
   }

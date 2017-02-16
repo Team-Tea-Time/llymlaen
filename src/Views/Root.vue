@@ -1,21 +1,20 @@
 <template>
   <div id="root">
     <top-bar>
-      <div class="right">
-        <div v-if="authenticated">
-          <nav-item to="/user/profile">
-            Hello, <strong>{{ user.name }}</strong>
-          </nav-item>
-        </div>
-        <div v-else>
-          <nav-item to="/user/register">
-            Register
-          </nav-item>
-          <nav-item to="/user/login">
-            Log in
-          </nav-item>
-        </div>
-      </div>
+      <template v-if="authenticated">
+        <el-submenu index="test" class="right">
+          <template slot="title">Hello, <strong>{{ user.name }}</strong></template>
+          <el-menu-item index="/admin/overview">Admin</el-menu-item>
+          <el-menu-item index="/user/profile">Profile</el-menu-item>
+          <el-menu-item index="/user/settings">Settings</el-menu-item>
+          <el-menu-item index="/user/characters">Characters</el-menu-item>
+          <el-menu-item index="/user/logout">Log out</el-menu-item>
+        </el-submenu>
+      </template>
+      <template v-else>
+        <el-menu-item index="/user/register" class="right">Register</el-menu-item>
+        <el-menu-item index="/user/login" class="right">Log in</el-menu-item>
+      </template>
     </top-bar>
     <router-view></router-view>
   </div>
@@ -119,9 +118,25 @@ body {
   width: 100%;
 }
 
+.el-message-box__input {
+  margin: 0 10px 0 50px;
+}
+
 .el-button.full-width {
   display: block;
   width: 100%;
+}
+
+.el-card .el-card__body {
+  .el-button {
+    margin-top: 20px;
+  }
+}
+
+.el-menu-item {
+  &.separated {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
 
 // NProgress

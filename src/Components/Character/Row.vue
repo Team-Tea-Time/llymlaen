@@ -19,7 +19,7 @@
         </el-dropdown-item>
         <el-dropdown-item
           class="remove"
-          @click.native="dialogRemoveVisible = true"
+          @click.native="remove"
         >
           Remove
         </el-dropdown-item>
@@ -83,30 +83,10 @@
         <el-button type="primary" size="large" @click="verify" :disabled="isLoading">Verify</el-button>
       </span>
     </el-dialog>
-    <el-dialog :title="`Remove Character: ${character.name}`" v-model="dialogRemoveVisible" size="tiny">
-      <el-row :loading="isLoading">
-        <el-col>
-          <p>Enter the character name below to confirm removal:</p>
-          <el-input v-model="removalConfirmation"></el-input>
-        </el-col>
-      </el-row>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogRemoveVisible = false">Cancel</el-button>
-        <el-button
-          type="danger"
-          @click="remove"
-          :disabled="isLoading || removalConfirmation !== character.name"
-        >
-          Remove
-        </el-button>
-      </span>
-    </el-dialog>
   </div>
 </template>
 
 <script>
-import { Message } from 'element-ui'
-
 export default {
   props: {
     character: {
@@ -129,9 +109,7 @@ export default {
   data () {
     return {
       dialogVerifyVisible: false,
-      validationErrors: [],
-      dialogRemoveVisible: false,
-      removalConfirmation: null
+      validationErrors: []
     }
   },
   methods: {
@@ -146,13 +124,13 @@ export default {
         this.dialogVerifyVisible = false
         this.$clearLoading()
         this.character.verified = true
-        Message.success('Character verified!')
+        this.$message.success('Character verified!')
       }, response => {
         this.$clearLoading()
         if (response.status === 422) {
           this.validationErrors = response.data
         } else {
-          Message.error('Verifying character failed. :(')
+          this.$message.error('Verifying character failed. :(')
         }
       })
     },
@@ -163,23 +141,33 @@ export default {
         this.$clearLoading()
         this.character.status = 0
         this.$emit('main-set')
-        Message.success(`${this.character.name} set as main.`)
+        this.$message.success(`${this.character.name} set as main.`)
       }, (response) => {
         this.$clearLoading()
-        Message.error('Setting character as main failed. :(')
+        this.$message.error('Setting character as main failed. :(')
       })
     },
     remove () {
-      this.$setLoading()
+      this.$prompt("This will remove the character until it's added again. Enter the character's name below to confirm.", 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+        showInput: true,
+        inputValidator: value => {
+          return value === this.character.name
+        },
+        inputErrorMessage: "Character name doesn't match"
+      }).then(() => {
+        this.$setLoading()
 
-      this.$http.delete(`/api/character/${this.character.id}`).then(response => {
-        this.dialogRemoveVisible = false
-        this.$clearLoading()
-        this.$emit('removed')
-        Message.success(`${this.character.name} removed.`)
-      }, response => {
-        this.$clearLoading()
-        Message.error('Removing character failed. :(')
+        this.$http.delete(`/api/character/${this.character.id}`).then(response => {
+          this.$message.success('Character deleted')
+          this.fetch()
+          this.$clearLoading()
+        }, response => {
+          this.$clearLoading()
+          this.$message.error('Removing character failed. :(')
+        })
       })
     }
   }
