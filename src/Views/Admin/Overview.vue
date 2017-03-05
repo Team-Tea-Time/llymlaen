@@ -3,6 +3,7 @@
     id="admin-overview"
     title="Overview"
     :breadcrumbs="breadcrumbs"
+    :loading="isLoading"
   >
     <el-row :gutter="20">
       <el-col :span="8">

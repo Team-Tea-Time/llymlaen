@@ -3,16 +3,16 @@
     id="admin-users"
     title="Users"
     :breadcrumbs="breadcrumbs"
+    :loading="isLoading"
   >
     <el-pagination
       layout="prev, pager, next"
       :total="users.total"
       :page-size="users.per_page"
-      @current-change="fetch"
-      v-loading.body="isLoading">
+      @current-change="fetch">
     </el-pagination>
     <hr class="separator" />
-    <el-table :data="users.data" v-loading.body="isLoading">
+    <el-table :data="users.data">
       <el-table-column
         prop="name"
         label="Username">

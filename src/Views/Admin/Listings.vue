@@ -3,6 +3,7 @@
     id="admin-listings"
     title="Listings"
     :breadcrumbs="breadcrumbs"
+    :loading="isLoading"
   >
   </admin-viewport>
 </template>

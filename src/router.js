@@ -15,6 +15,12 @@ import UserConfirm from './Views/User/Confirm'
 import UserLogin from './Views/User/Login'
 import UserRegister from './Views/User/Register'
 
+function checkRole (role, next) {
+  getAuthUser().then(user => {
+    next(userHasRole(user, role))
+  })
+}
+
 export default new VueRouter({
   mode: 'history',
   base: __dirname,
@@ -31,11 +37,7 @@ export default new VueRouter({
           path: 'admin',
           component: Admin,
           redirect: 'admin/overview',
-          beforeEnter: (to, from, next) => {
-            getAuthUser().then(user => {
-              next(userHasRole(user, 'Administrator'))
-            })
-          },
+          beforeEnter: (to, from, next) => checkRole('Administrator', next),
           children: [
             { path: 'overview', component: AdminOverview },
             { path: 'users', component: AdminUsers },

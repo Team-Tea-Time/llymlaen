@@ -13,7 +13,9 @@
       <h1>{{ title }}</h1>
     </div>
     <div class="content">
-      <slot></slot>
+      <div class="inner" v-loading="loading">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +31,10 @@ export default {
     breadcrumbs: {
       type: Array,
       default: []
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -68,12 +74,16 @@ body {
     flex-flow: column;
     position: absolute;
     top: 125px;
-    left: 0;
-    bottom: 0;
     right: 0;
-    padding: 20px;
+    bottom: 0;
+    left: 0;
+    padding: 1px;
     overflow-y: auto;
     overflow-x: hidden;
+
+    .inner {
+      padding: 19px;
+    }
   }
 }
 </style>

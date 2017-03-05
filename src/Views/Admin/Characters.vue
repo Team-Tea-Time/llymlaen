@@ -3,18 +3,18 @@
     id="admin-characters"
     title="Characters"
     :breadcrumbs="breadcrumbs"
+    :loading="isLoading"
   >
     <el-pagination
       layout="prev, pager, next"
       :total="characters.total"
       :page-size="characters.per_page"
-      @current-change="fetch"
-      v-loading.body="isLoading">
+      @current-change="fetch">
     </el-pagination>
 
     <hr class="separator" />
 
-    <el-table :data="characters.data" v-loading.body="isLoading">
+    <el-table :data="characters.data">
       <el-table-column :width="64">
         <template scope="character">
           <img :src="character.row.avatar" alt="" class="avatar" />
