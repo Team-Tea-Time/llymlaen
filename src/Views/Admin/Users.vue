@@ -105,16 +105,7 @@ export default {
   },
   methods: {
     fetch (page) {
-      var uri = (typeof page === 'undefined')
-        ? '/api/users'
-        : `/api/users?page=${page}`
-
-      this.$setLoading()
-
-      this.$http.get(uri).then(response => {
-        this.users = response.data
-        this.$clearLoading()
-      })
+      this.$fetch('/api/users', page, 'users')
     },
     edit (user) {
       this.user = user

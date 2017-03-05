@@ -116,16 +116,7 @@ export default {
   },
   methods: {
     fetch (page) {
-      var uri = (typeof page === 'undefined')
-        ? '/api/character'
-        : `/api/character?page=${page}`
-
-      this.$setLoading()
-
-      this.$http.get(uri).then(response => {
-        this.characters = response.data
-        this.$clearLoading()
-      })
+      this.$fetch('/api/character', page, 'characters')
     },
     searchUsers (name) {
       if (name !== '' && name.length > 2) {
