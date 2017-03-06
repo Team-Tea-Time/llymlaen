@@ -8,8 +8,7 @@ export const getAuthUser = function () {
       store.commit('setAuth', response.body)
       resolve(response.body)
     }, response => {
-      console.log('User not authenticated or token expired.')
-      reject()
+      reject(new Error('User not authenticated or token expired.'))
     })
   })
 }

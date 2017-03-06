@@ -1,14 +1,14 @@
 <template>
   <div id="root">
     <top-bar>
-      <template v-if="authenticated">
+      <template v-if="auth.authenticated">
         <el-submenu index="test" class="right">
-          <template slot="title">Hello, <strong>{{ user.name }}</strong></template>
+          <template slot="title">Hello, <strong>{{ auth.user.name }}</strong></template>
           <el-menu-item index="/admin/overview">Admin</el-menu-item>
           <el-menu-item index="/user/profile">Profile</el-menu-item>
           <el-menu-item index="/user/settings">Settings</el-menu-item>
           <el-menu-item index="/user/characters">Characters</el-menu-item>
-          <el-menu-item index="/user/logout">Log out</el-menu-item>
+          <li class="el-menu-item" @click="logout">Log out</li>
         </el-submenu>
       </template>
       <template v-else>
@@ -35,11 +35,8 @@ export default {
   },
   store,
   computed: {
-    authenticated () {
-      return store.state.auth.authenticated
-    },
-    user () {
-      return store.state.auth.user
+    auth () {
+      return store.state.auth
     }
   },
   ready () {
@@ -54,6 +51,15 @@ export default {
         topBarClass.remove('at-top')
       }
     }, 35)
+  },
+  methods: {
+    logout () {
+      this.$http.post('/api/user/clear-token').then(response => {
+        store.commit('clearAuth')
+        this.$message.success('Logged out successfully. See you around!')
+        this.$router.push('/user/login')
+      })
+    }
   }
 }
 </script>

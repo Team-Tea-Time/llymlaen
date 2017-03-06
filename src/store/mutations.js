@@ -1,4 +1,4 @@
-import { auth } from './defaults'
+import defaults from './defaults'
 
 export const setAuth = (state, user) => {
   state.auth.authenticated = true
@@ -6,5 +6,5 @@ export const setAuth = (state, user) => {
 }
 
 export const clearAuth = (state) => {
-  state.auth = auth
+  state.auth = defaults.auth()
 }

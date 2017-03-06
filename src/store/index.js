@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
-import { auth } from './defaults'
+import defaults from './defaults'
 import * as mutations from './mutations'
 
 const state = {
-  auth
+  auth: defaults.auth()
 }
 
 const store = new Vuex.Store({
