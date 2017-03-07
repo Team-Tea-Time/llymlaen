@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     fetch (page) {
-      this.$fetch('/api/users', page, 'users')
+      this.$fetch('/api/user', page, 'users')
     },
     edit (user) {
       this.user = user

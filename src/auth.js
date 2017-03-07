@@ -4,7 +4,7 @@ import store from 'store'
 
 export const getAuthUser = function () {
   return new Promise((resolve, reject) => {
-    Vue.http.get('/api/user').then(response => {
+    Vue.http.get('/api/user/me').then(response => {
       store.commit('setAuth', response.body)
       resolve(response.body)
     }, response => {
