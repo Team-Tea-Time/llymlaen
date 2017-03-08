@@ -61,7 +61,7 @@ export default {
       this.$setLoading()
 
       this.$http.post('/oauth/token', data).then((response) => {
-        this.$http.get('/api/user').then((response) => {
+        this.$http.get('/api/user/me').then((response) => {
           const user = response.body
 
           this.$store.commit('setAuth', user)
