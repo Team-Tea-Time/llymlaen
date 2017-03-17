@@ -128,7 +128,7 @@ export default {
       }
     },
     edit (character) {
-      this.character = character
+      this.character = Object.assign({}, character)
       this.character.verified = this.character.verified == 1
       this.dialogEditVisible = true
     },

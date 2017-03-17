@@ -108,7 +108,7 @@ export default {
       this.$fetch('/api/user', page, 'users')
     },
     edit (user) {
-      this.user = user
+      this.user = Object.assign({}, user)
       this.user.verified = this.user.verified == 1
       this.user.active = this.user.active == 1
       this.dialogEditVisible = true
