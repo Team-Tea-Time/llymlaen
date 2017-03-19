@@ -64,10 +64,10 @@ export default {
     }
   },
   created () {
-    this.$http.get('/api/user/totals').then(response => {
+    this.$http.get('/api/users/totals').then(response => {
       this.users = response.data
     })
-    this.$http.get('/api/character/totals').then(response => {
+    this.$http.get('/api/characters/totals').then(response => {
       this.characters = response.data
     })
   }

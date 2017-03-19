@@ -2,7 +2,7 @@
 var path = require('path')
 
 const proxy = {
-  target: 'http://balmung.eorzea.local:9000',
+  target: 'http://balmung.xiv-local.world:9000',
   secure: false,
   changeOrigin: true
 }

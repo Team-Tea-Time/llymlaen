@@ -46,6 +46,17 @@
               <el-button type="primary" size="large" @click="submit">Proceed</el-button>
             </div>
           </el-form>
+          <separator :offset="false" />
+          <div class="content-centre">
+            <h2>Or register via...</h2>
+            <el-button
+              v-for="driver in drivers"
+              size="large"
+              @click="$router.push(`/user/social/${driver.name}/auth`)"
+            >
+              {{ driver.capitalised_name }}
+            </el-button>
+          </div>
         </el-col>
       </el-row>
     </content-container>
@@ -53,13 +64,12 @@
 </template>
 
 <script>
-import { Message } from 'element-ui'
-
 import router from '../../router'
 
 export default {
   data () {
     return {
+      drivers: [],
       name: null,
       email: null,
       password: null,
@@ -70,6 +80,11 @@ export default {
         password: null
       }
     }
+  },
+  mounted () {
+    this.$http.get('/api/social/drivers').then(response => {
+      this.drivers = response.body
+    })
   },
   methods: {
     submit: function () {

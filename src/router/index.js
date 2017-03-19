@@ -9,9 +9,11 @@ import AdminCharacters from '../Views/Admin/Characters'
 import AdminFreeCompanies from '../Views/Admin/FreeCompanies'
 import AdminListings from '../Views/Admin/Listings'
 import UserCharacters from '../Views/User/Characters'
-import UserConfirm from '../Views/User/Confirm'
+import UserVerify from '../Views/User/Verify'
 import UserLogin from '../Views/User/Login'
 import UserRegister from '../Views/User/Register'
+import UserSocialAuth from '../Views/User/Social/Auth'
+import UserSocialAuthReceive from '../Views/User/Social/AuthReceive'
 
 export default new VueRouter({
   mode: 'history',
@@ -23,9 +25,9 @@ export default new VueRouter({
       beforeEnter: Guards.authenticated
     },
     {
-      path: '/user/confirm/:code',
-      component: UserConfirm,
-      beforeEnter: Guards.authenticated
+      path: '/user/verify/:code',
+      component: UserVerify,
+      beforeEnter: Guards.guest
     },
     {
       path: '/user/register',
@@ -35,6 +37,16 @@ export default new VueRouter({
     {
       path: '/user/login',
       component: UserLogin,
+      beforeEnter: Guards.guest
+    },
+    {
+      path: '/user/social/:provider/auth',
+      component: UserSocialAuth,
+      beforeEnter: Guards.guest
+    },
+    {
+      path: '/user/social/:provider/auth/receive',
+      component: UserSocialAuthReceive,
       beforeEnter: Guards.guest
     },
     {

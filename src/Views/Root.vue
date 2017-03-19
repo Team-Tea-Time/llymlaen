@@ -85,6 +85,10 @@ body {
   float: right;
 }
 
+.content-centre {
+  text-align: center;
+}
+
 .content-right {
   text-align: right;
 }

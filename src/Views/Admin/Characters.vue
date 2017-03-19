@@ -116,12 +116,12 @@ export default {
   },
   methods: {
     fetch (page) {
-      this.$fetch('/api/character', page, 'characters')
+      this.$fetch('/api/characters', page, 'characters')
     },
     searchUsers (name) {
       if (name !== '' && name.length > 2) {
         this.searching = true
-        this.$http.post('/api/user/search', { name }).then(response => {
+        this.$http.post('/api/users/search', { name }).then(response => {
           this.users = response.body
           this.searching = false
         })
@@ -143,7 +143,7 @@ export default {
         data['user_id'] = this.newOwner.id
       }
 
-      this.$http.patch(`/api/character/${this.character.id}`, data).then(response => {
+      this.$http.patch(`/api/characters/${this.character.id}`, data).then(response => {
         this.$message.success('Character updated')
         this.dialogEditVisible = false
         this.fetch()
@@ -163,7 +163,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/character/${character.id}`).then(response => {
+        this.$http.delete(`/api/characters/${character.id}`).then(response => {
           this.$message.success('Character deleted')
           this.fetch()
           this.$clearLoading()

@@ -79,6 +79,22 @@
           Inactive users cannot log in.
         </el-form-item>
       </el-form>
+      <separator />
+      <h2>Social Authentications</h2>
+      <el-table :data="user.auths">
+        <el-table-column
+          prop="driver.capitalised_name"
+          label="Provider"
+        />
+        <el-table-column align="right">
+          <template scope="auths">
+            <el-button
+              size="small"
+              type="danger"
+              @click="disconnectAuth(auth.row)">Disconnect</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogEditVisible = false">Cancel</el-button>
         <el-button type="primary" @click="save">Save</el-button>
@@ -105,7 +121,7 @@ export default {
   },
   methods: {
     fetch (page) {
-      this.$fetch('/api/user', page, 'users')
+      this.$fetch('/api/users', page, 'users')
     },
     edit (user) {
       this.user = Object.assign({}, user)
@@ -116,7 +132,7 @@ export default {
     save () {
       this.$setLoading()
 
-      this.$http.patch(`/api/user/${this.user.id}`, {
+      this.$http.patch(`/api/users/${this.user.id}`, {
         verified: this.user.verified,
         active: this.user.active
       }).then(response => {
@@ -139,7 +155,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/user/${user.id}`).then(response => {
+        this.$http.delete(`/api/users/${user.id}`).then(response => {
           this.$message.success('User deleted')
           this.fetch()
           this.$clearLoading()

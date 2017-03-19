@@ -113,7 +113,7 @@ export default {
   },
   methods: {
     fetch () {
-      this.$http.get('/api/user/characters').then(response => {
+      this.$http.get(`/api/users/${this.$store.state.auth.user.id}/characters`).then(response => {
         this.characters = response.data
         this.$clearLoading()
       })
@@ -121,7 +121,7 @@ export default {
     search (name) {
       if (name !== '') {
         this.searching = true
-        this.$http.post('/api/character/search', { name }).then(response => {
+        this.$http.post('/api/characters/search', { name }).then(response => {
           this.searchResults = response.body
           this.searching = false
         })
@@ -135,7 +135,7 @@ export default {
         return false
       }
 
-      this.$http.post('/api/character', { id: this.newCharacter.id }).then(response => {
+      this.$http.post('/api/characters', { id: this.newCharacter.id }).then(response => {
         this.dialogVisible = false
         this.adding = false
         this.characters.push(response.data)

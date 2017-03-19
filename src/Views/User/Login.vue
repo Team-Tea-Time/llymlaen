@@ -28,6 +28,17 @@
               <el-button type="primary" size="large" @click="submit">Proceed</el-button>
             </div>
           </el-form>
+          <separator :offset="false" />
+          <div class="content-centre">
+            <h2>Or log in via...</h2>
+            <el-button
+              v-for="driver in drivers"
+              size="large"
+              @click="$router.push(`/user/social/${driver.name}/auth`)"
+            >
+              {{ driver.capitalised_name }}
+            </el-button>
+          </div>
         </el-col>
       </el-row>
     </content-container>
@@ -35,11 +46,12 @@
 </template>
 
 <script>
-import { Message } from 'element-ui'
+import { attemptAuth } from '../../auth'
 
 export default {
   data () {
     return {
+      drivers: [],
       identity: '',
       password: '',
       errors: {
@@ -47,6 +59,11 @@ export default {
         password: null
       }
     }
+  },
+  mounted () {
+    this.$http.get('/api/social/drivers').then(response => {
+      this.drivers = response.body
+    })
   },
   methods: {
     submit: function () {
@@ -60,20 +77,17 @@ export default {
       this.$clearValidationErrors()
       this.$setLoading()
 
-      this.$http.post('/oauth/token', data).then((response) => {
-        this.$http.get('/api/user/me').then((response) => {
-          const user = response.body
-
-          this.$store.commit('setAuth', user)
-          this.$message.success(`Hello, ${user.name}!`)
-        })
-
+      this.$http.post('/oauth/token', data).then(() => {
+        attemptAuth()
         this.$router.push('/')
-      }, (response) => {
+      }, response => {
         if (response.status === 422) {
           this.$setValidationErrors(response)
         } else {
-          this.$message.error('Login request failed. :(')
+          this.$message.error({
+            message: "Login failed. Please make sure your account email address is verified, or get in touch if there's a problem.",
+            duration: 8000
+          })
           this.$clearLoading()
         }
       })
