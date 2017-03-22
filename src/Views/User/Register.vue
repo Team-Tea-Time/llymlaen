@@ -64,7 +64,10 @@
 </template>
 
 <script>
-import router from '../../router'
+import { sprintf } from 'sprintf-js'
+
+import router from 'src/router'
+import strings from 'src/strings/user'
 
 export default {
   data () {
@@ -98,8 +101,8 @@ export default {
       this.$clearValidationErrors()
       this.$setLoading()
 
-      this.$http.post('/api/user', data).then((response) => {
-        this.$message.success('Account created. Please check your inbox for the confirmation email we just sent you!')
+      this.$http.post('/api/user', data).then(response => {
+        this.$message.success(sprintf(strings.greeting_account_created, data.name))
         router.push('/user/login')
       }, (response) => {
         this.$setValidationErrors(response)

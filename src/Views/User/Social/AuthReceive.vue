@@ -2,7 +2,10 @@
 </template>
 
 <script>
-import { attemptAuth } from '../../../auth'
+import { sprintf } from 'sprintf-js'
+
+import { getAuthUser } from 'src/auth'
+import strings from 'src/strings/user'
 
 export default {
   created () {
@@ -11,22 +14,25 @@ export default {
     const code = urlParams.get('code')
 
     this.$http.get(`/api/social/${provider}/auth/receive?code=${code}`).then(response => {
-      let message = `Hello, ${response.body.user.name}!`
+      let data = response.body
+      let message = sprintf(strings.greeting, {name: data.user.name})
       let duration = 8000
 
-      if (response.body.state.user_is_new) {
-        message = `${message} An account has been created for you. Please check your emails to verify your email address.`
-      } else if (response.body.state.user_has_new_auth) {
-        message = `${message} A user account matching your details has been found and linked for you.`
+      if (data.state.user_is_new) {
+        message = sprintf(strings.greeting_account_created, {name: data.user.name})
+      } else if (data.state.user_has_new_auth) {
+        message = sprintf(strings.greeting_account_linked, {name: data.user.name})
       }
 
-      if (response.body.state.user_is_new) {
+      if (data.state.user_is_new) {
         this.$message.success({ message, duration })
       } else {
-        attemptAuth(message)
+        getAuthUser().then(() => {
+          this.$message.success({ message, duration })
+        })
       }
     }, () => {
-      this.$message.error('Login request failed. :(')
+      this.$message.error(strings.login_failed)
     })
 
     this.$router.push('/')

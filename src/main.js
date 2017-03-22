@@ -10,7 +10,7 @@ import router from './router'
 
 import Root from 'Views/Root'
 
-getAuthUser()
+getAuthUser(false)
 
 const RootConstructor = Vue.extend(Root)
 new RootConstructor({

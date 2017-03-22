@@ -93,6 +93,7 @@
 
 <script>
 import debounce from 'debounce'
+import strings from 'src/strings/character'
 
 export default {
   data () {
@@ -144,14 +145,14 @@ export default {
       }
 
       this.$http.patch(`/api/characters/${this.character.id}`, data).then(response => {
-        this.$message.success('Character updated')
+        this.$message.success(strings.update_succeeded)
         this.dialogEditVisible = false
         this.fetch()
         this.$clearLoading()
       })
     },
     destroy (character) {
-      this.$prompt("This will remove the character until it's added again via Lodestone. Enter the character's name below to confirm.", 'Warning', {
+      this.$prompt(strings.confirm_removal, 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning',
@@ -159,12 +160,12 @@ export default {
         inputValidator: value => {
           return value === character.name
         },
-        inputErrorMessage: "Character name doesn't match"
+        inputErrorMessage: strings.name_mismatch
       }).then(() => {
         this.$setLoading()
 
         this.$http.delete(`/api/characters/${character.id}`).then(response => {
-          this.$message.success('Character deleted')
+          this.$message.success(strings.removal_succeeded)
           this.fetch()
           this.$clearLoading()
         })

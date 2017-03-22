@@ -23,10 +23,12 @@
 <script>
 import debounce from 'debounce'
 
-import store from '../store'
+import store from 'src/store'
 
-import TopBar from '../Components/Layout/TopBar'
-import NavItem from '../Components/NavItem'
+import TopBar from 'src/Components/Layout/TopBar'
+import NavItem from 'src/Components/NavItem'
+
+import strings from 'src/strings/user'
 
 export default {
   components: {
@@ -56,7 +58,7 @@ export default {
     logout () {
       this.$http.post('/api/user/clear-token').then(response => {
         store.commit('clearAuth')
-        this.$message.success('Logged out successfully. See you around!')
+        this.$message.success(strings.logout_succeeded)
         this.$router.push('/user/login')
       })
     }

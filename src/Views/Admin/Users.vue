@@ -104,6 +104,8 @@
 </template>
 
 <script>
+import strings from 'src/strings/user'
+
 export default {
   data () {
     return {
@@ -136,14 +138,14 @@ export default {
         verified: this.user.verified,
         active: this.user.active
       }).then(response => {
-        this.$message.success('User updated')
+        this.$message.success(strings.update_succeeded)
         this.dialogEditVisible = false
         this.fetch()
         this.$clearLoading()
       })
     },
     destroy (user) {
-      this.$prompt("This will permanently delete the user along with all associated content. Enter the user's name below to confirm.", 'Warning', {
+      this.$prompt(strings.confirm_deletion, 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning',
@@ -151,12 +153,12 @@ export default {
         inputValidator: value => {
           return value === user.name
         },
-        inputErrorMessage: "User name doesn't match"
+        inputErrorMessage: strings.name_mismatch
       }).then(() => {
         this.$setLoading()
 
         this.$http.delete(`/api/users/${user.id}`).then(response => {
-          this.$message.success('User deleted')
+          this.$message.success(strings.deletion_successful)
           this.fetch()
           this.$clearLoading()
         })

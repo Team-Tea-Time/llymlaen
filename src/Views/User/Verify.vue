@@ -2,15 +2,17 @@
 </template>
 
 <script>
+import strings from 'src/strings/user'
+
 export default {
   mounted: function () {
     this.$http.post('/api/user/verify', {
       code: this.$route.params.code
     }).then((response) => {
-      this.$message.success("Email address confirmed! You may now log in.")
+      this.$message.success(strings.email_confirmation_succeeded)
       this.$router.push('/user/login')
     }, (response) => {
-      this.$message.error("Confirmation failed. The email address you're trying to confirm may already be confirmed; please contact us if this is not the case.")
+      this.$message.error(strings.email_confirmation_failed)
       this.$router.push('/user/login')
     })
   }

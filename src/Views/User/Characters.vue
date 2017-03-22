@@ -83,7 +83,9 @@
 import debounce from 'debounce'
 import { Message } from 'element-ui'
 
-import CharacterRow from '../../Components/Character/Row'
+import CharacterRow from 'src/Components/Character/Row'
+
+import strings from 'src/strings/character'
 
 export default {
   components: {
@@ -140,13 +142,13 @@ export default {
         this.adding = false
         this.characters.push(response.data)
         this.newCharacter = null
-        this.$message.success('Character added!')
+        this.$message.success(strings.add_succeeded)
       }, response => {
         this.adding = false
         if (response.status === 422) {
           this.validationErrors = response.data
         } else {
-          this.$message.error('Adding character failed. :(')
+          this.$message.error(strings.add_failed)
         }
       })
     },

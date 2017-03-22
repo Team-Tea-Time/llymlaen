@@ -46,7 +46,10 @@
 </template>
 
 <script>
-import { attemptAuth } from '../../auth'
+import { sprintf } from 'sprintf-js'
+
+import { getAuthUser } from 'src/auth'
+import string from 'src/strings/user'
 
 export default {
   data () {
@@ -77,15 +80,22 @@ export default {
       this.$clearValidationErrors()
       this.$setLoading()
 
-      this.$http.post('/oauth/token', data).then(() => {
-        attemptAuth()
+      this.$http.post('/api/auth/token', data).then(() => {
+        getAuthUser().then(user => {
+          this.$message.success(sprintf(strings.greeting, { name: user.name }))
+        }, () => {
+          this.$message.error({
+            message: strings.login_failed,
+            duration: 8000
+          })
+        })
         this.$router.push('/')
       }, response => {
         if (response.status === 422) {
           this.$setValidationErrors(response)
         } else {
           this.$message.error({
-            message: "Login failed. Please make sure your account email address is verified, or get in touch if there's a problem.",
+            message: strings.login_failed,
             duration: 8000
           })
           this.$clearLoading()

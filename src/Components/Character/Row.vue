@@ -87,6 +87,8 @@
 </template>
 
 <script>
+import strings from 'src/strings/character'
+
 export default {
   props: {
     character: {
@@ -124,13 +126,13 @@ export default {
         this.dialogVerifyVisible = false
         this.$clearLoading()
         this.character.verified = true
-        this.$message.success('Character verified!')
+        this.$message.success(strings.verification_succeeded)
       }, response => {
         this.$clearLoading()
         if (response.status === 422) {
           this.validationErrors = response.data
         } else {
-          this.$message.error('Verifying character failed. :(')
+          this.$message.error(strings.verification_failed)
         }
       })
     },
@@ -141,14 +143,14 @@ export default {
         this.$clearLoading()
         this.character.status = 0
         this.$emit('main-set')
-        this.$message.success(`${this.character.name} set as main.`)
-      }, (response) => {
+        this.$message.success(sprintf(strings.setting_main_succeeded, { name: this.character.name }))
+      }, response => {
         this.$clearLoading()
-        this.$message.error('Setting character as main failed. :(')
+        this.$message.error(strings.setting_main_failed)
       })
     },
     remove () {
-      this.$prompt("This will remove the character until it's added again. Enter the character's name below to confirm.", 'Warning', {
+      this.$prompt(strings.confirm_deletion, 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning',
@@ -156,17 +158,17 @@ export default {
         inputValidator: value => {
           return value === this.character.name
         },
-        inputErrorMessage: "Character name doesn't match"
+        inputErrorMessage: strings.name_mismatch
       }).then(() => {
         this.$setLoading()
 
         this.$http.delete(`/api/character/${this.character.id}`).then(response => {
-          this.$message.success('Character deleted')
+          this.$message.success(strings.removal_succeeded)
           this.fetch()
           this.$clearLoading()
         }, response => {
           this.$clearLoading()
-          this.$message.error('Removing character failed. :(')
+          this.$message.error(strings.removal_failed)
         })
       })
     }
