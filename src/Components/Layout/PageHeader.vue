@@ -34,15 +34,15 @@ export default {
   }
 
   h1 {
-    top: 30%;
-    font-size: 4.5rem;
+    top: 33%;
+    font-size: 4.6rem;
     font-weight: 300;
     text-transform: uppercase;
   }
 
   h2 {
-    top: 130px;
-    font-size: 2.2rem;
+    top: 135px;
+    font-size: 2rem;
   }
 }
 </style>

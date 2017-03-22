@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueCookie from 'vue-cookie'
+import VueMoment from 'vue-moment'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
@@ -12,6 +13,7 @@ Vue.use(Fetch)
 Vue.use(LoadingState)
 Vue.use(Validation)
 Vue.use(VueCookie)
+Vue.use(VueMoment)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(Vuex)

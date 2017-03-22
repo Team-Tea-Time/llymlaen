@@ -1,6 +1,4 @@
 import Vue from 'vue'
-import { Message } from 'element-ui'
-import { sprintf } from 'sprintf-js'
 import store from 'store'
 
 // getAuthUser returns a promise which is fulfilled with the authenticated user
@@ -11,6 +9,7 @@ export const getAuthUser = function () {
       store.commit('setAuth', response.body)
       resolve(response.body)
     }, response => {
+      store.commit('clearAuth')
       reject(new Error('User not authenticated or token expired'))
     })
   })

@@ -7,7 +7,7 @@
           <el-form>
             <el-form-item :error="errors.name">
               <el-input
-                placeholder="Name"
+                placeholder="Username"
                 v-model="name"
                 v-focus
               >
@@ -104,7 +104,7 @@ export default {
       this.$http.post('/api/user', data).then(response => {
         this.$message.success(sprintf(strings.greeting_account_created, data.name))
         router.push('/user/login')
-      }, (response) => {
+      }, response => {
         this.$setValidationErrors(response)
         this.$clearLoading()
       })

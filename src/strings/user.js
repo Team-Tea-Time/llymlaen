@@ -15,5 +15,10 @@ export default {
   name_mismatch: "User name doesn't match",
 
   confirm_deletion: "This will permanently delete the user along with all associated content. Enter the user's name below to confirm.",
-  deletion_succeeded: "User deleted."
+  deletion_succeeded: "User deleted.",
+
+  confirm_auth_deletion: "Are you sure you want to remove this authentication? You can re-add it at any time by logging in again through the same website.",
+  auth_deletion_succeeded: "Authentication deleted.",
+
+  credentials_update_succeeded: "Account credentials updated."
 }

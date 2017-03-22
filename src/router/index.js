@@ -12,6 +12,7 @@ import UserCharacters from '../Views/User/Characters'
 import UserVerify from '../Views/User/Verify'
 import UserLogin from '../Views/User/Login'
 import UserRegister from '../Views/User/Register'
+import UserSettings from '../Views/User/Settings'
 import UserSocialAuth from '../Views/User/Social/Auth'
 import UserSocialAuthReceive from '../Views/User/Social/AuthReceive'
 
@@ -38,6 +39,11 @@ export default new VueRouter({
       path: '/user/login',
       component: UserLogin,
       beforeEnter: Guards.guest
+    },
+    {
+      path: '/user/settings',
+      component: UserSettings,
+      beforeEnter: Guards.authenticated
     },
     {
       path: '/user/social/:provider/auth',

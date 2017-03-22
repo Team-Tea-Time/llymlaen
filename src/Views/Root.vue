@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,700|Open+Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,700|Open+Sans:400,600');
 
 @import '../colours';
 
@@ -76,7 +76,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: "Open Sans", Arial, Verdana, sans-serif;
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 body {
@@ -104,9 +104,21 @@ body {
     text-decoration: none;
   }
 
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
   h1, h2, h3, h4 {
     font-family: "Roboto Condensed", sans-serif;
     font-weight: 300;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 

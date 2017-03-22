@@ -12,7 +12,7 @@
       @current-change="fetch">
     </el-pagination>
 
-    <hr class="separator" />
+    <separator />
 
     <el-table :data="characters.data">
       <el-table-column :width="64">
