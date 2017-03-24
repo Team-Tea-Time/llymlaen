@@ -143,13 +143,13 @@ export default {
         this.adding = false
         this.characters.push(response.data)
         this.newCharacter = null
-        this.$message.success(strings.add_succeeded)
+        this.$message.success(strings.adding_succeeded)
       }, response => {
         this.adding = false
         if (response.status === 422) {
           this.validationErrors = response.data
         } else {
-          this.$message.error(strings.add_failed)
+          this.$message.error(strings.adding_failed)
         }
       })
     },

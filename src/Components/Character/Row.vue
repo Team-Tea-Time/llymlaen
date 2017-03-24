@@ -18,6 +18,16 @@
           Verify
         </el-dropdown-item>
         <el-dropdown-item
+          v-if="!character.profile"
+        >
+          Create profile
+        </el-dropdown-item>
+        <el-dropdown-item
+          v-if="character.profile"
+        >
+          View/edit profile
+        </el-dropdown-item>
+        <el-dropdown-item
           class="remove"
           @click.native="remove"
         >
@@ -32,7 +42,6 @@
       <el-tag
         v-if="!character.verified"
         type="danger"
-        class="verify"
       >
         unverified
       </el-tag>

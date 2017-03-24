@@ -2,7 +2,6 @@
   <viewport
     id="user-settings"
     title="Your Account"
-    subtitle="It's a nice account. The best account."
   >
     <h3>Account Details</h3>
     <el-row>

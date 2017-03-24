@@ -8,6 +8,7 @@ import AdminUsers from '../Views/Admin/Users'
 import AdminCharacters from '../Views/Admin/Characters'
 import AdminFreeCompanies from '../Views/Admin/FreeCompanies'
 import AdminListings from '../Views/Admin/Listings'
+import CharacterProfile from '../Views/Character/Profile'
 import UserCharacters from '../Views/User/Characters'
 import UserVerify from '../Views/User/Verify'
 import UserLogin from '../Views/User/Login'
@@ -54,6 +55,10 @@ export default new VueRouter({
       path: '/user/social/:provider/auth/receive',
       component: UserSocialAuthReceive,
       beforeEnter: Guards.guest
+    },
+    {
+      path: '/characters/:id/:slug',
+      component: CharacterProfile
     },
     {
       path: '/admin',

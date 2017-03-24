@@ -1,6 +1,6 @@
 export default {
-  add_succeeded: "Character added.",
-  add_failed: "Adding character failed. :(",
+  adding_succeeded: "Character added.",
+  adding_failed: "Adding character failed. :(",
 
   verification_succeeded: "Character verified!",
   verification_failed: "Verifying character failed. :(",
@@ -13,7 +13,7 @@ export default {
 
   name_mismatch: "Character name doesn't match",
 
-  confirm_removal: "This will remove the character until it's added again. Enter the character's name below to confirm.",
+  confirm_removal: "This will remove the character until it's added again. It will also permanently delete the associated character profile (if you created one). Enter the character's name below to confirm.",
   removal_succeeded: "Character removed.",
   removal_failed: "Character removal failed. :("
 }

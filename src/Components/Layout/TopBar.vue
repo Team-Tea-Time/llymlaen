@@ -38,7 +38,7 @@ export default {
   border-radius: 0;
   background: transparentize($backdrop, 0.2);
   background: linear-gradient(to right, transparentize(#21406c, 0.2), transparentize(#593556, 0.2));
-  box-shadow: 0 2px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
   z-index: 1000;
 
   .el-submenu.right,

@@ -1,7 +1,7 @@
 <template>
   <div :id="id">
     <page-header :title="title" :subtitle="subtitle" />
-    <content-container>
+    <content-container v-loading.body="loading">
       <slot />
     </content-container>
   </div>
@@ -18,6 +18,10 @@ export default {
     PageHeader
   },
   props: {
+    loading: {
+      type: Boolean,
+      default: false
+    },
     id: {
       type: String,
       required: true
