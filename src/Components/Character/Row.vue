@@ -66,7 +66,7 @@
 
           <div class="verification-code">{{ character.verification.code }}</div>
 
-          <p><em><strong>Note:</strong> You don't have to remove anything else in the profile, as long as this code is visible somewhere. It's recommended that you keep the code in place after verifying.</em></p>
+          <p><em><strong>Note:</strong> You don't have to remove anything else in the profile, as long as this code is visible somewhere.</em></p>
 
           <div v-for="attribute in validationErrors">
             <el-alert
@@ -120,7 +120,7 @@ export default {
       this.$setLoading()
 
       this.$http.post(
-        `/api/character/${this.character.id}/verify`,
+        `/api/characters/${this.character.id}/verify`,
         { code: this.character.verification.code }
       ).then(response => {
         this.dialogVerifyVisible = false
@@ -139,7 +139,7 @@ export default {
     setAsMain () {
       this.$setLoading()
 
-      this.$http.post(`/api/character/${this.character.id}/set-main`).then(response => {
+      this.$http.post(`/api/characters/${this.character.id}/set-main`).then(response => {
         this.$clearLoading()
         this.character.status = 0
         this.$emit('main-set')
@@ -150,7 +150,7 @@ export default {
       })
     },
     remove () {
-      this.$prompt(strings.confirm_deletion, 'Warning', {
+      this.$prompt(strings.confirm_removal, 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning',
@@ -162,9 +162,9 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/character/${this.character.id}`).then(response => {
+        this.$http.delete(`/api/characters/${this.character.id}`).then(response => {
           this.$message.success(strings.removal_succeeded)
-          this.fetch()
+          this.$fetch()
           this.$clearLoading()
         }, response => {
           this.$clearLoading()

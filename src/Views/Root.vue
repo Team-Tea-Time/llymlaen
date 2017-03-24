@@ -43,10 +43,10 @@ export default {
   },
   methods: {
     logout () {
-      this.$http.post('/api/user/clear-token').then(response => {
-        store.commit('clearAuth')
-        this.$message.success(strings.logout_succeeded)
+      this.$http.post('/api/users/me/clear-token').then(response => {
         this.$router.push('/user/login')
+        this.$message.success(strings.logout_succeeded)
+        store.commit('clearAuth')
       })
     }
   }

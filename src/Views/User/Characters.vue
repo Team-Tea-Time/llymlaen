@@ -1,82 +1,83 @@
 <template>
-  <div id="user-characters">
-    <page-header title="Characters" />
-    <content-container>
-      <el-dialog title="Add Character" v-model="dialogVisible">
-        <el-row v-loading="adding">
-          <el-col :lg="{span: 12, offset: 6}">
-            <el-form>
-              <el-form-item>
-                <el-select
-                  v-model="newCharacter"
-                  filterable
-                  remote
-                  placeholder="Search Lodestone..."
-                  loading-text="Searching..."
-                  :remote-method="search"
-                  :loading="searching">
-                  <el-option
-                    v-for="character in searchResults"
-                    :key="character.id"
-                    :label="character.name"
-                    :value="character">
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </el-form>
-            <div v-if="newCharacter">
-              <p>You've selected:</p>
-              <character-row
-                :character="newCharacter"
-                :enableSettingsMenu="false"
-              />
-            </div>
-            <div v-for="attribute in validationErrors">
-              <el-alert
-                v-for="error in attribute"
-                type="warning"
-                :closable="false"
-                :title="error"
-              />
-            </div>
-          </el-col>
-        </el-row>
-        <span slot="footer" class="dialog-footer">
-          <el-button size="large" @click="dialogVisible = false">
-            Cancel
-          </el-button>
-          <el-button
-            type="primary"
-            size="large"
-            @click="add"
-            :disabled="!newCharacter || adding"
-          >
-            Add
-          </el-button>
-        </span>
-      </el-dialog>
-      <el-row>
-        <el-col :lg="{span: 12, offset: 6}" v-loading.body="isLoading">
-          <character-row
-             v-for="character in characters"
-            :character="character"
-            :showTags="true"
-            :showDetails="true"
-            v-on:main-set="setMain(character)"
-            v-on:removed="removeCharacter(character)"
-          />
-          <el-button
-            type="primary"
-            size="large"
-            class="full-width"
-            @click="dialogVisible = true"
-          >
-            Add Character
-          </el-button>
+  <viewport
+    id="user-characters"
+    title="Your Characters"
+    subtitle="Looking sharp, kupo!"
+  >
+    <el-dialog title="Add Character" v-model="dialogVisible">
+      <el-row v-loading="adding">
+        <el-col :lg="{span: 12, offset: 6}">
+          <el-form>
+            <el-form-item>
+              <el-select
+                v-model="newCharacter"
+                filterable
+                remote
+                placeholder="Search Lodestone..."
+                loading-text="Searching..."
+                :remote-method="search"
+                :loading="searching">
+                <el-option
+                  v-for="character in searchResults"
+                  :key="character.id"
+                  :label="character.name"
+                  :value="character">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+          <div v-if="newCharacter">
+            <p>You've selected:</p>
+            <character-row
+              :character="newCharacter"
+              :enableSettingsMenu="false"
+            />
+          </div>
+          <div v-for="attribute in validationErrors">
+            <el-alert
+              v-for="error in attribute"
+              type="warning"
+              :closable="false"
+              :title="error"
+            />
+          </div>
         </el-col>
       </el-row>
-    </content-container>
-  </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="large" @click="dialogVisible = false">
+          Cancel
+        </el-button>
+        <el-button
+          type="primary"
+          size="large"
+          @click="add"
+          :disabled="!newCharacter || adding"
+        >
+          Add
+        </el-button>
+      </span>
+    </el-dialog>
+    <el-row>
+      <el-col :lg="{span: 12, offset: 6}" v-loading.body="isLoading">
+        <character-row
+           v-for="character in characters"
+          :character="character"
+          :showTags="true"
+          :showDetails="true"
+          v-on:main-set="setMain(character)"
+          v-on:removed="removeCharacter(character)"
+        />
+        <el-button
+          type="primary"
+          size="large"
+          class="full-width"
+          @click="dialogVisible = true"
+        >
+          Add Character
+        </el-button>
+      </el-col>
+    </el-row>
+  </viewport>
 </template>
 
 <script>

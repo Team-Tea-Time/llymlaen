@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  name: 'page-header',
   props: {
     title: {
       type: String,

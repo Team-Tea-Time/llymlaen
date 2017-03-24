@@ -1,48 +1,48 @@
 <template>
-  <div id="user-login">
-    <page-header title="Log in" />
-    <content-container>
-      <el-row>
-        <el-col :md="{span: 12, offset: 6}" v-loading.body="isLoading">
-          <el-form>
-            <el-form-item :error="errors.username">
-              <el-input
-                placeholder="Username or email address"
-                v-model="identity"
-                v-focus
-              >
-              </el-input>
-            </el-form-item>
-
-            <el-form-item :error="errors.password">
-              <el-input
-                type="password"
-                placeholder="Password"
-                v-model="password"
-                @keyup.enter.native="submit"
-              >
-              </el-input>
-            </el-form-item>
-
-            <div class="content-right">
-              <el-button type="primary" size="large" @click="submit">Proceed</el-button>
-            </div>
-          </el-form>
-          <separator :offset="false" />
-          <div class="content-centre">
-            <h2>Or log in via...</h2>
-            <el-button
-              v-for="driver in drivers"
-              size="large"
-              @click="$router.push(`/user/social/${driver.name}/auth`)"
+  <viewport
+    id="user-login"
+    title="Log in"
+  >
+    <el-row>
+      <el-col :md="{span: 12, offset: 6}" v-loading.body="isLoading">
+        <el-form>
+          <el-form-item :error="errors.username">
+            <el-input
+              placeholder="Username or email address"
+              v-model="identity"
+              v-focus
             >
-              {{ driver.capitalised_name }}
-            </el-button>
+            </el-input>
+          </el-form-item>
+
+          <el-form-item :error="errors.password">
+            <el-input
+              type="password"
+              placeholder="Password"
+              v-model="password"
+              @keyup.enter.native="submit"
+            >
+            </el-input>
+          </el-form-item>
+
+          <div class="content-right">
+            <el-button type="primary" size="large" @click="submit">Proceed</el-button>
           </div>
-        </el-col>
-      </el-row>
-    </content-container>
-  </div>
+        </el-form>
+        <separator :offset="false" />
+        <div class="content-centre">
+          <h2>Or log in via...</h2>
+          <el-button
+            v-for="driver in drivers"
+            size="large"
+            @click="$router.push(`/user/social/${driver.name}/auth`)"
+          >
+            {{ driver.capitalised_name }}
+          </el-button>
+        </div>
+      </el-col>
+    </el-row>
+  </viewport>
 </template>
 
 <script>

@@ -5,7 +5,7 @@ import store from 'store'
 // and updates authentication state if successful.
 export const getAuthUser = function () {
   return new Promise((resolve, reject) => {
-    Vue.http.get('/api/user/me').then(response => {
+    Vue.http.get('/api/users/me').then(response => {
       store.commit('setAuth', response.body)
       resolve(response.body)
     }, response => {
