@@ -24,6 +24,6 @@ export default {
     })
   },
   admin (to, from, next) {
-    checkRole('Administrator', next)
+    checkRole('XIV World Staff', next)
   }
 }

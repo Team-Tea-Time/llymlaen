@@ -30,7 +30,7 @@ export default {
     margin: 0;
     font-weight: 300;
     color: #fff;
-    text-shadow: #000 0 0 30px;
+    text-shadow: rgba(0, 0, 0, 0.65) 0 0 6px;
   }
 
   h1 {

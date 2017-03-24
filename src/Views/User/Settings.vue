@@ -11,16 +11,15 @@
         </el-col>
         <el-col :span="12">
           <p><strong>Roles:</strong></p>
-          <div v-for="role in user.roles" :style="`color:${role.colour}`">
+          <el-tag v-for="role in user.roles" :color="role.colour">
             {{ role.name }}
-          </div>
+          </el-tag>
         </el-col>
       </el-row>
 
       <separator />
 
       <h3>Social Authentications</h3>
-      <p>Sites you've used to log into xiv.world.</p>
       <el-table :data="user.auths">
         <el-table-column prop="driver.capitalised_name" label="Name" />
         <el-table-column label="Added">

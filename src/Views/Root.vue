@@ -41,19 +41,6 @@ export default {
       return store.state.auth
     }
   },
-  ready () {
-    var topBarClass = document.getElementById('top-bar').classList
-
-    topBarClass.add('at-top')
-
-    window.onscroll = debounce((event) => {
-      if (document.body.scrollTop === 0) {
-        topBarClass.add('at-top')
-      } else {
-        topBarClass.remove('at-top')
-      }
-    }, 35)
-  },
   methods: {
     logout () {
       this.$http.post('/api/user/clear-token').then(response => {
@@ -140,6 +127,10 @@ body {
 
 .el-select {
   width: 100%;
+}
+
+.el-tag {
+  margin: 0 5px 0 0;
 }
 
 .el-message-box__input {
