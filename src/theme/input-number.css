@@ -103,9 +103,6 @@
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder{
     color: rgb(217, 191, 191)
 }
-.el-input.is-disabled .el-input__inner::-moz-placeholder{
-    color: rgb(217, 191, 191)
-}
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191)
 }
@@ -136,9 +133,6 @@
     width: 100%
 }
 .el-input__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151)
-}
-.el-input__inner::-moz-placeholder{
     color: rgb(190, 153, 151)
 }
 .el-input__inner:-ms-input-placeholder{
@@ -268,9 +262,6 @@
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder{
     color: rgb(217, 191, 191)
 }
-.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder{
-    color: rgb(217, 191, 191)
-}
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191)
 }
@@ -293,9 +284,6 @@
     transition: border-color .2s cubic-bezier(.645,.045,.355,1)
 }
 .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151)
-}
-.el-textarea__inner::-moz-placeholder{
     color: rgb(190, 153, 151)
 }
 .el-textarea__inner:-ms-input-placeholder{
@@ -405,6 +393,10 @@
     overflow: hidden;
     width: 180px;
     position: relative
+}
+
+.el-input-number .el-input{
+    display: block
 }
 
 .el-input-number .el-input__inner{

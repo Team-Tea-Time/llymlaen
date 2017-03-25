@@ -18,14 +18,22 @@
           Verify
         </el-dropdown-item>
         <el-dropdown-item
-          v-if="!character.profile"
+          v-if="!character.profile && character.verified"
+          @click.native="dialogEditVisible = true"
         >
           Create profile
         </el-dropdown-item>
         <el-dropdown-item
           v-if="character.profile"
+          @click.native="viewProfile"
         >
-          View/edit profile
+          View profile
+        </el-dropdown-item>
+        <el-dropdown-item
+          v-if="character.profile"
+          @click.native="dialogEditVisible = true"
+        >
+          Edit profile
         </el-dropdown-item>
         <el-dropdown-item
           class="remove"
@@ -46,7 +54,7 @@
         unverified
       </el-tag>
     </div>
-    <img v-if="character.avatar" :src="character.avatar" alt="" />
+    <img v-if="character.avatar" :src="character.avatar" class="avatar" />
     <div class="info">
       <strong>{{ character.name }}</strong>
       <div v-if="showDetails">
@@ -92,13 +100,24 @@
         <el-button type="primary" size="large" @click="verify" :disabled="isLoading">Verify</el-button>
       </span>
     </el-dialog>
+    <edit-dialog
+      :character="character"
+      v-if="character.profile || character.verified"
+      :visible="dialogEditVisible"
+      v-on:close="dialogEditVisible = false"
+      v-on:save="viewProfile"
+    />
   </div>
 </template>
 
 <script>
 import strings from 'src/strings/character'
+import EditDialog from 'src/Components/Character/Profile/Edit'
 
 export default {
+  components: {
+    EditDialog
+  },
   props: {
     character: {
       type: Object,
@@ -120,6 +139,7 @@ export default {
   data () {
     return {
       dialogVerifyVisible: false,
+      dialogEditVisible: false,
       validationErrors: []
     }
   },
@@ -173,13 +193,17 @@ export default {
 
         this.$http.delete(`/api/characters/${this.character.id}`).then(response => {
           this.$message.success(strings.removal_succeeded)
-          this.$fetch()
+          this.$emit('removed')
           this.$clearLoading()
         }, response => {
           this.$clearLoading()
           this.$message.error(strings.removal_failed)
         })
       })
+    },
+    viewProfile () {
+      this.dialogEditVisible = false
+      this.$router.push(`/characters/${this.character.id}/${this.character.slug}`)
     }
   }
 }
@@ -207,7 +231,7 @@ export default {
     float: right;
   }
 
-  img {
+  .avatar {
     display: inline-block;
     width: 64px;
     height: 64px;

@@ -1,3 +1,9 @@
+.el-slider__button-wrapper:after{
+    display: inline-block;
+    content: "";
+    height: 100%;
+    vertical-align: middle;
+}
 .el-slider:before, .el-slider:after{
     display: table;
     content: "";
@@ -110,9 +116,6 @@
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder{
     color: rgb(217, 191, 191);
 }
-.el-input.is-disabled .el-input__inner::-moz-placeholder{
-    color: rgb(217, 191, 191);
-}
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191);
 }
@@ -143,9 +146,6 @@
     width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151);
-}
-.el-input__inner::-moz-placeholder{
     color: rgb(190, 153, 151);
 }
 .el-input__inner:-ms-input-placeholder{
@@ -275,9 +275,6 @@
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder{
     color: rgb(217, 191, 191);
 }
-.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder{
-    color: rgb(217, 191, 191);
-}
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191);
 }
@@ -300,9 +297,6 @@
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
 }
 .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151);
-}
-.el-textarea__inner::-moz-placeholder{
     color: rgb(190, 153, 151);
 }
 .el-textarea__inner:-ms-input-placeholder{
@@ -411,6 +405,9 @@
     overflow: hidden;
     width: 180px;
     position: relative;
+}
+.el-input-number .el-input{
+    display: block;
 }
 .el-input-number .el-input__inner{
     -webkit-appearance: none;
@@ -575,13 +572,7 @@
     /* Collapse
   --------------------------*/
 }
-.el-tooltip{
-    display: inline-block;
-}
-.el-tooltip__rel{
-    display: inline-block;
-    position: relative;
-}
+.el-tooltip{}
 .el-tooltip__popper{
     position: absolute;
     border-radius: 4px;
@@ -862,21 +853,8 @@
 }
 
 .el-slider__button-wrapper .el-tooltip {
-    line-height: 1;
-    height: 100%;
-    display: block;
-}
-
-.el-slider__button-wrapper .el-tooltip::after {
-    content: '';
-    width: 0;
-    height: 100%;
+    vertical-align: middle;
     display: inline-block;
-    vertical-align: middle;
-}
-
-.el-slider__button-wrapper .el-tooltip__rel {
-    vertical-align: middle;
 }
 
 .el-slider__button-wrapper:hover, .el-slider__button-wrapper.hover{

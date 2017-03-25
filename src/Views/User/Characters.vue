@@ -161,7 +161,7 @@ export default {
       })
     },
     removeCharacter (character) {
-      this.characters = this.characters.filter((c) => {
+      this.characters = this.characters.filter(c => {
         return c.id !== character.id
       })
     }

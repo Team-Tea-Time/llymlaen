@@ -215,7 +215,6 @@
 }
 .el-select-dropdown__wrap{
     max-height: 274px;
-    width: 100%;
 }
 .el-select-dropdown__list{
     list-style: none;
@@ -327,9 +326,6 @@
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder{
     color: rgb(217, 191, 191);
 }
-.el-input.is-disabled .el-input__inner::-moz-placeholder{
-    color: rgb(217, 191, 191);
-}
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191);
 }
@@ -360,9 +356,6 @@
     width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151);
-}
-.el-input__inner::-moz-placeholder{
     color: rgb(190, 153, 151);
 }
 .el-input__inner:-ms-input-placeholder{
@@ -492,9 +485,6 @@
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder{
     color: rgb(217, 191, 191);
 }
-.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder{
-    color: rgb(217, 191, 191);
-}
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191);
 }
@@ -517,9 +507,6 @@
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
 }
 .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151);
-}
-.el-textarea__inner::-moz-placeholder{
     color: rgb(190, 153, 151);
 }
 .el-textarea__inner:-ms-input-placeholder{
@@ -1145,6 +1132,10 @@
 
 .el-select .el-input.is-disabled .el-input__inner:hover{
     border-color: rgb(229, 209, 209);
+}
+
+.el-select > .el-input{
+    display: block;
 }
 
 .el-select .el-tag__close{

@@ -217,6 +217,13 @@
 .collapse-transition {
     transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
 }
+.list-enter-active, .list-leave-active {
+    transition: all 1s;
+}
+.list-enter, .list-leave-active {
+    opacity: 0;
+    transform: translateY(-30px);
+}
 .el-date-editor {
     position: relative;
     display: inline-block;
@@ -333,8 +340,11 @@
 .el-time-spinner.has-seconds .el-time-spinner__wrapper {
     width: 33%;
 }
+.el-time-spinner.has-seconds .el-time-spinner__wrapper .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default) {
+    padding-bottom: 15px;
+}
 .el-time-spinner.has-seconds .el-time-spinner__wrapper:nth-child(2) {
-    padding-left: 1%;
+    margin-left: 1%;
 }
 .el-time-spinner__wrapper {
     max-height: 190px;
@@ -639,9 +649,6 @@
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
     color: rgb(217, 191, 191);
 }
-.el-input.is-disabled .el-input__inner::-moz-placeholder {
-    color: rgb(217, 191, 191);
-}
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder {
     color: rgb(217, 191, 191);
 }
@@ -672,9 +679,6 @@
     width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
-    color: rgb(190, 153, 151);
-}
-.el-input__inner::-moz-placeholder {
     color: rgb(190, 153, 151);
 }
 .el-input__inner:-ms-input-placeholder {
@@ -804,9 +808,6 @@
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
     color: rgb(217, 191, 191);
 }
-.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
-    color: rgb(217, 191, 191);
-}
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder {
     color: rgb(217, 191, 191);
 }
@@ -829,9 +830,6 @@
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
 }
 .el-textarea__inner::-webkit-input-placeholder {
-    color: rgb(190, 153, 151);
-}
-.el-textarea__inner::-moz-placeholder {
     color: rgb(190, 153, 151);
 }
 .el-textarea__inner:-ms-input-placeholder {

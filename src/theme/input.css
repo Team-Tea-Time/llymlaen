@@ -106,10 +106,6 @@
     color: rgb(217, 191, 191)
 }
 
-.el-input.is-disabled .el-input__inner::-moz-placeholder{
-    color: rgb(217, 191, 191)
-}
-
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191)
 }
@@ -144,10 +140,6 @@
 }
 
 .el-input__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151)
-}
-
-.el-input__inner::-moz-placeholder{
     color: rgb(190, 153, 151)
 }
 
@@ -307,10 +299,6 @@
     color: rgb(217, 191, 191)
 }
 
-.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder{
-    color: rgb(217, 191, 191)
-}
-
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder{
     color: rgb(217, 191, 191)
 }
@@ -336,10 +324,6 @@
 }
 
 .el-textarea__inner::-webkit-input-placeholder{
-    color: rgb(190, 153, 151)
-}
-
-.el-textarea__inner::-moz-placeholder{
     color: rgb(190, 153, 151)
 }
 

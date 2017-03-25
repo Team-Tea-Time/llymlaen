@@ -203,6 +203,7 @@
     outline: none;
     position: absolute;
     margin: 0;
+    visibility: hidden;
     left: -999px;
 }
 .el-checkbox__label{
@@ -490,15 +491,7 @@
     color: rgb(61, 31, 31);
 }
 
-.el-table .el-tooltip{
-    display: block;
-}
-
-.el-table .el-tooltip__rel{
-    display: block;
-}
-
-.el-table .el-tooltip__rel .cell{
+.el-table .el-tooltip.cell{
     white-space: nowrap;
 }
 

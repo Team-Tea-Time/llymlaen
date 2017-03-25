@@ -15,5 +15,10 @@ export default {
 
   confirm_removal: "This will remove the character until it's added again. It will also permanently delete the associated character profile (if you created one). Enter the character's name below to confirm.",
   removal_succeeded: "Character removed.",
-  removal_failed: "Character removal failed. :("
+  removal_failed: "Character removal failed. :(",
+
+  profile_save_succeeded: "Character profile saved.",
+
+  confirm_profile_portrait_deletion: "Removing the portrait will revert it back to the Lodestone one, which is automatically updated periodically. Continue?",
+  profile_portrait_deletion_succeeded: "Portrait deleted."
 }

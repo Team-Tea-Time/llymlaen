@@ -11,6 +11,7 @@ export default {
 
 <style lang="scss">
 #content {
+  position: relative;
   width: 70%;
   margin: -60px auto 20px auto;
   padding: 40px;

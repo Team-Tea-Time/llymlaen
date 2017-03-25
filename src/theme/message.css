@@ -123,17 +123,15 @@
     margin-left: 38px;
     position: relative;
     height: 20px;
+    line-height: 20px;
 }
 
 .el-message__group p{
     font-size: 14px;
-    line-height: 20px;
     margin: 0 34px 0 0;
     white-space: nowrap;
     color: rgb(165, 132, 131);
     text-align: justify;
-    display: inline-block;
-    vertical-align: middle;
 }
 
 .el-message__group.is-with-icon{
