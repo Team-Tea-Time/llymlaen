@@ -43,6 +43,7 @@
     <h3>Credentials</h3>
     <el-form :model="credentials">
       <el-form-item label="Current password" :error="errors.current_password">
+        <span class="note">Forgot your password or registered via social media? You can <el-button type="text" @click="requestPasswordReset">request a password reset</el-button>.</span>
         <el-input
           type="password"
           v-model="credentials.current_password"
@@ -51,6 +52,7 @@
       </el-form-item>
 
       <el-form-item label="Username" :error="errors.username">
+        <span class="note">Changing your username will make your old profile URL no longer work. <span class="right">Profile URL: {{ profileUrl }}</span></span>
         <el-input v-model="credentials.name" />
       </el-form-item>
 
@@ -104,6 +106,9 @@ export default {
   computed: {
     user () {
       return this.$store.state.auth.user
+    },
+    profileUrl () {
+      return `https://${window.location.host}/@${this.credentials.name.replace(' ', '+')}`
     }
   },
   created () {
@@ -137,6 +142,22 @@ export default {
       }, response => {
         this.$setValidationErrors(response)
         this.$clearLoading()
+      })
+    },
+    requestPasswordReset () {
+      this.$confirm(strings.confirm_password_reset_request, 'Warning', {
+        confirmButtonText: 'Continue',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        this.$setLoading()
+
+        this.$http.post('/api/auth/password/reset/request', {
+          email: this.user.email
+        }).then(response => {
+          this.$message.success(strings.password_reset_request_succeeded)
+          this.$clearLoading()
+        })
       })
     }
   }

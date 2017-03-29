@@ -20,5 +20,9 @@ export default {
   confirm_auth_deletion: "Are you sure you want to remove this authentication? You can re-add it at any time by logging in again through the same website.",
   auth_deletion_succeeded: "Authentication deleted.",
 
+  confirm_password_reset_request: "Request a password reset? Your password will not be changed until you set a new one via the link that will be emailed to you.",
+  password_reset_request_succeeded: "Password reset email sent. Check your inbox!",
+  password_reset_succeeded: "Reset succeeded. You may now use your new password.",
+
   credentials_update_succeeded: "Account credentials updated."
 }

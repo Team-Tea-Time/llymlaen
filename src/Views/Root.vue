@@ -5,7 +5,7 @@
         <el-submenu index="test" class="right">
           <template slot="title">Hello, <strong>{{ auth.user.name }}</strong></template>
           <el-menu-item index="/admin/overview">Admin</el-menu-item>
-          <el-menu-item index="/user/profile">Profile</el-menu-item>
+          <el-menu-item :index="`/@${auth.user.url_encoded_name}`">Profile</el-menu-item>
           <el-menu-item index="/user/settings">Settings</el-menu-item>
           <el-menu-item index="/user/characters">Characters</el-menu-item>
           <li class="el-menu-item" @click="logout">Log out</li>
@@ -82,6 +82,15 @@ body {
   text-align: right;
 }
 
+.note {
+  font-size: 0.9rem;
+  color: #aaa;
+
+  .el-button--text {
+    font-size: 0.9rem;
+  }
+}
+
 #root {
   min-height: 1000px;
   color: $backdrop;
@@ -137,9 +146,13 @@ body {
   margin: 0 10px 0 50px;
 }
 
-.el-button.full-width {
-  display: block;
-  width: 100%;
+.el-button {
+  font-family: "Open Sans", Arial, Verdana, sans-serif;
+
+  &.full-width {
+    display: block;
+    width: 100%;
+  }
 }
 
 .el-card .el-card__body {

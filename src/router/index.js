@@ -12,6 +12,7 @@ import CharacterProfile from '../Views/Character/Profile'
 import UserCharacters from '../Views/User/Characters'
 import UserVerify from '../Views/User/Verify'
 import UserLogin from '../Views/User/Login'
+import UserPasswordReset from '../Views/User/PasswordReset'
 import UserRegister from '../Views/User/Register'
 import UserSettings from '../Views/User/Settings'
 import UserSocialAuth from '../Views/User/Social/Auth'
@@ -55,6 +56,10 @@ export default new VueRouter({
       path: '/user/social/:provider/auth/receive',
       component: UserSocialAuthReceive,
       beforeEnter: Guards.guest
+    },
+    {
+      path: '/user/password-reset/:token',
+      component: UserPasswordReset
     },
     {
       path: '/characters/:id/:slug',

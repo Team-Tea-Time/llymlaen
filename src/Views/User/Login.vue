@@ -49,7 +49,7 @@
 import { sprintf } from 'sprintf-js'
 
 import { getAuthUser } from 'src/auth'
-import string from 'src/strings/user'
+import strings from 'src/strings/user'
 
 export default {
   data () {

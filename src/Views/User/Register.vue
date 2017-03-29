@@ -67,7 +67,6 @@
 <script>
 import { sprintf } from 'sprintf-js'
 
-import router from 'src/router'
 import strings from 'src/strings/user'
 
 export default {
@@ -91,7 +90,7 @@ export default {
     })
   },
   methods: {
-    submit: function () {
+    submit () {
       const data = {
         name: this.name,
         email: this.email,
@@ -102,9 +101,10 @@ export default {
       this.$clearValidationErrors()
       this.$setLoading()
 
-      this.$http.post('/api/user', data).then(response => {
+      this.$http.post('/api/users', data).then(response => {
         this.$message.success(sprintf(strings.greeting_account_created, data.name))
-        router.push('/user/login')
+        this.$clearLoading()
+        this.$router.push('/user/login')
       }, response => {
         this.$setValidationErrors(response)
         this.$clearLoading()
