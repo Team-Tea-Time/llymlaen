@@ -20,7 +20,7 @@ export default {
 <style lang="scss">
 #page-header {
   height: 400px;
-  background: url('../../assets/header_back.jpg') no-repeat center center;
+  background: url('/static/images/header_back.jpg') no-repeat center center;
   background-size: cover;
   text-align: center;
 

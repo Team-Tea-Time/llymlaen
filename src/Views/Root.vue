@@ -3,7 +3,10 @@
     <top-bar>
       <template v-if="auth.authenticated">
         <el-submenu index="test" class="right">
-          <template slot="title">Hello, <strong>{{ auth.user.name }}</strong></template>
+          <template slot="title">
+            <avatar :profile="auth.user.profile" size="small" />
+            Hello, <strong>{{ auth.user.name }}</strong>
+          </template>
           <el-menu-item index="/admin/overview">Admin</el-menu-item>
           <el-menu-item :index="`/@${auth.user.url_encoded_name}`">Profile</el-menu-item>
           <el-menu-item index="/user/settings">Settings</el-menu-item>
@@ -27,13 +30,15 @@ import store from 'src/store'
 
 import TopBar from 'src/Components/Layout/TopBar'
 import NavItem from 'src/Components/NavItem'
+import Avatar from 'src/Components/User/Profile/Avatar'
 
 import strings from 'src/strings/user'
 
 export default {
   components: {
     NavItem,
-    TopBar
+    TopBar,
+    Avatar
   },
   store,
   computed: {
@@ -115,6 +120,14 @@ body {
     &:first-child {
       margin-top: 0;
     }
+  }
+}
+
+#top-bar {
+  .avatar {
+    margin: -3px 5px 0 0;
+    vertical-align: middle;
+    border-radius: 100%;
   }
 }
 

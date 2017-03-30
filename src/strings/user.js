@@ -24,5 +24,10 @@ export default {
   password_reset_request_succeeded: "Password reset email sent. Check your inbox!",
   password_reset_succeeded: "Reset succeeded. You may now use your new password.",
 
-  credentials_update_succeeded: "Account credentials updated."
+  credentials_update_succeeded: "Account credentials updated.",
+
+  profile_save_succeeded: "Profile updated.",
+
+  confirm_profile_avatar_deletion: "Are you sure you want to remove your avatar?",
+  profile_avatar_deletion_succeeded: "Avatar removed."
 }

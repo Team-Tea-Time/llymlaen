@@ -29,6 +29,7 @@
           Remove portrait
         </el-button>
       </div>
+      <br>
       <div class="content-right">
         <el-button @click="$emit('close')">Cancel</el-button>
         <el-button type="primary" @click="save">Save</el-button>
@@ -102,7 +103,7 @@ export default {
         this.$clearLoading()
         this.$emit('save', response.body)
         this.profile.portrait = null
-        this.$refs.portrait.value = ''
+        this.$refs.portrait.$refs.file.value = ''
       })
     },
     selectPortrait (file) {
