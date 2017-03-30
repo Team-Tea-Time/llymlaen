@@ -74,7 +74,7 @@ export default {
         this.$message.success(strings.password_reset_succeeded)
         this.$clearLoading()
 
-        if (this.$state.auth.authenticated) {
+        if (this.$store.state.auth.authenticated) {
           this.$router.push('/user/settings')
         } else {
           this.$router.push('/user/login')
