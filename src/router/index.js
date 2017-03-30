@@ -13,6 +13,7 @@ import UserCharacters from '../Views/User/Characters'
 import UserVerify from '../Views/User/Verify'
 import UserLogin from '../Views/User/Login'
 import UserPasswordReset from '../Views/User/PasswordReset'
+import UserProfile from '../Views/User/Profile'
 import UserRegister from '../Views/User/Register'
 import UserSettings from '../Views/User/Settings'
 import UserSocialAuth from '../Views/User/Social/Auth'
@@ -22,6 +23,10 @@ export default new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
+    {
+      path:'/@:username',
+      component: UserProfile
+    },
     {
       path: '/user/characters',
       component: UserCharacters,
