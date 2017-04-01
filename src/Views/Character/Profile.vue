@@ -45,7 +45,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-dialog v-model="dialogPortraitVisible" class="portrait-large">
+    <el-dialog v-model="dialogPortraitVisible" class="portrait-large" size="large">
       <img v-if="character.profile.portrait" :src="character.profile.portrait" />
       <img v-else :src="character.portrait" />
     </el-dialog>

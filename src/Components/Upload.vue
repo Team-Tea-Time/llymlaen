@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../colours';
+@import '../scss/colours';
 
 .upload {
   display: inline-block;

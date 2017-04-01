@@ -1,5 +1,5 @@
 <template>
-  <div id="page-header">
+  <div id="page-header" :class="classes">
     <h1>{{ title }}</h1>
     <h2 v-if="subtitle">{{ subtitle }}</h2>
   </div>
@@ -12,12 +12,24 @@ export default {
       type: String,
       required: true
     },
-    subtitle: String
+    subtitle: {
+      type: String,
+      default: null
+    }
+  },
+  computed: {
+    classes () {
+      return {
+        'has-subtitle': !!this.subtitle
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss">
+@import '../../scss/media-queries';
+
 #page-header {
   height: 400px;
   background: url('/static/images/header_back.jpg') no-repeat center center;
@@ -33,7 +45,7 @@ export default {
   }
 
   h1 {
-    top: 33%;
+    top: 40%;
     font-size: 4.6rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -42,6 +54,33 @@ export default {
   h2 {
     top: 135px;
     font-size: 2rem;
+  }
+
+  &.has-subtitle {
+    h1 {
+      top: 33%;
+    }
+  }
+
+  @include mq($until: tablet) {
+    height: 300px;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      top: 110px;
+      font-size: 1.4rem;
+    }
+
+    &.has-subtitle {
+      height: 300px;
+
+      h1 {
+        top: 35%;
+      }
+    }
   }
 }
 </style>

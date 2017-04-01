@@ -21,6 +21,7 @@
     "element-ui": "^1.0.3",
     "jwt-decode": "^2.1.0",
     "nprogress": "^0.2.0",
+    "sass-mq": "^3.3.2",
     "shortid": "^2.2.6",
     "sprintf-js": "^1.0.3",
     "vue": "^2.1.10",

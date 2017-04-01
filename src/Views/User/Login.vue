@@ -29,7 +29,9 @@
             <el-button type="primary" size="large" @click="submit">Proceed</el-button>
           </div>
         </el-form>
+
         <separator :offset="false" />
+
         <div class="content-centre">
           <h2>Or log in via...</h2>
           <el-button

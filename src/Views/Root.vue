@@ -2,13 +2,15 @@
   <div id="root">
     <top-bar>
       <template v-if="auth.authenticated">
-        <el-submenu index="test" class="right">
+        <el-submenu index="user-links" class="right">
           <template slot="title">
             <avatar
               :url="auth.user.profile.avatar || '/static/images/user_default_avatar.jpg'"
               size="small"
             />
-            Hello, <strong>{{ auth.user.name }}</strong>
+            <span class="greeting">
+              Hello, <strong>{{ auth.user.name }}</strong>
+            </span>
           </template>
           <el-menu-item index="/admin/overview">Admin</el-menu-item>
           <el-menu-item :index="`/@${auth.user.url_encoded_name}`">Profile</el-menu-item>
@@ -62,9 +64,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,700|Open+Sans:400,600');
-
-@import '../colours';
+@import '../scss/colours';
+@import '../scss/fonts';
+@import '../scss/media-queries';
+@import '../scss/nprogress';
+@import '../scss/overrides';
+@import '../scss/transitions';
 
 html, body {
   height: 100%;
@@ -100,7 +105,6 @@ body {
 }
 
 #root {
-  min-height: 1000px;
   color: $backdrop;
 
   a:not(.nav-item) {
@@ -132,111 +136,11 @@ body {
     vertical-align: middle;
     border-radius: 100%;
   }
-}
 
-// Transitions
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0
-}
-
-// ElementUI
-
-.el-loading-mask {
-  background: rgba(255, 255, 255, 0.75);
-  z-index: 999;
-}
-
-.el-select {
-  width: 100%;
-}
-
-.el-tag {
-  margin: 0 5px 0 0;
-}
-
-.el-message-box__input {
-  margin: 0 10px 0 50px;
-}
-
-.el-button {
-  font-family: "Open Sans", Arial, Verdana, sans-serif;
-
-  &.full-width {
-    display: block;
-    width: 100%;
+  @include mq($until: tablet) {
+    .greeting {
+      display: none;
+    }
   }
-}
-
-.el-card .el-card__body {
-  .el-button {
-    margin-top: 20px;
-  }
-}
-
-.el-menu-item {
-  &.separated {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-}
-
-// NProgress
-
-#nprogress {
-  pointer-events: none;
-}
-
-#nprogress .bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1031;
-  width: 100%;
-  height: 3px;
-  background: #fff;
-}
-
-#nprogress .peg {
-  display: block;
-  position: absolute;
-  right: 0px;
-  width: 100px;
-  height: 100%;
-  box-shadow: 0 0 10px #fff, 0 0 5px #fff;
-  opacity: 1.0;
-  transform: rotate(3deg) translate(0px, -4px);
-}
-
-// Fonts
-
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Icons'),
-  local('MaterialIcons-Regular'),
-  url('/static/MaterialIcons-Regular.woff2') format('woff2'),
-  url('/static/MaterialIcons-Regular.woff') format('woff'),
-  url('/static/MaterialIcons-Regular.ttf') format('truetype');
-}
-
-.material-icons {
-  direction: ltr;
-  display: inline-block;
-  font-family: 'Material Icons';
-  font-feature-settings: 'liga'; // Support for IE.
-  font-size: 24px;
-  font-style: normal;
-  font-weight: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  text-rendering: optimizeLegibility; // Support for Safari and Chrome.
-  text-transform: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  word-wrap: normal;
 }
 </style>

@@ -138,7 +138,7 @@ export default {
     text-align: center;
 
     .preview {
-      max-width: 260px;
+      max-width: 248px;
       margin: 20px 0;
       border-radius: 5px;
     }
