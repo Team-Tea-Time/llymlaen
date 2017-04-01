@@ -5,7 +5,10 @@
     subtitle="User Profile"
     :loading="isLoading"
   >
-    <avatar :profile="user.profile" :with-border="true" />
+    <avatar
+      :url="user.profile.avatar || '/static/images/user_default_avatar.jpg'"
+      :with-border="true"
+    />
     <br>
     <div v-if="canEdit">
       <div class="content-centre">
@@ -36,7 +39,7 @@ import marked from 'marked'
 
 import { userHasRole } from 'src/auth'
 import EditDialog from 'src/Components/User/Profile/Edit'
-import Avatar from 'src/Components/User/Profile/Avatar'
+import Avatar from 'src/Components/Avatar'
 
 export default {
   components: {

@@ -19,7 +19,10 @@
           v-on:selection="selectPortrait"
         />
         <br>
-        <img :src="portraitUrl" class="preview">
+        <img
+          :src="selectedPortrait || character.profile.portrait || character.portrait"
+          class="preview"
+        />
         <br>
         <el-button
           type="danger"
@@ -79,18 +82,33 @@ export default {
         body: '',
         portrait: null
       },
-      portraitUrl: this.character.portrait
+      selectedPortrait: null
     }
   },
   created () {
     if (this.character.profile) {
-      if (this.character.profile.portrait) {
-        this.portraitUrl = this.character.profile.portrait
-      }
-      this.profile.body = this.character.profile.body
+      this.profile = this.character.profile
     }
   },
   methods: {
+    selectPortrait (file) {
+      this.selectedPortrait = file ? URL.createObjectURL(file) : null
+    },
+    deletePortrait () {
+      this.$confirm(strings.confirm_profile_portrait_deletion, 'Warning', {
+        confirmButtonText: 'Continue',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        this.$setLoading()
+
+        this.$http.delete(`/api/characters/${this.character.id}/profile/portrait`).then(response => {
+          this.$message.success(strings.profile_portrait_deletion_succeeded)
+          this.$clearLoading()
+          this.clearPortraitInput()
+        })
+      })
+    },
     save () {
       this.$setLoading()
 
@@ -102,30 +120,13 @@ export default {
         this.$message.success(strings.profile_save_succeeded)
         this.$clearLoading()
         this.$emit('save', response.body)
-        this.profile.portrait = null
-        this.$refs.portrait.$refs.file.value = ''
+        this.clearPortraitInput()
       })
     },
-    selectPortrait (file) {
-      this.profile.portrait = file
-      this.portraitUrl = URL.createObjectURL(this.profile.portrait)
-    },
-    deletePortrait () {
-      this.$confirm(strings.confirm_profile_portrait_deletion, 'Warning', {
-        confirmButtonText: 'Continue',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(() => {
-        this.$setLoading()
-
-        this.$http.delete(`/api/characters/${this.character.id}/profile/portrait`).then(response => {
-          this.portraitUrl = this.character.portrait
-          this.character.profile.portrait = null
-          this.$refs.portrait.$refs.file.value = ''
-          this.$message.success(strings.profile_portrait_deletion_succeeded)
-          this.$clearLoading()
-        })
-      })
+    clearPortraitInput () {
+      this.$refs.portrait.$refs.file.value = ''
+      this.$refs.portrait.selection = null
+      this.selectedPortrait = null
     }
   }
 }

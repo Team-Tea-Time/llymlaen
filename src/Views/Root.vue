@@ -4,7 +4,10 @@
       <template v-if="auth.authenticated">
         <el-submenu index="test" class="right">
           <template slot="title">
-            <avatar :profile="auth.user.profile" size="small" />
+            <avatar
+              :url="auth.user.profile.avatar || '/static/images/user_default_avatar.jpg'"
+              size="small"
+            />
             Hello, <strong>{{ auth.user.name }}</strong>
           </template>
           <el-menu-item index="/admin/overview">Admin</el-menu-item>
@@ -30,7 +33,7 @@ import store from 'src/store'
 
 import TopBar from 'src/Components/Layout/TopBar'
 import NavItem from 'src/Components/NavItem'
-import Avatar from 'src/Components/User/Profile/Avatar'
+import Avatar from 'src/Components/Avatar'
 
 import strings from 'src/strings/user'
 

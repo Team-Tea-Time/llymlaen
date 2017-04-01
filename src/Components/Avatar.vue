@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="profile.avatar || '/static/images/user_default_avatar.jpg'"
+    :src="url"
     :style="`max-width: ${maxWidth}px`"
     :class="classes"
   />
@@ -9,8 +9,8 @@
 <script>
 export default {
   props: {
-    profile: {
-      type: Object,
+    url: {
+      type: String,
       required: true
     },
     size: {

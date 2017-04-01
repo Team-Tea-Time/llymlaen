@@ -94,13 +94,18 @@ export default {
   },
   methods: {
     selectAvatar (file) {
-      let url = URL.createObjectURL(file)
+      if (file) {
+        let url = URL.createObjectURL(file)
 
-      if (this.selectedAvatar) {
-        this.$refs.cropper.replace(url)
+        if (this.selectedAvatar) {
+          this.$refs.cropper.replace(url)
+        }
+
+        this.selectedAvatar = url
+      } else {
+        this.$refs.cropper.destroy()
+        this.selectedAvatar = null
       }
-
-      this.selectedAvatar = url
     },
     deleteAvatar () {
       this.$confirm(strings.confirm_profile_avatar_deletion, 'Warning', {
@@ -113,9 +118,8 @@ export default {
         this.$http.delete(`/api/users/${this.user.id}/profile/avatar`).then(response => {
           this.$message.success(strings.profile_avatar_deletion_succeeded)
           this.$clearLoading()
-          this.profile.avatar = null
-          this.selectedAvatar = null
           this.clearAvatarInput()
+          this.profile.avatar = null
         })
       })
     },
@@ -146,14 +150,14 @@ export default {
         this.$message.success(strings.profile_save_succeeded)
         this.$clearLoading()
         this.$emit('save', response.body)
-        this.profile = response.body
-        this.selectedAvatar = null
         this.clearAvatarInput()
+        this.profile = response.body
       })
     },
     clearAvatarInput () {
       this.$refs.avatar.$refs.file.value = ''
       this.$refs.avatar.selection = null
+      this.selectedAvatar = null
     }
   }
 }

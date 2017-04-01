@@ -5,7 +5,11 @@
     subtitle="Character Profile"
     :loading="isLoading"
   >
-    <img class="avatar" :src="character.avatar" />
+    <avatar
+      v-if="!isLoading"
+      :url="character.avatar"
+      :with-border="true"
+    />
     <br>
     <el-row :gutter="20">
       <el-col :md="{span: 16}">
@@ -25,8 +29,8 @@
         </div>
         <div class="portrait">
           <div class="inner">
-            <img :src="character.profile.portrait" v-if="character.profile.portrait" />
-            <img :src="character.portrait" v-else />
+            <img v-if="character.profile.portrait" :src="character.profile.portrait" />
+            <img v-else :src="character.portrait" />
             <i class="el-icon-search" @click="dialogPortraitVisible = true" />
           </div>
         </div>
@@ -42,8 +46,8 @@
       </el-col>
     </el-row>
     <el-dialog v-model="dialogPortraitVisible" class="portrait-large">
-      <img :src="character.profile.portrait" v-if="character.profile.portrait" />
-      <img :src="character.portrait" v-else />
+      <img v-if="character.profile.portrait" :src="character.profile.portrait" />
+      <img v-else :src="character.portrait" />
     </el-dialog>
   </viewport>
 </template>
@@ -53,22 +57,24 @@ import marked from 'marked'
 
 import { userHasRole } from 'src/auth'
 import EditDialog from 'src/Components/Character/Profile/Edit'
+import Avatar from 'src/Components/Avatar'
 
 export default {
   components: {
-    EditDialog
+    EditDialog,
+    Avatar
   },
   data () {
     return {
+      dialogEditVisible: false,
+      dialogPortraitVisible: false,
       character: {
         name: 'Loading...',
         profile: {
           body: null,
           bodyParsed: null
         }
-      },
-      dialogEditVisible: false,
-      dialogPortraitVisible: false
+      }
     }
   },
   computed: {
@@ -110,8 +116,6 @@ export default {
     left: 50%;
     top: -53px;
     margin-left: -53px;
-    border-radius: 100%;
-    border: 5px solid rgba(#3c4552, 0.2);
   }
 
   .edit {
