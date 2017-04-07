@@ -87,7 +87,7 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('/api/social/drivers').then(response => {
+    this.$http.get('social/drivers').then(response => {
       this.drivers = response.body
     })
   },
@@ -103,7 +103,7 @@ export default {
       this.$clearValidationErrors()
       this.$setLoading()
 
-      this.$http.post('/api/users', data).then(response => {
+      this.$http.post('users', data).then(response => {
         this.$message.success(sprintf(strings.greeting_account_created, data.name))
         this.$clearLoading()
         this.$router.push('/user/login')

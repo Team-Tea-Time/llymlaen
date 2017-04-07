@@ -50,7 +50,7 @@
 <script>
 import { sprintf } from 'sprintf-js'
 
-import { getAuthUser } from 'src/auth'
+import { setAuth, getAuthUser } from 'src/auth'
 import strings from 'src/strings/user'
 
 export default {
@@ -66,7 +66,7 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('/api/social/drivers').then(response => {
+    this.$http.get('social/drivers').then(response => {
       this.drivers = response.body
     })
   },
@@ -82,7 +82,12 @@ export default {
       this.$clearValidationErrors()
       this.$setLoading()
 
-      this.$http.post('/api/auth/token', data).then(() => {
+      this.$http.post('auth/token', data).then(response => {
+        let accessToken = response.body.access_token
+        let refreshToken = response.body.refresh_token
+        let expires = response.body.expires_in / 86400 // convert from seconds to days
+
+        setAuth(accessToken, refreshToken, expires)
         getAuthUser().then(user => {
           this.$message.success(sprintf(strings.greeting, { name: user.name }))
         }, () => {

@@ -6,7 +6,9 @@ import defaults from './defaults'
 import * as mutations from './mutations'
 
 const state = {
-  auth: defaults.auth()
+  auth: defaults.auth(),
+  worlds: [],
+  currentWorld: { name: null }
 }
 
 const store = new Vuex.Store({

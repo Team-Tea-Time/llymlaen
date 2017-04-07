@@ -82,6 +82,7 @@ export default {
         body: '',
         portrait: null
       },
+      selectedPortraitFile: null,
       selectedPortrait: null
     }
   },
@@ -92,6 +93,7 @@ export default {
   },
   methods: {
     selectPortrait (file) {
+      this.selectedPortraitFile = file
       this.selectedPortrait = file ? URL.createObjectURL(file) : null
     },
     deletePortrait () {
@@ -102,7 +104,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/characters/${this.character.id}/profile/portrait`).then(response => {
+        this.$http.delete(`characters/${this.character.id}/profile/portrait`).then(response => {
           this.$message.success(strings.profile_portrait_deletion_succeeded)
           this.$clearLoading()
           this.clearPortraitInput()
@@ -114,9 +116,9 @@ export default {
 
       let data = new FormData()
       data.append('body', this.profile.body)
-      data.append('portrait', this.profile.portrait)
+      data.append('portrait', this.selectedPortraitFile)
 
-      this.$http.post(`/api/characters/${this.character.id}/profile`, data).then(response => {
+      this.$http.post(`characters/${this.character.id}/profile`, data).then(response => {
         this.$message.success(strings.profile_save_succeeded)
         this.$clearLoading()
         this.$emit('save', response.body)
@@ -126,6 +128,7 @@ export default {
     clearPortraitInput () {
       this.$refs.portrait.$refs.file.value = ''
       this.$refs.portrait.selection = null
+      this.selectedPortraitFile = null
       this.selectedPortrait = null
     }
   }

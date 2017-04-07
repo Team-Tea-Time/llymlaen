@@ -2,22 +2,36 @@
   <div>
     <el-menu id="top-bar" theme="light" default-active="/" mode="horizontal" :router="true">
       <slot></slot>
-      <el-submenu index="/" class="world-select">
-        <template slot="title">{{ currentWorld }}</template>
-        <el-menu-item index="/open/portal" class="separated">Portal</el-menu-item>
-        <el-menu-item v-for="world in worlds" :index="`/open/${world}`">{{ world }}</el-menu-item>
-      </el-submenu>
+      <li @click="openWorldSelection" class="el-menu-item world-select">
+        {{ currentWorldName }}
+      </li>
       <el-menu-item v-for="item in navItems" :index="item.index" class="main-navigation">{{ item.label }}</el-menu-item>
       <el-submenu index="mobile-navigation" class="mobile-navigation">
         <template slot="title">&#9776;</template>
-        <el-submenu index="mobile-world-select" class="mobile-world-select" mode="vertical">
-          <template slot="title"><strong>{{ currentWorld }}</strong></template>
-          <el-menu-item index="/open/portal" class="separated-top">Portal</el-menu-item>
-          <el-menu-item v-for="world in worlds" :index="`/open/${world}`">{{ world }}</el-menu-item>
-        </el-submenu>
+        <li @click="openWorldSelection" class="el-menu-item mobile-world-select">
+          {{ currentWorldName }}
+        </li>
         <el-menu-item v-for="item in navItems" :index="item.index">{{ item.label }}</el-menu-item>
       </el-submenu>
     </el-menu>
+    <el-dialog id="world-selection" title="World Selection" v-model="dialogWorldSelectionVisible" size="large">
+      <div v-if="$store.state.currentWorld">
+        <el-button @click="goToPortal">
+          Go to the xiv.world portal <i class="el-icon-arrow-right"></i>
+        </el-button>
+        <separator />
+      </div>
+      <el-row :gutter="10">
+        <el-col :xs="24" :sm="12" :md="4" v-for="dc in dataCentres">
+          <h2>{{ dc.name }}</h2>
+          <el-menu>
+            <el-menu-item v-for="world in dc.worlds" :index="world.name" @click="selectWorld(world)">
+              {{ world.name }}
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+      </el-row>
+    </el-dialog>
   </div>
 </template>
 
@@ -27,14 +41,47 @@ export default {
   data () {
     return {
       dialogWorldSelectionVisible: false,
-      currentWorld: 'Balmung',
-      worlds: [
-        'Adamantoise',
-        'Balmung'
-      ],
+      dataCentres: null,
       navItems: [
         { index: '/', label: 'Home' }
       ]
+    }
+  },
+  computed: {
+    currentWorldName () {
+      return this.$store.state.currentWorld
+        ? this.$store.state.currentWorld.name
+        : 'xiv.world'
+    }
+  },
+  created () {
+    this.$http.get('data-centres').then(response => {
+      this.dataCentres = response.body
+    })
+  },
+  methods: {
+    openWorldSelection () {
+      this.dialogWorldSelectionVisible = true
+    },
+    goToPortal () {
+      window.location.href = window.location.href.replace(
+        `${this.$store.state.currentWorld.name_lowercase}.`,
+        ''
+      )
+    },
+    selectWorld (world) {
+      let url = window.location.href
+      let destination = null
+      if (this.$store.state.currentWorld) {
+        // On a world already, so let's redirect based on the current URL
+        destination = url.replace(
+          this.$store.state.currentWorld.name_lowercase,
+          world.name_lowercase
+        )
+      } else {
+        destination = url.replace('://', `://${world.name_lowercase}.`)
+      }
+      window.location.href = destination
     }
   }
 }
@@ -104,16 +151,13 @@ export default {
 
   .world-select {
     background: $primary;
+    font-family: "Catamaran", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-transform: uppercase;
 
-    .el-submenu__title {
-      font-family: "Catamaran", sans-serif;
-      font-size: 1.3rem;
-      font-weight: 300;
-      text-transform: uppercase;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.3);
-      }
+    &:hover {
+      background: lighten($primary, 5%);
     }
   }
 
@@ -141,6 +185,12 @@ export default {
     .mobile-navigation {
       display: none;
     }
+  }
+}
+
+#world-selection {
+  .el-col {
+    margin: 0 0 20px 0;
   }
 }
 </style>

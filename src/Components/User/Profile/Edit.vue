@@ -115,7 +115,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/users/${this.user.id}/profile/avatar`).then(response => {
+        this.$http.delete(`users/${this.user.id}/profile/avatar`).then(response => {
           this.$message.success(strings.profile_avatar_deletion_succeeded)
           this.$clearLoading()
           this.clearAvatarInput()
@@ -146,7 +146,7 @@ export default {
       }
     },
     submit (data) {
-      this.$http.post(`/api/users/${this.user.id}/profile`, data).then(response => {
+      this.$http.post(`users/${this.user.id}/profile`, data).then(response => {
         this.$message.success(strings.profile_save_succeeded)
         this.$clearLoading()
         this.$emit('save', response.body)

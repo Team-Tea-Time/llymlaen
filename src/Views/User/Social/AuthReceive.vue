@@ -4,7 +4,7 @@
 <script>
 import { sprintf } from 'sprintf-js'
 
-import { getAuthUser } from 'src/auth'
+import { setAuth, getAuthUser } from 'src/auth'
 import strings from 'src/strings/user'
 
 export default {
@@ -13,7 +13,7 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     const code = urlParams.get('code')
 
-    this.$http.get(`/api/social/${provider}/auth/receive?code=${code}`).then(response => {
+    this.$http.get(`social/${provider}/auth/receive?code=${code}`).then(response => {
       let data = response.body
       let message = sprintf(strings.greeting, {name: data.user.name})
       let duration = 8000
@@ -27,6 +27,7 @@ export default {
       if (data.state.user_is_new) {
         this.$message.success({ message, duration })
       } else {
+        setAuth(response.body.access_token, null, 7)
         getAuthUser().then(() => {
           this.$message.success({ message, duration })
         })

@@ -123,7 +123,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/social/${auth.driver.name}/auth/${auth.id}`).then(response => {
+        this.$http.delete(`social/${auth.driver.name}/auth/${auth.id}`).then(response => {
           this.$message.success(strings.auth_deletion_succeeded)
           getAuthUser()
           this.$clearLoading()
@@ -133,7 +133,7 @@ export default {
     updateCredentials () {
       this.$setLoading()
 
-      this.$http.patch('/api/users/me', this.credentials).then(response => {
+      this.$http.patch('users/me', this.credentials).then(response => {
         this.$message.success(strings.credentials_update_succeeded)
         getAuthUser().then(user => {
           this.credentials = Object.assign({}, user)
@@ -152,7 +152,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.post('/api/auth/password/reset/request', {
+        this.$http.post('auth/password/reset/request', {
           email: this.user.email
         }).then(response => {
           this.$message.success(strings.password_reset_request_succeeded)

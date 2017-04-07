@@ -102,7 +102,7 @@
     </el-dialog>
     <edit-dialog
       :character="character"
-      v-if="character.profile || character.verified"
+      v-if="character.verified"
       :visible="dialogEditVisible"
       v-on:close="dialogEditVisible = false"
       v-on:save="viewProfile"
@@ -149,7 +149,7 @@ export default {
       this.$setLoading()
 
       this.$http.post(
-        `/api/characters/${this.character.id}/verify`,
+        `characters/${this.character.id}/verify`,
         { code: this.character.verification.code }
       ).then(response => {
         this.dialogVerifyVisible = false
@@ -168,7 +168,7 @@ export default {
     setAsMain () {
       this.$setLoading()
 
-      this.$http.post(`/api/characters/${this.character.id}/set-main`).then(response => {
+      this.$http.post(`characters/${this.character.id}/set-main`).then(response => {
         this.$clearLoading()
         this.character.status = 0
         this.$emit('main-set')
@@ -191,7 +191,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/characters/${this.character.id}`).then(response => {
+        this.$http.delete(`characters/${this.character.id}`).then(response => {
           this.$message.success(strings.removal_succeeded)
           this.$emit('removed')
           this.$clearLoading()

@@ -6,7 +6,7 @@ import strings from 'src/strings/user'
 
 export default {
   mounted () {
-    this.$http.post('/api/users/verify', {
+    this.$http.post('users/verify', {
       code: this.$route.params.code
     }).then(response => {
       this.$message.success(strings.email_confirmation_succeeded)
