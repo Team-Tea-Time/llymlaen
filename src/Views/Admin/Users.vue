@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     fetch (page) {
-      this.$fetch('/api/users', page, 'users')
+      this.$fetch('users', page, 'users')
     },
     edit (user) {
       this.user = Object.assign({}, user)
@@ -134,7 +134,7 @@ export default {
     save () {
       this.$setLoading()
 
-      this.$http.patch(`/api/users/${this.user.id}`, {
+      this.$http.patch(`users/${this.user.id}`, {
         verified: this.user.verified,
         active: this.user.active
       }).then(response => {
@@ -157,7 +157,7 @@ export default {
       }).then(() => {
         this.$setLoading()
 
-        this.$http.delete(`/api/users/${user.id}`).then(response => {
+        this.$http.delete(`users/${user.id}`).then(response => {
           this.$message.success(strings.deletion_successful)
           this.fetch()
           this.$clearLoading()

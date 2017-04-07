@@ -19,6 +19,7 @@
     "element-theme": "^0.2.0",
     "element-theme-default": "^1.0.3",
     "element-ui": "^1.0.3",
+    "js-cookie": "^2.1.4",
     "jwt-decode": "^2.1.0",
     "nprogress": "^0.2.0",
     "sass-mq": "^3.3.2",

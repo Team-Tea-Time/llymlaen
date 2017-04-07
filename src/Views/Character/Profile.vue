@@ -96,7 +96,7 @@ export default {
   methods: {
     fetch () {
       this.$setLoading()
-      this.$http.get(`/api/characters/${this.$route.params.id}`).then(response => {
+      this.$http.get(`characters/${this.$route.params.id}`).then(response => {
         this.character = response.body
         this.$clearLoading()
       })

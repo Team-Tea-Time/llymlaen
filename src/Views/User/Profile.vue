@@ -73,7 +73,7 @@ export default {
   created () {
     this.$setLoading()
 
-    this.$http.get(`/api/users/by-name/${this.$route.params.username}`).then(response => {
+    this.$http.get(`users/by-name/${this.$route.params.username}`).then(response => {
       this.user = response.body
       this.$clearLoading()
     })

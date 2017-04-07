@@ -30,6 +30,7 @@
 
 <script>
 import debounce from 'debounce'
+import * as Cookies from 'js-cookie'
 
 import store from 'src/store'
 
@@ -53,9 +54,11 @@ export default {
   },
   methods: {
     logout () {
-      this.$http.post('/api/users/me/clear-token').then(response => {
+      this.$http.post('users/me/clear-token').then(response => {
         this.$router.push('/user/login')
         this.$message.success(strings.logout_succeeded)
+        Cookies.remove('access_token')
+        Cookies.remove('refresh_token')
         store.commit('clearAuth')
       })
     }

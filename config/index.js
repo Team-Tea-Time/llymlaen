@@ -1,12 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
-const proxy = {
-  target: 'http://balmung.xiv-local.world:9000',
-  secure: false,
-  changeOrigin: true
-}
-
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -34,7 +28,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': proxy
+      '/api': {
+        target: 'http://api.xiv-local.world:9000',
+        secure: false,
+        changeOrigin: true
+      }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

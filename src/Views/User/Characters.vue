@@ -8,7 +8,16 @@
       <el-row v-loading="adding">
         <el-col :lg="{span: 12, offset: 6}">
           <el-form>
-            <el-form-item>
+            <el-form-item label="World">
+              <el-select v-model="selectedWorldId" filterable>
+                <el-option
+                  v-for="world in worlds"
+                  :label="world.name"
+                  :value="world.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="Character name">
               <el-select
                 v-model="newCharacter"
                 filterable
@@ -100,7 +109,9 @@ export default {
       adding: false,
       validationErrors: [],
       searching: false,
-      searchResults: []
+      searchResults: [],
+      worlds: this.$store.state.worlds,
+      selectedWorldId: this.$store.state.currentWorld.id
     }
   },
   created () {
@@ -116,7 +127,7 @@ export default {
   },
   methods: {
     fetch () {
-      this.$http.get(`/api/users/${this.$store.state.auth.user.id}/characters`).then(response => {
+      this.$http.get(`users/${this.$store.state.auth.user.id}/characters`).then(response => {
         this.characters = response.data
         this.$clearLoading()
       })
@@ -124,7 +135,10 @@ export default {
     search (name) {
       if (name !== '') {
         this.searching = true
-        this.$http.post('/api/characters/search', { name }).then(response => {
+        this.$http.post('characters/search', {
+          world_id: this.selectedWorldId,
+          name
+        }).then(response => {
           this.searchResults = response.body
           this.searching = false
         })
@@ -138,7 +152,10 @@ export default {
         return false
       }
 
-      this.$http.post('/api/characters', { id: this.newCharacter.id }).then(response => {
+      this.$http.post('characters', {
+        world_id: this.selectedWorldId,
+        id: this.newCharacter.id
+      }).then(response => {
         this.dialogVisible = false
         this.adding = false
         this.characters.push(response.data)

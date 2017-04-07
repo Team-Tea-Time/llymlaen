@@ -65,7 +65,7 @@ export default {
     submit () {
       this.$setLoading()
 
-      this.$http.post('/api/auth/password/reset', {
+      this.$http.post('auth/password/reset', {
         token: this.token,
         email: this.email,
         password: this.password,
