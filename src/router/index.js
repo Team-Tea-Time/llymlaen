@@ -24,33 +24,39 @@ export default new VueRouter({
   base: __dirname,
   routes: [
     {
-      path:'/@:username',
-      component: UserProfile
+      path: '/@:username',
+      component: UserProfile,
+      meta: { title: 'User profile' }
     },
     {
       path: '/user/characters',
       component: UserCharacters,
-      beforeEnter: Guards.authenticated
+      beforeEnter: Guards.authenticated,
+      meta: { title: 'Your characters' }
     },
     {
       path: '/user/verify/:code',
       component: UserVerify,
-      beforeEnter: Guards.guest
+      beforeEnter: Guards.guest,
+      meta: { title: 'User verification' }
     },
     {
       path: '/user/register',
       component: UserRegister,
-      beforeEnter: Guards.guest
+      beforeEnter: Guards.guest,
+      meta: { title: 'Register' }
     },
     {
       path: '/user/login',
       component: UserLogin,
-      beforeEnter: Guards.guest
+      beforeEnter: Guards.guest,
+      meta: { title: 'Log in' }
     },
     {
       path: '/user/settings',
       component: UserSettings,
-      beforeEnter: Guards.authenticated
+      beforeEnter: Guards.authenticated,
+      meta: { title: 'Your account' }
     },
     {
       path: '/user/social/:provider/auth',
@@ -64,11 +70,13 @@ export default new VueRouter({
     },
     {
       path: '/user/password-reset/:token',
-      component: UserPasswordReset
+      component: UserPasswordReset,
+      meta: { title: 'Password reset' }
     },
     {
       path: '/characters/:id/:slug',
-      component: CharacterProfile
+      component: CharacterProfile,
+      meta: { title: 'Character profile' }
     },
     {
       path: '/admin',
@@ -76,11 +84,11 @@ export default new VueRouter({
       redirect: '/admin/overview',
       beforeEnter: Guards.admin,
       children: [
-        { path: 'overview', component: AdminOverview },
-        { path: 'users', component: AdminUsers },
-        { path: 'characters', component: AdminCharacters },
-        { path: 'free-companies', component: AdminFreeCompanies },
-        { path: 'listings', component: AdminListings }
+        { path: 'overview', component: AdminOverview, meta: { title: 'Admin: Overview' } },
+        { path: 'users', component: AdminUsers, meta: { title: 'Admin: Users' } },
+        { path: 'characters', component: AdminCharacters, meta: { title: 'Admin: Characters' } },
+        { path: 'free-companies', component: AdminFreeCompanies, meta: { title: 'Admin: Free Companies' } },
+        { path: 'listings', component: AdminListings, meta: { title: 'Admin: Listings' } }
       ]
     }
   ]

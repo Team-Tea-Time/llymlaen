@@ -50,6 +50,24 @@ export default {
   computed: {
     auth () {
       return store.state.auth
+    },
+    title () {
+      let title = 'XIV World'
+
+      if (store.state.currentWorld) {
+        title = `${store.state.currentWorld.name} - ${title}`
+      }
+
+      if (this.$route.meta.title) {
+        title = `${this.$route.meta.title} - ${title}`
+      }
+
+      return title
+    }
+  },
+  watch: {
+    title (title) {
+      document.title = title
     }
   },
   methods: {
