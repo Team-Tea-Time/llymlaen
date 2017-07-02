@@ -160,12 +160,20 @@
     padding: 20px 20px 0;
 }
 
-.el-dialog__close{
+.el-dialog__headerbtn{
+    float: right;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
     cursor: pointer;
+}
+
+.el-dialog__headerbtn .el-dialog__close {
     color: rgb(217, 191, 191);
 }
 
-.el-dialog__close:hover{
+.el-dialog__headerbtn:focus .el-dialog__close, .el-dialog__headerbtn:hover .el-dialog__close{
     color: #ff4056;
 }
 
@@ -180,10 +188,6 @@
     padding: 30px 20px;
     color: rgb(106, 73, 72);
     font-size: 14px;
-}
-
-.el-dialog__headerbtn{
-    float: right;
 }
 
 .el-dialog__footer{

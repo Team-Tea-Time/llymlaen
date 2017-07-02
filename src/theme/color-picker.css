@@ -437,6 +437,8 @@
     display: inline-block;
 
     position: relative;
+
+    line-height: normal;
 }
 
 .el-color-picker__trigger {
@@ -463,8 +465,6 @@
     display: inline-block;
 
     box-sizing: border-box;
-
-    vertical-align: middle;
 
     border: 1px solid #666;
 
@@ -499,9 +499,13 @@
 
     vertical-align: middle;
 
-    margin-top: 4px;
-
     color: #666;
+
+    position: absolute;
+
+    top: 4px;
+
+    left: 4px;
 }
 
 .el-color-picker__icon {
@@ -510,7 +514,7 @@
 
     position: relative;
 
-    vertical-align: middle;
+    top: -6px;
 
     margin-left: 8px;
 

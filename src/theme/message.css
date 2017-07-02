@@ -124,6 +124,10 @@
     position: relative;
     height: 20px;
     line-height: 20px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
 }
 
 .el-message__group p{

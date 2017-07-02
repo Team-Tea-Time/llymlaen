@@ -123,7 +123,7 @@
     border: 1px solid rgb(217, 191, 191);
     box-sizing: border-box;
     color: rgb(61, 31, 31);
-    display: block;
+    display: inline-block;
     font-size: inherit;
     height: 36px;
     line-height: 1;
@@ -213,14 +213,14 @@
     border: 1px solid rgb(217, 191, 191);
     border-radius: 4px;
     padding: 0 10px;
-    width: 1%;
+    width: 1px;
     white-space: nowrap;
 }
 .el-input-group__append .el-select, .el-input-group__append .el-button, .el-input-group__prepend .el-select, .el-input-group__prepend .el-button{
     display: block;
     margin: -10px;
 }
-.el-input-group__append .el-button, .el-input-group__append .el-select .el-input__inner, .el-input-group__append .el-select:hover .el-input__inner, .el-input-group__prepend .el-button, .el-input-group__prepend .el-select .el-input__inner, .el-input-group__prepend .el-select:hover .el-input__inner{
+.el-input-group__append button.el-button, .el-input-group__append div.el-select .el-input__inner, .el-input-group__append div.el-select:hover .el-input__inner, .el-input-group__prepend button.el-button, .el-input-group__prepend div.el-select .el-input__inner, .el-input-group__prepend div.el-select:hover .el-input__inner{
     border-color: transparent;
     background-color: transparent;
     color: inherit;
@@ -391,13 +391,10 @@
 .el-cascader{
     display: inline-block;
     position: relative;
-    background-color: #fff;
 }
 
 .el-cascader .el-input, .el-cascader .el-input__inner{
     cursor: pointer;
-    background-color: transparent;
-    z-index: 1;
 }
 
 .el-cascader .el-input__icon{
@@ -412,6 +409,10 @@
     transform: rotateZ(180deg);
 }
 
+.el-cascader .el-icon-circle-close{
+    z-index: 2;
+}
+
 .el-cascader.is-disabled .el-cascader__label{
     z-index: 2;
     color: #bbb;
@@ -422,7 +423,7 @@
     left: 0;
     top: 0;
     height: 100%;
-    line-height: 34px;
+    line-height: 36px;
     padding: 0 25px 0 10px;
     color: rgb(61, 31, 31);
     width: 100%;
