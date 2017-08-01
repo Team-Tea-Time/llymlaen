@@ -135,7 +135,7 @@ export default {
     search (name) {
       if (name !== '') {
         this.searching = true
-        this.$http.post('characters/search', {
+        this.$http.post('lodestone/characters/search', {
           world_id: this.selectedWorldId,
           name
         }).then(response => {
