@@ -14,7 +14,7 @@
         <el-menu-item v-for="item in navItems" :index="item.index">{{ item.label }}</el-menu-item>
       </el-submenu>
     </el-menu>
-    <el-dialog id="world-selection" title="World Selection" v-model="dialogWorldSelectionVisible" size="large">
+    <el-dialog id="world-selection" title="World Selection" v-model="dialogWorldSelectionVisible">
       <div v-if="$store.state.currentWorld">
         <el-button @click="goToPortal">
           Go to the xiv.world portal <i class="el-icon-arrow-right"></i>
@@ -22,14 +22,22 @@
         <separator />
       </div>
       <el-row :gutter="10">
-        <el-col :xs="24" :sm="12" :md="4" v-for="dc in dataCentres">
-          <h2>{{ dc.name }}</h2>
+        <el-select v-model="selectedDC" value-key="id" placeholder="Select your DC">
+          <el-option
+            v-for="dc in dataCentres"
+            :key="dc.id"
+            :label="dc.name"
+            :value="dc">
+          </el-option>
+        </el-select>
+        <div v-if="selectedDC">
+          <h3>{{ selectedDC.name }} Worlds</h3>
           <el-menu>
-            <el-menu-item v-for="world in dc.worlds" :index="world.name" @click="selectWorld(world)">
+            <el-menu-item v-for="world in selectedDC.worlds" :index="world.name" @click="selectWorld(world)">
               {{ world.name }}
             </el-menu-item>
           </el-menu>
-        </el-col>
+        </div>
       </el-row>
     </el-dialog>
   </div>
@@ -42,6 +50,8 @@ export default {
     return {
       dialogWorldSelectionVisible: false,
       dataCentres: null,
+      currentDC: null,
+      selectedDC: null,
       navItems: [
         { index: '/', label: 'Home' }
       ]
@@ -57,6 +67,17 @@ export default {
   created () {
     this.$http.get('data-centres').then(response => {
       this.dataCentres = response.body
+
+      let currentDC = response.body.filter(dc => {
+        return dc.worlds.filter(w => {
+          return w.name === this.currentWorldName
+        }).length > 0
+      })
+
+      if (currentDC.length) {
+        this.currentDC = currentDC[0]
+        this.selectedDC = currentDC[0]
+      }
     })
   },
   methods: {
@@ -192,5 +213,14 @@ export default {
   .el-col {
     margin: 0 0 20px 0;
   }
+
+  .el-select {
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (max-width:48em) {
+	#world-selection .el-dialog--small {
+	  width: 90%;
+	}
 }
 </style>
