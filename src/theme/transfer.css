@@ -98,6 +98,8 @@
   --------------------------*/
     /* Collapse
   --------------------------*/
+    /* Transfer
+  --------------------------*/
 }
 @charset "UTF-8";
 :root{
@@ -186,6 +188,8 @@
     /* Carousel
   --------------------------*/
     /* Collapse
+  --------------------------*/
+    /* Transfer
   --------------------------*/
 }
 .el-input{
@@ -486,6 +490,8 @@
     /* Carousel
   --------------------------*/
     /* Collapse
+  --------------------------*/
+    /* Transfer
   --------------------------*/
 }
 .el-button{
@@ -963,6 +969,8 @@
   --------------------------*/
     /* Collapse
   --------------------------*/
+    /* Transfer
+  --------------------------*/
 }
 .el-checkbox{
     color: rgb(61, 31, 31);
@@ -1093,10 +1101,10 @@
 }
 .el-checkbox-button.is-checked{}
 .el-checkbox-button.is-checked .el-checkbox-button__inner{
-    color: var(--checkbox-button-checked-color);
-    background-color: var(--checkbox-button-checked-fill);
-    border-color: var(--checkbox-button-checked-border-color);
-    box-shadow: -1px 0 0 0 var(--checkbox-button-checked-border-color);
+    color: #fff;
+    background-color: #ff4056;
+    border-color: #ff4056;
+    box-shadow: -1px 0 0 0 #ff4056;
 }
 .el-checkbox-button.is-disabled{}
 .el-checkbox-button.is-disabled .el-checkbox-button__inner{
@@ -1109,7 +1117,7 @@
 }
 .el-checkbox-button.is-focus{}
 .el-checkbox-button.is-focus .el-checkbox-button__inner{
-    border-color: var(--checkbox-button-checked-border-color);
+    border-color: #ff4056;
 }
 .el-checkbox-button:first-child .el-checkbox-button__inner{
     border-left: 1px solid rgb(217, 191, 191);
@@ -1205,34 +1213,33 @@
 }
 
 .el-transfer-panel{
-    border-width: 1px;
-    border-style: solid var(--transfer-border-color);
+    border: 1px solid rgb(229, 209, 209);
     background: #fff;
-    box-shadow: var(--transfer-box-shadow);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     display: inline-block;
     vertical-align: middle;
-    width: var(--transfer-panel-width);
+    width: 200px;
     box-sizing: border-box;
     position: relative;
 }
 
 .el-transfer-panel .el-transfer-panel__header{
-    height: var(--transfer-panel-header-height);
-    line-height: var(--transfer-panel-header-height);
-    background: var(--transfer-panel-header-background);
+    height: 36px;
+    line-height: 36px;
+    background: rgb(255, 251, 252);
     margin: 0;
     padding-left: 20px;
-    border-bottom: 1px solid var(--transfer-border-color);
+    border-bottom: 1px solid rgb(229, 209, 209);
     box-sizing: border-box;
     color: rgb(61, 31, 31);
 }
 
 .el-transfer-panel .el-transfer-panel__footer{
-    height: var(--transfer-panel-footer-height);
+    height: 36px;
     background: #fff;
     margin: 0;
     padding: 0;
-    border-top: 1px solid var(--transfer-border-color);
+    border-top: 1px solid rgb(229, 209, 209);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1247,8 +1254,8 @@
 
 .el-transfer-panel .el-transfer-panel__empty{
     margin: 0;
-    height: var(--transfer-item-height);
-    line-height: var(--transfer-item-height);
+    height: 32px;
+    line-height: 32px;
     padding: 6px 20px 0;
     color: rgb(165, 132, 131);
 }
@@ -1270,26 +1277,26 @@
 }
 
 .el-transfer-panel__body{
-    padding-bottom: var(--transfer-panel-footer-height);
-    height: var(--transfer-panel-body-height);
+    padding-bottom: 36px;
+    height: 246px;
 }
 
 .el-transfer-panel__list{
     margin: 0;
     padding: 6px 0;
     list-style: none;
-    height: var(--transfer-panel-body-height);
+    height: 246px;
     overflow: auto;
     box-sizing: border-box;
 }
 
 .el-transfer-panel__list.is-filterable{
-    height: calc(var(--transfer-panel-body-height) - var(--transfer-filter-height) - 10px);
+    height: 214px;
 }
 
 .el-transfer-panel__item{
-    height: var(--transfer-item-height);
-    line-height: var(--transfer-item-height);
+    height: 32px;
+    line-height: 32px;
     padding-left: 20px;
     display: block;
 }
@@ -1318,7 +1325,7 @@
 }
 
 .el-transfer-panel__item:hover{
-    background: var(--transfer-item-hover-background);
+    background: rgb(241, 230, 228);
 }
 
 .el-transfer-panel__filter{
@@ -1330,7 +1337,7 @@
 }
 
 .el-transfer-panel__filter .el-input__inner {
-    height: var(--transfer-filter-height);
+    height: 22px;
     width: 100%;
     display: inline-block;
     box-sizing: border-box;

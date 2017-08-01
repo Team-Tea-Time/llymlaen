@@ -86,6 +86,8 @@
   --------------------------*/
     /* Collapse
   --------------------------*/
+    /* Transfer
+  --------------------------*/
 }
 
 .el-checkbox{
@@ -241,10 +243,10 @@
 .el-checkbox-button.is-checked{}
 
 .el-checkbox-button.is-checked .el-checkbox-button__inner{
-    color: var(--checkbox-button-checked-color);
-    background-color: var(--checkbox-button-checked-fill);
-    border-color: var(--checkbox-button-checked-border-color);
-    box-shadow: -1px 0 0 0 var(--checkbox-button-checked-border-color)
+    color: #fff;
+    background-color: #ff4056;
+    border-color: #ff4056;
+    box-shadow: -1px 0 0 0 #ff4056
 }
 
 .el-checkbox-button.is-disabled{}
@@ -261,7 +263,7 @@
 .el-checkbox-button.is-focus{}
 
 .el-checkbox-button.is-focus .el-checkbox-button__inner{
-    border-color: var(--checkbox-button-checked-border-color)
+    border-color: #ff4056
 }
 
 .el-checkbox-button:first-child .el-checkbox-button__inner{
