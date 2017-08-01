@@ -50,6 +50,8 @@
       <el-tag
         v-if="!character.verified"
         type="danger"
+        @click.native="dialogVerifyVisible = true"
+        class="link"
       >
         unverified
       </el-tag>
@@ -74,7 +76,7 @@
     </div>
     <el-dialog
       :title="`Verify Character: ${character.name}`"
-      v-model="dialogVerifyVisible"
+      :visible.sync="dialogVerifyVisible"
       v-if="character.verification"
     >
       <el-row v-loading="isLoading">
@@ -146,18 +148,18 @@ export default {
   methods: {
     verify () {
       this.validationErrors = []
-      this.$setLoading()
+      this.$startLoading()
 
       this.$http.post(
         `characters/${this.character.id}/verify`,
         { code: this.character.verification.code }
       ).then(response => {
         this.dialogVerifyVisible = false
-        this.$clearLoading()
+        this.$doneLoading()
         this.character.verified = true
         this.$message.success(strings.verification_succeeded)
       }, response => {
-        this.$clearLoading()
+        this.$doneLoading()
         if (response.status === 422) {
           this.validationErrors = response.data
         } else {
@@ -166,15 +168,15 @@ export default {
       })
     },
     setAsMain () {
-      this.$setLoading()
+      this.$startLoading()
 
       this.$http.post(`characters/${this.character.id}/set-main`).then(response => {
-        this.$clearLoading()
+        this.$doneLoading()
         this.character.status = 0
         this.$emit('main-set')
         this.$message.success(sprintf(strings.setting_main_succeeded, { name: this.character.name }))
       }, response => {
-        this.$clearLoading()
+        this.$doneLoading()
         this.$message.error(strings.setting_main_failed)
       })
     },
@@ -189,14 +191,14 @@ export default {
         },
         inputErrorMessage: strings.name_mismatch
       }).then(() => {
-        this.$setLoading()
+        this.$startLoading()
 
         this.$http.delete(`characters/${this.character.id}`).then(response => {
           this.$message.success(strings.removal_succeeded)
           this.$emit('removed')
-          this.$clearLoading()
+          this.$doneLoading()
         }, response => {
-          this.$clearLoading()
+          this.$doneLoading()
           this.$message.error(strings.removal_failed)
         })
       })

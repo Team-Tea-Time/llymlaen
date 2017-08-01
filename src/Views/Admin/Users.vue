@@ -118,7 +118,7 @@ export default {
     }
   },
   created () {
-    this.$setLoading()
+    this.$startLoading()
     this.fetch()
   },
   methods: {
@@ -132,7 +132,7 @@ export default {
       this.dialogEditVisible = true
     },
     save () {
-      this.$setLoading()
+      this.$startLoading()
 
       this.$http.patch(`users/${this.user.id}`, {
         verified: this.user.verified,
@@ -141,7 +141,7 @@ export default {
         this.$message.success(strings.update_succeeded)
         this.dialogEditVisible = false
         this.fetch()
-        this.$clearLoading()
+        this.$doneLoading()
       })
     },
     destroy (user) {
@@ -155,12 +155,12 @@ export default {
         },
         inputErrorMessage: strings.name_mismatch
       }).then(() => {
-        this.$setLoading()
+        this.$startLoading()
 
         this.$http.delete(`users/${user.id}`).then(response => {
           this.$message.success(strings.deletion_successful)
           this.fetch()
-          this.$clearLoading()
+          this.$doneLoading()
         })
       })
     }

@@ -110,7 +110,7 @@ export default {
     }
   },
   created () {
-    this.$setLoading()
+    this.$startLoading()
     this.fetch()
 
     this.searchUsers = debounce(this.searchUsers, 400)
@@ -134,7 +134,7 @@ export default {
       this.dialogEditVisible = true
     },
     save () {
-      this.$setLoading()
+      this.$startLoading()
 
       const data = {
         verified: this.character.verified
@@ -148,7 +148,7 @@ export default {
         this.$message.success(strings.update_succeeded)
         this.dialogEditVisible = false
         this.fetch()
-        this.$clearLoading()
+        this.$doneLoading()
       })
     },
     destroy (character) {
@@ -162,12 +162,12 @@ export default {
         },
         inputErrorMessage: strings.name_mismatch
       }).then(() => {
-        this.$setLoading()
+        this.$startLoading()
 
         this.$http.delete(`characters/${character.id}`).then(response => {
           this.$message.success(strings.removal_succeeded)
           this.fetch()
-          this.$clearLoading()
+          this.$doneLoading()
         })
       })
     }

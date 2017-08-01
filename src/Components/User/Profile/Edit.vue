@@ -5,6 +5,7 @@
     class="user-profile-edit"
     size="large"
     v-on:close="$emit('close')"
+    :visible.sync="isVisible"
   >
     <div v-loading="isLoading">
       <markdown-editor v-model="profile.body" :configs="config" />
@@ -72,7 +73,7 @@ export default {
   },
   watch: {
     visible (visible) {
-      visible ? this.$refs.dialog.open() : this.$refs.dialog.close()
+      this.isVisible = visible
     }
   },
   data () {
@@ -86,7 +87,8 @@ export default {
         avatar: null
       },
       defaultAvatar: '/static/images/user_default_avatar.jpg',
-      selectedAvatar: null
+      selectedAvatar: null,
+      isVisible: false
     }
   },
   created () {
@@ -113,11 +115,11 @@ export default {
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
-        this.$setLoading()
+        this.$startLoading()
 
         this.$http.delete(`users/${this.user.id}/profile/avatar`).then(response => {
           this.$message.success(strings.profile_avatar_deletion_succeeded)
-          this.$clearLoading()
+          this.$doneLoading()
           this.clearAvatarInput()
           this.profile.avatar = null
         })
@@ -131,7 +133,7 @@ export default {
       })
     },
     save () {
-      this.$setLoading()
+      this.$startLoading()
 
       let data = new FormData()
       data.append('body', this.profile.body)
@@ -148,7 +150,7 @@ export default {
     submit (data) {
       this.$http.post(`users/${this.user.id}/profile`, data).then(response => {
         this.$message.success(strings.profile_save_succeeded)
-        this.$clearLoading()
+        this.$doneLoading()
         this.$emit('save', response.body)
         this.clearAvatarInput()
         this.profile = response.body

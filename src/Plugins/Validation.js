@@ -7,7 +7,7 @@ export function Validation(Vue) {
     }
   }
 
-  Vue.prototype.$clearValidationErrors = function () {
+  Vue.prototype.$resetValidation = function () {
     this.$set(this, 'errors', {})
   }
 }

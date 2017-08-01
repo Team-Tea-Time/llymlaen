@@ -79,8 +79,8 @@ export default {
         password: this.password
       }
 
-      this.$clearValidationErrors()
-      this.$setLoading()
+      this.$resetValidation()
+      this.$startLoading()
 
       this.$http.post('auth/token', data).then(response => {
         let accessToken = response.body.access_token
@@ -105,7 +105,7 @@ export default {
             message: strings.login_failed,
             duration: 8000
           })
-          this.$clearLoading()
+          this.$doneLoading()
         }
       })
     }

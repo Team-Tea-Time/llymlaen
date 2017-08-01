@@ -5,6 +5,7 @@
     class="character-profile-edit"
     size="large"
     v-on:close="$emit('close')"
+    :visible.sync="isVisible"
   >
     <div v-loading="isLoading">
       <markdown-editor v-model="profile.body" :configs="config" />
@@ -69,7 +70,7 @@ export default {
   },
   watch: {
     visible (visible) {
-      visible ? this.$refs.dialog.open() : this.$refs.dialog.close()
+      this.isVisible = visible
     }
   },
   data () {
@@ -83,7 +84,8 @@ export default {
         portrait: null
       },
       selectedPortraitFile: null,
-      selectedPortrait: null
+      selectedPortrait: null,
+      isVisible: false
     }
   },
   created () {
@@ -102,17 +104,17 @@ export default {
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
-        this.$setLoading()
+        this.$startLoading()
 
         this.$http.delete(`characters/${this.character.id}/profile/portrait`).then(response => {
           this.$message.success(strings.profile_portrait_deletion_succeeded)
-          this.$clearLoading()
+          this.$doneLoading()
           this.clearPortraitInput()
         })
       })
     },
     save () {
-      this.$setLoading()
+      this.$startLoading()
 
       let data = new FormData()
       data.append('body', this.profile.body)
@@ -120,7 +122,7 @@ export default {
 
       this.$http.post(`characters/${this.character.id}/profile`, data).then(response => {
         this.$message.success(strings.profile_save_succeeded)
-        this.$clearLoading()
+        this.$doneLoading()
         this.$emit('save', response.body)
         this.clearPortraitInput()
       })

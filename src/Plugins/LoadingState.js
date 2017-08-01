@@ -7,11 +7,11 @@ export function LoadingState(Vue) {
     }
   })
 
-  Vue.prototype.$setLoading = function () {
+  Vue.prototype.$startLoading = function () {
     this.$set(this, 'isLoading', true)
   }
 
-  Vue.prototype.$clearLoading = function () {
+  Vue.prototype.$doneLoading = function () {
     this.$set(this, 'isLoading', false)
   }
 }

@@ -14,11 +14,11 @@ export function Fetch(Vue) {
       this.currentFetchPage = page
     }
 
-    this.$setLoading()
+    this.$startLoading()
 
     this.$http.get(`${uri}?page=${page}`).then(response => {
       this.$set(this, key, response.data)
-      this.$clearLoading()
+      this.$doneLoading()
     })
   }
 }

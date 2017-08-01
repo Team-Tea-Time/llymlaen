@@ -121,27 +121,27 @@ export default {
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
-        this.$setLoading()
+        this.$startLoading()
 
         this.$http.delete(`social/${auth.driver.name}/auth/${auth.id}`).then(response => {
           this.$message.success(strings.auth_deletion_succeeded)
           getAuthUser()
-          this.$clearLoading()
+          this.$doneLoading()
         })
       })
     },
     updateCredentials () {
-      this.$setLoading()
+      this.$startLoading()
 
       this.$http.patch('users/me', this.credentials).then(response => {
         this.$message.success(strings.credentials_update_succeeded)
         getAuthUser().then(user => {
           this.credentials = Object.assign({}, user)
         })
-        this.$clearLoading()
+        this.$doneLoading()
       }, response => {
         this.$setValidationErrors(response)
-        this.$clearLoading()
+        this.$doneLoading()
       })
     },
     requestPasswordReset () {
@@ -150,13 +150,13 @@ export default {
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
-        this.$setLoading()
+        this.$startLoading()
 
         this.$http.post('auth/password/reset/request', {
           email: this.user.email
         }).then(response => {
           this.$message.success(strings.password_reset_request_succeeded)
-          this.$clearLoading()
+          this.$doneLoading()
         })
       })
     }

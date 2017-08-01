@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     submit () {
-      this.$setLoading()
+      this.$startLoading()
 
       this.$http.post('auth/password/reset', {
         token: this.token,
@@ -72,7 +72,7 @@ export default {
         password_confirmation: this.password_confirmation
       }).then(response => {
         this.$message.success(strings.password_reset_succeeded)
-        this.$clearLoading()
+        this.$doneLoading()
 
         if (this.$store.state.auth.authenticated) {
           this.$router.push('/user/settings')
@@ -81,7 +81,7 @@ export default {
         }
       }, response => {
         this.$setValidationErrors(response)
-        this.$clearLoading()
+        this.$doneLoading()
       })
     }
   }

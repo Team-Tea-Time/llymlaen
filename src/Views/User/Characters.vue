@@ -4,7 +4,7 @@
     title="Your Characters"
     subtitle="Looking sharp, kupo!"
   >
-    <el-dialog title="Add Character" v-model="dialogVisible">
+    <el-dialog title="Add Character" size="large" :visible.sync="dialogVisible">
       <el-row v-loading="adding">
         <el-col :lg="{span: 12, offset: 6}">
           <el-form>
@@ -115,7 +115,7 @@ export default {
     }
   },
   created () {
-    this.$setLoading()
+    this.$startLoading()
     this.fetch()
 
     this.search = debounce(this.search, 400)
@@ -129,7 +129,7 @@ export default {
     fetch () {
       this.$http.get(`users/${this.$store.state.auth.user.id}/characters`).then(response => {
         this.characters = response.data
-        this.$clearLoading()
+        this.$doneLoading()
       })
     },
     search (name) {

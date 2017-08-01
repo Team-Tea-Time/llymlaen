@@ -95,10 +95,10 @@ export default {
   },
   methods: {
     fetch () {
-      this.$setLoading()
+      this.$startLoading()
       this.$http.get(`characters/${this.$route.params.id}`).then(response => {
         this.character = response.body
-        this.$clearLoading()
+        this.$doneLoading()
       })
     },
     saved (profile) {

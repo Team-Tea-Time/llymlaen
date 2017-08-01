@@ -9,6 +9,15 @@
 
 .el-tag {
   margin: 0 5px 0 0;
+
+  &.link {
+    opacity: 0.75;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1.0;
+    }
+  }
 }
 
 .el-message-box__input {

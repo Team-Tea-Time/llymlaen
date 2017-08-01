@@ -100,16 +100,16 @@ export default {
         password_confirmation: this.password_confirmation
       }
 
-      this.$clearValidationErrors()
-      this.$setLoading()
+      this.$resetValidation()
+      this.$startLoading()
 
       this.$http.post('users', data).then(response => {
         this.$message.success(sprintf(strings.greeting_account_created, data.name))
-        this.$clearLoading()
+        this.$doneLoading()
         this.$router.push('/user/login')
       }, response => {
         this.$setValidationErrors(response)
-        this.$clearLoading()
+        this.$doneLoading()
       })
     }
   }
