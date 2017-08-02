@@ -70,7 +70,7 @@
       <el-col :lg="{span: 12, offset: 6}" v-loading.body="isLoading">
         <character-row
            v-for="character in characters"
-          :character="character"
+          :character.sync="character"
           :showTags="true"
           :showDetails="true"
           v-on:main-set="setMain(character)"
