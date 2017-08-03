@@ -3,6 +3,7 @@
     <el-menu class="side-menu" :default-active="$route.path" :router="true">
       <el-menu-item index="/admin/overview">Overview</el-menu-item>
       <el-menu-item index="/admin/users">Users</el-menu-item>
+      <el-menu-item index="/admin/articles">Articles</el-menu-item>
       <el-menu-item index="/admin/characters">Characters</el-menu-item>
       <el-menu-item index="/admin/free-companies">Free Companies</el-menu-item>
       <el-menu-item index="/admin/listings">Listings</el-menu-item>

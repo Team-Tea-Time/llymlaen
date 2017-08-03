@@ -5,6 +5,7 @@ import Guards from './guards'
 import Admin from '../Views/Admin'
 import AdminOverview from '../Views/Admin/Overview'
 import AdminUsers from '../Views/Admin/Users'
+import AdminArticles from '../Views/Admin/Articles'
 import AdminCharacters from '../Views/Admin/Characters'
 import AdminFreeCompanies from '../Views/Admin/FreeCompanies'
 import AdminListings from '../Views/Admin/Listings'
@@ -86,6 +87,7 @@ export default new VueRouter({
       children: [
         { path: 'overview', component: AdminOverview, meta: { title: 'Admin: Overview' } },
         { path: 'users', component: AdminUsers, meta: { title: 'Admin: Users' } },
+        { path: 'articles', component: AdminArticles, meta: { title: 'Admin: Articles' } },
         { path: 'characters', component: AdminCharacters, meta: { title: 'Admin: Characters' } },
         { path: 'free-companies', component: AdminFreeCompanies, meta: { title: 'Admin: Free Companies' } },
         { path: 'listings', component: AdminListings, meta: { title: 'Admin: Listings' } }
