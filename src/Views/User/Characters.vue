@@ -110,13 +110,19 @@ export default {
       validationErrors: [],
       searching: false,
       searchResults: [],
-      worlds: this.$store.state.worlds,
-      selectedWorldId: this.$store.state.currentWorld.id
+      worlds: [],
+      selectedWorldId: null
     }
   },
   created () {
     this.$startLoading()
     this.fetch()
+
+    this.worlds = this.$store.state.worlds
+
+    if (this.$store.state.currentWorld) {
+      this.selectedWorldId = this.$store.state.currentWorld.id
+    }
 
     this.search = debounce(this.search, 400)
   },
