@@ -19,11 +19,16 @@ import UserRegister from '../Views/User/Register'
 import UserSettings from '../Views/User/Settings'
 import UserSocialAuth from '../Views/User/Social/Auth'
 import UserSocialAuthReceive from '../Views/User/Social/AuthReceive'
+import FrontPage from '../Views/FrontPage'
 
 export default new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
+    {
+      path: '/',
+      component: FrontPage
+    },
     {
       path: '/@:username',
       component: UserProfile,
