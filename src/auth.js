@@ -6,7 +6,8 @@ import * as Cookies from 'js-cookie'
 export const setAuth = function (accessToken, refreshToken, expires) {
   let options = {
     expires,
-    domain: process.env.NODE_ENV === 'production' ? 'xiv.world' : 'xiv-local.world'
+    domain: process.env.NODE_ENV === 'production'
+      ? 'xiv.world' : 'xiv-local.world'
   }
 
   Cookies.set('access_token', accessToken, options)

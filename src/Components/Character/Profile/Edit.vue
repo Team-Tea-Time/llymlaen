@@ -109,6 +109,7 @@ export default {
         this.$http.delete(`characters/${this.character.id}/profile/portrait`).then(response => {
           this.$message.success(strings.profile_portrait_deletion_succeeded)
           this.$doneLoading()
+          this.character.profile.portrait = null
           this.clearPortraitInput()
         })
       })

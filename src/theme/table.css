@@ -658,6 +658,10 @@
     overflow: hidden;
 }
 
+.el-table th.is-sortable{
+    cursor: pointer;
+}
+
 .el-table th{
     background-color: rgb(246, 239, 238);
     text-align: left;
@@ -848,6 +852,10 @@
 
 .el-table--border th{
     border-bottom: 1px solid rgb(236, 223, 223);
+}
+
+.el-table--hidden{
+    visibility: hidden;
 }
 
 .el-table__fixed, .el-table__fixed-right{

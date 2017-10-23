@@ -679,9 +679,6 @@
     color: #bbb;
     cursor: not-allowed;
 }
-.el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
-    color: rgb(217, 191, 191);
-}
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder {
     color: rgb(217, 191, 191);
 }
@@ -710,9 +707,6 @@
     padding: 3px 10px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
     width: 100%;
-}
-.el-input__inner::-webkit-input-placeholder {
-    color: rgb(190, 153, 151);
 }
 .el-input__inner:-ms-input-placeholder {
     color: rgb(190, 153, 151);
@@ -838,9 +832,6 @@
     color: #bbb;
     cursor: not-allowed;
 }
-.el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
-    color: rgb(217, 191, 191);
-}
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder {
     color: rgb(217, 191, 191);
 }
@@ -861,9 +852,6 @@
     border: 1px solid rgb(217, 191, 191);
     border-radius: 4px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-}
-.el-textarea__inner::-webkit-input-placeholder {
-    color: rgb(190, 153, 151);
 }
 .el-textarea__inner:-ms-input-placeholder {
     color: rgb(190, 153, 151);
