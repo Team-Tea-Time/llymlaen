@@ -10,7 +10,7 @@
         <p><strong>Email address:</strong> {{ user.email }}</p>
         <p><strong>Joined:</strong> {{ user.created_at | moment('from') }}</p>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="12" class="roles">
         <p><strong>Roles:</strong></p>
         <el-tag v-for="role in user.roles" :color="role.colour">
           {{ role.name }}
@@ -163,3 +163,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+#user-settings {
+  .roles {
+    .el-tag {
+      color: #fff;
+    }
+  }
+}
+</style>

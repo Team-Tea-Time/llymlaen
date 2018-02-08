@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import '../theme/index.css'
+import '../themes/default/index.scss'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
 import ElementUI from 'element-ui'

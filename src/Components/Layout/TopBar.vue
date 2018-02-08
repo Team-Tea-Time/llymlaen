@@ -53,7 +53,8 @@ export default {
       currentDC: null,
       selectedDC: null,
       navItems: [
-        { index: '/', label: 'Home' }
+        { index: '/', label: 'Home' },
+        { index: '/notice-board', label: 'Notice Board' }
       ]
     }
   },
@@ -109,8 +110,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../scss/colours';
-@import '../../scss/media-queries';
+@import '~src/themes/default/colours';
+@import '~src/themes/default/media-queries';
 
 #top-bar {
   display: block;
@@ -119,6 +120,7 @@ export default {
   width: 100%;
   height: 60px;
   border-radius: 0;
+  border: none;
   background: transparentize($backdrop, 0.2);
   background: linear-gradient(to right, transparentize(#21406c, 0.2), transparentize(#593556, 0.2));
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -132,8 +134,12 @@ export default {
   > .el-menu-item {
     color: #fff;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.075);
+    &:hover, &.is-active:hover {
+      background: rgba(#fff, 0.075);
+    }
+
+    &.is-active {
+      background: rgba(#fff, 0.05);
     }
   }
 

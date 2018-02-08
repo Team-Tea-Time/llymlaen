@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../scss/media-queries';
+@import '~src/themes/default/media-queries';
 
 #page-header {
   height: 400px;

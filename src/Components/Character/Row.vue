@@ -229,7 +229,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../scss/colours';
+@import '~src/themes/default/colours';
 
 .character-row {
   padding: 1rem;

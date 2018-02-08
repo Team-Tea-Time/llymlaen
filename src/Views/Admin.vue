@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../scss/colours';
+@import '../themes/default/colours';
 
 #admin {
   .side-menu {

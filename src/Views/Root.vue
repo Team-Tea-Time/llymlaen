@@ -85,12 +85,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../scss/colours';
-@import '../scss/fonts';
-@import '../scss/media-queries';
-@import '../scss/nprogress';
-@import '../scss/overrides';
-@import '../scss/transitions';
+@import '../themes/default/index';
+@import '../themes/default/media-queries';
 
 html, body {
   height: 100%;
