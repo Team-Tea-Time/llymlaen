@@ -39,15 +39,13 @@ export default {
   h1, h2 {
     position: relative;
     margin: 0;
-    font-weight: 300;
     color: #fff;
-    text-shadow: rgba(0, 0, 0, 0.65) 0 0 6px;
+    text-shadow: rgba(#000, .75) 0 0 6px;
   }
 
   h1 {
     top: 40%;
     font-size: 4.6rem;
-    font-weight: 300;
     text-transform: uppercase;
   }
 
